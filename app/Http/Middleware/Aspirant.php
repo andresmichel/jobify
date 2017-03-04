@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class Aspirant
 {
@@ -16,7 +15,7 @@ class Aspirant
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guest() || Auth::user()->role != 'aspirant') {
+        if (auth()->guest() || auth()->user()->role != 'aspirant') {
             return redirect('login');
         }
 
