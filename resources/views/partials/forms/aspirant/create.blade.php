@@ -1,53 +1,58 @@
-<form action="{{ url('register/aspirant') }}" method="post">
+@component('components.form')
+    @slot('action', url('register/aspirant'))
+
     {{ csrf_field() }}
 
-    <div class="form-group">
-        <label>Foto</label>
-        <input class="form-control" type="file" name="picture">
-    </div>
+    @component('components.input')
+        @slot('label', 'Nombre completo')
+        @slot('name', 'name')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Nombre completo</label>
-        <input class="form-control" type="text" name="name" value="{{ old('name') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Correo electrónico')
+        @slot('name', 'email')
+        @slot('type', 'email')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Correo electrónico</label>
-        <input class="form-control" type="email" name="email" value="{{ old('email') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Contraseña')
+        @slot('name', 'password')
+        @slot('type', 'password')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Contraseña</label>
-        <input class="form-control" type="password" name="password">
-    </div>
+    @component('components.input')
+        @slot('label', 'Confirmar contraseña')
+        @slot('name', 'password confirmation')
+        @slot('type', 'password')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Confirmar contraseña</label>
-        <input class="form-control" type="password" name="password_confirmation">
-    </div>
+    @component('components.input')
+        @slot('label', 'Fotografía')
+        @slot('name', 'picture')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Género</label>
-        <select class="form-control" name="gender">
-            <option value="male">Hombre</option>
-            <option value="female">Mujer</option>
-        </select>
-    </div>
+    @component('components.input')
+        @slot('label', 'Hombre')
+        @slot('name', 'Mujer')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Estado</label>
-        <input class="form-control" type="text" name="state" value="{{ old('state') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Estado')
+        @slot('name', 'state')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Ciudad</label>
-        <input class="form-control" type="text" name="city" value="{{ old('city') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Ciudad')
+        @slot('name', 'city')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Teléfono</label>
-        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Teléfono')
+        @slot('name', 'phone')
+        @slot('type', 'phone')
+    @endcomponent
 
-    <button class="btn btn-primary" type="submit">Registrarme</button>
-</form>
+    @component('components.button')
+        Registrarme
+    @endcomponent
+@endcomponent
