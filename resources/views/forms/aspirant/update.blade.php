@@ -1,54 +1,62 @@
-<form action="{{ url('aspirant/profile') }}" method="post">
+@component('components.form')
+    @slot('action', url('aspirant/profile'))
+
     {{ csrf_field() }}
     {{ method_field('PUT') }}
 
-    <div class="form-group">
-        <label>Foto</label>
-        <input class="form-control" type="file" name="picture">
-    </div>
+    @component('components.input')
+        @slot('label', 'Nombre completo')
+        @slot('name', 'name')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Nombre completo</label>
-        <input class="form-control" type="text" name="name" value="">
-    </div>
+    @component('components.input')
+        @slot('label', 'Correo electrónico')
+        @slot('name', 'email')
+        @slot('type', 'email')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Correo electrónico</label>
-        <input class="form-control" type="email" name="email" value="">
-    </div>
+    @component('components.input')
+        @slot('label', 'Contraseña')
+        @slot('name', 'password')
+        @slot('type', 'password')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Contraseña</label>
-        <input class="form-control" type="password" name="password" value="">
-    </div>
+    @component('components.input')
+        @slot('label', 'Confirmar contraseña')
+        @slot('name', 'password_confirmation')
+        @slot('type', 'password')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Confirmar contraseña</label>
-        <input class="form-control" type="password" name="password_confirmation" value="">
-    </div>
+    @component('components.file')
+        @slot('label', 'Fotografía')
+        @slot('name', 'picture')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Género</label>
-        <select class="form-control" name="gender">
-            <option value="male">Hombre</option>
-            <option value="female">Mujer</option>
-        </select>
-    </div>
+    @component('components.select')
+        @slot('label', 'Género')
+        @slot('name', 'gender')
+        <option value="male">Hombre</option>
+        <option value="female">Mujer</option>
+    @endcomponent
 
-    <div class="form-group">
-        <label>Estado</label>
-        <input class="form-control" type="text" name="state" value="">
-    </div>
+    @component('components.select')
+        @slot('label', 'Estado')
+        @slot('name', 'state')
+        <option>Baja California</option>
+    @endcomponent
 
-    <div class="form-group">
-        <label>Ciudad</label>
-        <input class="form-control" type="text" name="city" value="">
-    </div>
+    @component('components.input')
+        @slot('label', 'Ciudad')
+        @slot('name', 'city')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Teléfono</label>
-        <input class="form-control" type="text" name="phone" value="">
-    </div>
+    @component('components.input')
+        @slot('label', 'Teléfono')
+        @slot('name', 'phone')
+        @slot('type', 'phone')
+    @endcomponent
 
-    <button class="btn btn-primary" type="submit">Guardar cambios</button>
-</form>
+    @component('components.button')
+        Guardar
+    @endcomponent
+@endcomponent

@@ -3,19 +3,15 @@
 @section('content')
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-10 offset-sm-1">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block text-center">
-                                <a href="{{ url('register/aspirant') }}" class="btn btn-primary mr-5">Asistente</a>
+            <div class="col-sm-6 offset-sm-3">
+                <div class="card">
+                    <div class="card-block text-center">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{{ url('register/aspirant') }}" class="btn btn-block btn-primary mr-5">Asistente</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-block text-center">
-                                <a href="{{ url('register/company') }}" class="btn btn-primary">Compañía</a>
+                            <div class="col-sm-6">
+                                <a href="{{ url('register/company') }}" class="btn btn-block btn-primary">Compañía</a>
                             </div>
                         </div>
                     </div>

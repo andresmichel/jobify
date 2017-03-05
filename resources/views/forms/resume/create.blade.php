@@ -1,10 +1,14 @@
-<form  action="{{ url('aspirant/resume') }}" method="post">
+@component('components.form')
+    @slot('action', url('aspirant/resume'))
+
     {{ csrf_field() }}
 
-    <div class="form-group">
-        <label>Currículum</label>
-        <input class="form-control" type="file" name="resume" value="{{ old('resume') }}">
-    </div>
+    @component('components.file')
+        @slot('label', 'Currículum')
+        @slot('name', 'resume')
+    @endcomponent
 
-    <button class="btn btn-primary" type="submit">Guardar</button>
-</form>
+    @component('components.button')
+        Guardar
+    @endcomponent
+@endcomponent

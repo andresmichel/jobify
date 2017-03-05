@@ -1,29 +1,29 @@
-<form id="login" action="{{ url('/login') }}" method="post">
+@component('components.form')
+    @slot('action', url('/login'))
+
     {{ csrf_field() }}
 
     <input style="display:none" type="text" name="email"/>
     <input style="display:none" type="password" name="password"/>
 
-    @include('partials.input', [
-        'name' => 'email',
-        'label' => 'Correo electrónico',
-        'type' => 'email',
-    ])
+    @component('components.input')
+        @slot('label', 'Correo electrónico')
+        @slot('name', 'email')
+        @slot('type', 'email')
+    @endcomponent
 
-    @include('partials.input', [
-        'name' => 'password',
-        'label' => 'Contraseña',
-        'type' => 'password',
-    ])
+    @component('components.input')
+        @slot('label', 'Contraseña')
+        @slot('name', 'password')
+        @slot('type', 'password')
+    @endcomponent
 
-    @include('partials.input', [
-        'name' => 'remember',
-        'label' => 'Recordar',
-        'type' => 'checkbox',
-    ])
+    @component('components.checkbox')
+        @slot('label', 'Recordar')
+        @slot('name', 'remember')
+    @endcomponent
 
-    @include('partials.input', [
-        'label' => 'Iniciar sesión',
-        'type' => 'button',
-    ])
-</form>
+    @component('components.button')
+        Iniciar sesión
+    @endcomponent
+@endcomponent

@@ -1,71 +1,80 @@
-<form  action="{{ url('company/profile') }}" method="post">
+@component('components.form')
+    @slot('action', url('company/profile'))
+
     {{ csrf_field() }}
     {{ method_field('PUT') }}
 
-    <div class="form-group">
-        <label>Nombre de la empresa</label>
-        <input class="form-control" type="text" name="name" value="{{ old('name') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Nombre de la empresa')
+        @slot('name', 'name')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Correo electrónico</label>
-        <input class="form-control" type="email" name="email" value="{{ old('email') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Correo electrónico')
+        @slot('name', 'email')
+        @slot('type', 'email')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Contraseña</label>
-        <input class="form-control" type="password" name="password">
-    </div>
+    @component('components.input')
+        @slot('label', 'Contraseña')
+        @slot('name', 'password')
+        @slot('type', 'password')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Confirmar contraseña</label>
-        <input class="form-control" type="password" name="password_confirmation">
-    </div>
+    @component('components.input')
+        @slot('label', 'Confirmar contraseña')
+        @slot('name', 'password')
+        @slot('type', 'password_confirmation')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Descripción</label>
-        <textarea class="form-control" name="description" rows="8" cols="80">{{ old('description') }}</textarea>
-    </div>
+    @component('components.textarea')
+        @slot('label', 'Descripción')
+        @slot('name', 'description')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Logo</label>
-        <input class="form-control" type="file" name="logo" value="">
-    </div>
+    @component('components.file')
+        @slot('label', 'Logotipo')
+        @slot('name', 'logo')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Sitio Web</label>
-        <input class="form-control" type="text" name="website" value="{{ old('website') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Sitio Web')
+        @slot('name', 'website')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Categoría</label>
-        <input class="form-control" type="text" name="category" value="{{ old('category') }}">
-    </div>
+    @component('components.select')
+        @slot('label', 'Categoría')
+        @slot('name', 'category')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Número de empleados</label>
-        <input class="form-control" type="text" name="employees" value="{{ old('employees') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Número de empleados')
+        @slot('name', 'employees')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Estado</label>
-        <input class="form-control" type="text" name="state" value="{{ old('state') }}">
-    </div>
+    @component('components.select')
+        @slot('label', 'Estado')
+        @slot('name', 'state')
+        <option>Baja California</option>
+    @endcomponent
 
-    <div class="form-group">
-        <label>Ciudad</label>
-        <input class="form-control" type="text" name="city" value="{{ old('city') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Ciudad')
+        @slot('name', 'city')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Domicilio</label>
-        <textarea class="form-control" name="address" rows="8" cols="80">{{ old('address') }}</textarea>
-    </div>
+    @component('components.textarea')
+        @slot('label', 'Domicilio')
+        @slot('name', 'address')
+    @endcomponent
 
-    <div class="form-group">
-        <label>Teléfono</label>
-        <input class="form-control" type="text" name="phone" value="{{ old('phone') }}">
-    </div>
+    @component('components.input')
+        @slot('label', 'Teléfono')
+        @slot('name', 'phone')
+        @slot('type', 'phone')
+    @endcomponent
 
-    <button class="btn btn-primary" type="submit">Guardar cambios</button>
-</form>
+    @component('components.button')
+        Guardar
+    @endcomponent
+@endcomponent

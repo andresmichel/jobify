@@ -14,6 +14,11 @@ class VacancyController extends Controller
         return view('company.vacancies.index', compact('vacancies'));
     }
 
+    public function create()
+    {
+        return view('company.vacancies.create');
+    }
+
     public function show($slug)
     {
         $vacancy = auth()->user()->company->vacancies->where('slug', $slug)->first();
@@ -22,6 +27,16 @@ class VacancyController extends Controller
     }
 
     public function edit($slug)
+    {
+        return view('company.vacancies.edit');
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function delete($id)
     {
         //
     }

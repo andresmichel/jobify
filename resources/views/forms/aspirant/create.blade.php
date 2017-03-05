@@ -1,5 +1,6 @@
 @component('components.form')
     @slot('action', url('register/aspirant'))
+
     {{ csrf_field() }}
 
     @component('components.input')
@@ -33,11 +34,14 @@
     @component('components.select')
         @slot('label', 'Género')
         @slot('name', 'gender')
+        <option value="male">Hombre</option>
+        <option value="female">Mujer</option>
     @endcomponent
 
-    @component('components.input')
+    @component('components.select')
         @slot('label', 'Estado')
         @slot('name', 'state')
+        <option>Baja California</option>
     @endcomponent
 
     @component('components.input')
