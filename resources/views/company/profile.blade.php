@@ -6,7 +6,7 @@
             <div class="col-sm-6 offset-sm-3">
                 <div class="card">
                     <div class="card-block">
-                        @include('partials.forms.company.update')
+                        @include('forms.company.update')
                     </div>
                 </div>
             </div>

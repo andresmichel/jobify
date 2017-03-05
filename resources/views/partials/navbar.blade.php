@@ -8,7 +8,7 @@
 
 				@if (Auth::guest())
 					<a href="{{ url('login') }}" class="ml-auto">Inciar sesión</a>
-					<a href="{{ url('register') }}" class="ml-4" data-toggle="modal" data-target="#register-modal">Registrarme</a>
+					<a href="{{ url('register') }}" class="ml-4">Registrarme</a>
 				@else
 					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::user()->name }}
@@ -26,5 +26,3 @@
 		</div>
 	</div>
 </div>
-
-@include('partials.modals.register')
