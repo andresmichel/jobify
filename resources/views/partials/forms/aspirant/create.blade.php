@@ -1,6 +1,5 @@
 @component('components.form')
     @slot('action', url('register/aspirant'))
-
     {{ csrf_field() }}
 
     @component('components.input')
@@ -22,18 +21,18 @@
 
     @component('components.input')
         @slot('label', 'Confirmar contraseña')
-        @slot('name', 'password confirmation')
+        @slot('name', 'password_confirmation')
         @slot('type', 'password')
     @endcomponent
 
-    @component('components.input')
+    @component('components.file')
         @slot('label', 'Fotografía')
         @slot('name', 'picture')
     @endcomponent
 
-    @component('components.input')
-        @slot('label', 'Hombre')
-        @slot('name', 'Mujer')
+    @component('components.select')
+        @slot('label', 'Género')
+        @slot('name', 'gender')
     @endcomponent
 
     @component('components.input')

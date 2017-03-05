@@ -1,6 +1,9 @@
 <div class="form-group">
     <label for="{{ $name or '' }}">{{ $label or '' }}</label>
-    <input class="form-control" type="{{ $type or 'text' }}" name="{{ $name or '' }}" value="{{ $slot or old($name) }}" id="{{ $name or '' }}">
+    <select class="form-control" name="{{ $name or '' }}" id="{{ $name or '' }}">
+        <option value="">Elegir un elemento de la lista</option>
+        {{ $slot }}
+    </select>
     @if ($errors->has($name))
         <small class="form-text text-muted">{{ $errors->first($name) }}</small>
     @endif
