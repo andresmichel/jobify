@@ -1,6 +1,11 @@
-<div class="form-check">
-    <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" value="option1" checked>
-        Option one is this and that&mdash;be sure to include why it's great
-    </label>
+<div class="form-group">
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="{{ $name or '' }}" value="{{ $slot or '' }}" checked>
+            {{ $label or '' }}
+        </label>
+    </div>
+    @if ($errors->has($name))
+        <small class="form-text text-muted">{{ $errors->first($name) }}</small>
+    @endif
 </div>
