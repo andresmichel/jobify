@@ -8,23 +8,24 @@
 @section('content')
     @include('partials.breadcrumb')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card mb-3">
-                    <div class="card-block">
-                        <a href="{{ url('#') }}">Agregar vacante</a>
-                    </div>
-                </div>
-            </div>
+    <a href="{{ url('company/vacancies/create') }}">
+        <div style="display:flex;
+            width:60px; height:60px; position:fixed;
+            bottom:30px; right:90px; background-color:#0275d8;
+            z-index:1; border-radius:50%; align-items:center;
+            justify-content:center; color:#fff; font-size:32px;">
+            <span style="display:inline-block; margin-bottom:7px;">+</span>
         </div>
+    </a>
+
+    <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
                         @foreach ($vacancies as $vacancy)
                             <li class="list-group-item d-block">
-                                <h4 class="card-title"><a href="{{ url('vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
+                                <h4 class="card-title"><a href="{{ url('company/vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $vacancy->company->user->name }} - {{ $vacancy->state }}, {{ $vacancy->city }}</h6>
                                 <p class="card-text">{{ $vacancy->description }}</p>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ date_format(date_create($vacancy->created_at), 'M d, Y') }}</h6>

@@ -7,12 +7,14 @@
     @component('components.input')
         @slot('label', 'Nombre de la empresa')
         @slot('name', 'name')
+        {{ auth()->user()->name }}
     @endcomponent
 
     @component('components.input')
         @slot('label', 'Correo electrónico')
         @slot('name', 'email')
         @slot('type', 'email')
+        {{ auth()->user()->email }}
     @endcomponent
 
     @component('components.input')
@@ -30,48 +32,57 @@
     @component('components.textarea')
         @slot('label', 'Descripción')
         @slot('name', 'description')
+        {{ auth()->user()->company->description }}
     @endcomponent
 
     @component('components.file')
         @slot('label', 'Logotipo')
         @slot('name', 'logo')
+        {{ auth()->user()->company->logo }}
     @endcomponent
 
     @component('components.input')
         @slot('label', 'Sitio Web')
         @slot('name', 'website')
+        {{ auth()->user()->company->website }}
     @endcomponent
 
     @component('components.select')
         @slot('label', 'Categoría')
         @slot('name', 'category')
+        {{ auth()->user()->company->category }}
     @endcomponent
 
     @component('components.input')
         @slot('label', 'Número de empleados')
         @slot('name', 'employees')
+        {{ auth()->user()->company->employees }}
     @endcomponent
 
     @component('components.select')
         @slot('label', 'Estado')
         @slot('name', 'state')
         <option>Baja California</option>
+    {{ auth()->user()->company->state }}
     @endcomponent
 
     @component('components.input')
         @slot('label', 'Ciudad')
         @slot('name', 'city')
+        {{ auth()->user()->company->city }}
     @endcomponent
 
     @component('components.textarea')
         @slot('label', 'Domicilio')
         @slot('name', 'address')
+        {{ auth()->user()->company->address }}
     @endcomponent
 
     @component('components.input')
         @slot('label', 'Teléfono')
         @slot('name', 'phone')
         @slot('type', 'phone')
+        {{ auth()->user()->company->phone }}
     @endcomponent
 
     @component('components.button')

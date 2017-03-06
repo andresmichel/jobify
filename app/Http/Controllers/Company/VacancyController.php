@@ -19,16 +19,11 @@ class VacancyController extends Controller
         return view('company.vacancies.create');
     }
 
-    public function show($slug)
-    {
-        $vacancy = auth()->user()->company->vacancies->where('slug', $slug)->first();
-
-        return view('company.vacancies.show', compact('vacancy'));
-    }
-
     public function edit($slug)
     {
-        return view('company.vacancies.edit');
+        $vacancy = auth()->user()->company->vacancies()->where('slug', $slug)->firstOrFail();
+
+        return view('company.vacancies.edit', compact('vacancy'));
     }
 
     public function update(Request $request, $id)
@@ -38,6 +33,7 @@ class VacancyController extends Controller
 
     public function delete($id)
     {
-        //
+        auth()->user()->company->vacancies->find($id)->delete();
+        return redirect('company/vacancies');
     }
 }

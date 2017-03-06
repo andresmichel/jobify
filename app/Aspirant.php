@@ -17,4 +17,9 @@ class Aspirant extends Model
     {
         return $this->belongsToMany('App\Vacancy', 'applications');
     }
+
+    public function applications()
+    {
+        return $this->hasMany('App\Application');
+    }
 }

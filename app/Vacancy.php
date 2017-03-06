@@ -20,6 +20,11 @@ class Vacancy extends Model
         return $this->belongsToMany('App\Aspirant', 'applications');
     }
 
+    public function applications()
+    {
+        return $this->hasMany('App\Application');
+    }
+
     public function applied()
     {
         if (auth()->user()->aspirant) {

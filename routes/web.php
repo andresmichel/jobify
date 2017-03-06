@@ -50,8 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/vacancies', 'VacancyController@index');
         Route::post('/vacancies', 'VacancyController@store');
         Route::get('/vacancies/create', 'VacancyController@create');
-        Route::get('/vacancies/{slug}', 'VacancyController@show');
-        Route::put('/vacancies/{slug}/edit', 'VacancyController@edit');
+        Route::get('/vacancies/{slug}', 'VacancyController@edit');
+        Route::delete('/vacancies/{slug}', 'VacancyController@delete');
     });
 });
 
