@@ -31,6 +31,12 @@
         @slot('name', 'picture')
     @endcomponent
 
+    @component('components.input')
+        @slot('label', 'Fecha de nacimiento')
+        @slot('name', 'birth')
+        @slot('type', 'date')
+    @endcomponent
+    
     @component('components.select')
         @slot('label', 'Género')
         @slot('name', 'gender')

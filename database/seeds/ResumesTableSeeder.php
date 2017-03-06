@@ -11,16 +11,6 @@ class ResumesTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [];
-        $faker = Faker\Factory::create();
-
-        for ($i = 1; $i <= 51; $i++) {
-            array_push($data, [
-                'aspirant_id' => $i,
-                'resume' => null,
-            ]);
-        }
-
-        DB::table('resumes')->insert($data);
+        //
     }
 }
