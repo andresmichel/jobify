@@ -29,21 +29,31 @@
                             @component('components.select')
                                 @slot('label', 'Área')
                                 @slot('name', 'area')
+                                <option>Ventas</option>
+                                <option>Recursos Humanos</option>
+                                <option>Sistemas</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Educación')
                                 @slot('name', 'education')
+                                <option>Preparatoria</option>
+                                <option>Universidad</option>
+                                <option>Doctorado</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Turno')
                                 @slot('name', 'shift')
+                                <option>Matutino</option>
+                                <option>Vespertino</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
+                                <option>Hombre</option>
+                                <option>Mujer</option>
                             @endcomponent
 
                             @component('components.textarea')

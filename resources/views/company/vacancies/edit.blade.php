@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-block">
                         @component('components.form')
-                            @slot('action', url('company/vacancies'))
+                            @slot('action', url('company/vacancies', $vacancy->id))
 
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
@@ -33,31 +33,31 @@
                             @component('components.select')
                                 @slot('label', 'Área')
                                 @slot('name', 'area')
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
+                                <option>Ventas</option>
+                                <option>Recursos Humanos</option>
+                                <option>Sistemas</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Educación')
                                 @slot('name', 'education')
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
+                                <option>Preparatoria</option>
+                                <option>Universidad</option>
+                                <option>Doctorado</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Turno')
                                 @slot('name', 'shift')
-                                <option>Matutino</option>
-                                <option>Vespertino</option>
+                                <option {{ $vacancy->shift == 'Matutino' ? 'selected' : '' }}>Matutino</option>
+                                <option {{ $vacancy->shift == 'Vespertino' ? 'selected' : '' }}>Vespertino</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
-                                <option value="male">Hombre</option>
-                                <option value="female">Mujer</option>
+                                <option value="male" {{ $vacancy->gender == 'male' ? 'selected' : '' }}>Hombre</option>
+                                <option value="female" {{ $vacancy->gender == 'female' ? 'selected' : '' }}>Mujer</option>
                             @endcomponent
 
                             @component('components.textarea')
@@ -105,7 +105,7 @@
                             @component('components.select')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option >Baja California</option>
+                                <option {{ $vacancy->state == 'Baja California' ? 'selected' : '' }}>Baja California</option>
                             @endcomponent
 
                             @component('components.input')
@@ -117,8 +117,8 @@
                             @component('components.select')
                                 @slot('label', 'Estatus')
                                 @slot('name', 'status')
-                                    <option value="1">Abierto</option>
-                                    <option value="0">Cerrado</option>
+                                <option value="1" {{ $vacancy->status ? 'selected' : '' }}>Abierto</option>
+                                <option value="0" {{ $vacancy->status ? 'selected' : '' }}>Cerrado</option>
                             @endcomponent
 
                             @component('components.button')

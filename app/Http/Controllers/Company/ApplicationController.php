@@ -14,6 +14,7 @@ class ApplicationController extends Controller
         $vacancies = auth()->user()->company->vacancies;
 
         $vacancy_ids = [];
+        $ss = [];
 
         foreach ($vacancies as $vacancy) {
             $vacancy_ids[] = $vacancy->id;

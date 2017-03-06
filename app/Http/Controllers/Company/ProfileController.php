@@ -34,6 +34,7 @@ class ProfileController extends Controller
         $user->update([
             'name'      => $request->name,
             'email'     => $request->email,
+            'password'  => bcrypt($request->password),
         ]);
 
         auth()->user()->company->update([

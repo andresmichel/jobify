@@ -47,11 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/applications/{id}', 'ApplicationController@show');
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
-        Route::get('/vacancies', 'VacancyController@index');
-        Route::post('/vacancies', 'VacancyController@store');
-        Route::get('/vacancies/create', 'VacancyController@create');
-        Route::get('/vacancies/{slug}', 'VacancyController@edit');
-        Route::delete('/vacancies/{slug}', 'VacancyController@delete');
+        Route::resource('/vacancies', 'VacancyController');
     });
 });
 
