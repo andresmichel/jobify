@@ -19,6 +19,19 @@ class VacancyController extends Controller
         return view('company.vacancies.create');
     }
 
+    public function store(Request $request)
+    {
+        $vacancy = auth()->user()->company->vacancies();
+
+        return dd($vacancy);
+
+        $vacancy->slug = str_slug($request->title);
+
+        $this->factory($vacancy, $request);
+
+        return redirect('company.vacancies');
+    }
+
     public function show($slug)
     {
         return $this->edit($slug);
@@ -35,7 +48,6 @@ class VacancyController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string',
-            'slug' => 'required|string',
             'description' => 'required|string',
             'contract' => 'required|string',
             'area' => 'required|string',
@@ -56,8 +68,41 @@ class VacancyController extends Controller
 
         $vacancy = auth()->user()->company->vacancies()->findOrFail($id);
 
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        auth()->user()->company->vacancies->find($id)->delete();
+        return redirect('company/vacancies');
+    }
+
+    public function validation($request)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'contract' => 'required|string',
+            'area' => 'required|string',
+            'education' => 'required|string',
+            'shift' => 'required|string',
+            'gender' => 'required|string',
+            'experience' => 'required|string',
+            'min_age' => 'required|string',
+            'max_age' => 'required|string',
+            'schedule' => 'required|string',
+            'hours' => 'required|string',
+            'salary' => 'required|string',
+            'language' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'status' => 'required',
+        ]);
+    }
+
+    public function factory($vacancy, $request)
+    {
         $vacancy->title = $request->title;
-        $vacancy->slug = $request->slug;
         $vacancy->description = $request->description;
         $vacancy->contract = $request->contract;
         $vacancy->area = $request->area;
@@ -75,13 +120,5 @@ class VacancyController extends Controller
         $vacancy->city = $request->city;
         $vacancy->status = $request->status;
         $vacancy->save();
-
-        return back();
-    }
-
-    public function destroy($id)
-    {
-        auth()->user()->company->vacancies->find($id)->delete();
-        return redirect('company/vacancies');
     }
 }

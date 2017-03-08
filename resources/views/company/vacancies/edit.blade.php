@@ -33,17 +33,17 @@
                             @component('components.select')
                                 @slot('label', 'Área')
                                 @slot('name', 'area')
-                                <option>Ventas</option>
-                                <option>Recursos Humanos</option>
-                                <option>Sistemas</option>
+                                <option {{ $vacancy->area == 'Ventas' ? 'selected' : '' }}>Ventas</option>
+                                <option {{ $vacancy->area == 'Recursos Humanos' ? 'selected' : '' }}>Recursos Humanos</option>
+                                <option {{ $vacancy->area == 'Sistemas' ? 'selected' : '' }}>Sistemas</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Educación')
                                 @slot('name', 'education')
-                                <option>Preparatoria</option>
-                                <option>Universidad</option>
-                                <option>Doctorado</option>
+                                <option {{ $vacancy->education == 'Universidad' ? 'selected' : '' }}>Universidad</option>
+                                <option {{ $vacancy->education == 'Preparatoria' ? 'selected' : '' }}>Preparatoria</option>
+                                <option {{ $vacancy->education == 'Doctorado' ? 'selected' : '' }}>Doctorado</option>
                             @endcomponent
 
                             @component('components.select')
@@ -117,8 +117,8 @@
                             @component('components.select')
                                 @slot('label', 'Estatus')
                                 @slot('name', 'status')
-                                <option value="1" {{ $vacancy->status ? 'selected' : '' }}>Abierto</option>
-                                <option value="0" {{ $vacancy->status ? 'selected' : '' }}>Cerrado</option>
+                                <option value="1" {{ $vacancy->status == "1" ? 'selected' : '' }}>Abierto</option>
+                                <option value="0" {{ $vacancy->status == "0" ? 'selected' : '' }}>Cerrado</option>
                             @endcomponent
 
                             @component('components.button')

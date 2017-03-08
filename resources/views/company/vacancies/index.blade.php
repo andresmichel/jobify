@@ -11,9 +11,10 @@
     <a href="{{ url('company/vacancies/create') }}">
         <div style="display:flex;
             width:60px; height:60px; position:fixed;
-            bottom:30px; right:90px; background-color:#0275d8;
+            bottom:30px; right:120px; background-color:#0275d8;
             z-index:1; border-radius:50%; align-items:center;
-            justify-content:center; color:#fff; font-size:32px;">
+            justify-content:center; color:#fff; font-size:32px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);">
             <span style="display:inline-block; margin-bottom:7px;">+</span>
         </div>
     </a>
