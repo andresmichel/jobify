@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Vacancy;
 
 class VacancyController extends Controller
 {
@@ -21,20 +22,22 @@ class VacancyController extends Controller
 
     public function store(Request $request)
     {
-        $vacancy = auth()->user()->company->vacancies();
+        $vacancy = new Vacancy;
 
-        return dd($vacancy);
+        $vacancy->company_id = auth()->user()->company->id;
 
         $vacancy->slug = str_slug($request->title);
 
         $this->factory($vacancy, $request);
 
-        return redirect('company.vacancies');
+        return redirect('company/vacancies');
     }
 
     public function show($slug)
     {
-        return $this->edit($slug);
+        $vacancy = auth()->user()->company->vacancies()->where('slug', $slug)->firstOrFail();
+
+        return view('company.vacancies.show', compact('vacancy'));
     }
 
     public function edit($slug)

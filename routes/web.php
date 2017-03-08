@@ -43,8 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'company', 'middleware' => 'company', 'namespace' => 'Company'], function () {
         Route::get('/', 'HomeController@index');
-        Route::get('/applications', 'ApplicationController@index');
-        Route::get('/applications/{id}', 'ApplicationController@show');
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
         Route::resource('/vacancies', 'VacancyController');

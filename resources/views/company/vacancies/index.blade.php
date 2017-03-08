@@ -26,10 +26,12 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($vacancies as $vacancy)
                             <li class="list-group-item d-block">
+                                <p>{{ count($vacancy->applications) }} solicitudes</p>
                                 <h4 class="card-title"><a href="{{ url('company/vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $vacancy->company->user->name }} - {{ $vacancy->state }}, {{ $vacancy->city }}</h6>
                                 <p class="card-text">{{ $vacancy->description }}</p>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ date_format(date_create($vacancy->created_at), 'M d, Y') }}</h6>
+                                <a href="{{ url('company/vacancies/'.$vacancy->slug.'/edit') }}">Editar</a>
                             </li>
                         @endforeach
                     </ul>

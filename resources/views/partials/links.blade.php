@@ -7,6 +7,5 @@
         <a href="{{ url('aspirant/applications') }}" class="ml-4">Solicitudes</a>
     @elseif (auth()->user()->role == 'company')
         <a href="{{ url('company/vacancies') }}" class="ml-3">Vacantes</a>
-        <a href="{{ url('company/applications') }}" class="ml-3">Solicitudes</a>
     @endif
 @endif
