@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="#">Company</a></li>
+    <li class="breadcrumb-item"><a href="#">Empresa</a></li>
     <li class="breadcrumb-item active">{{ $company->user->name }}</li>
 @endsection
 
