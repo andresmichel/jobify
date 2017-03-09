@@ -1,15 +1,8 @@
 @extends('layouts.master')
 
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-    <li class="breadcrumb-item active">Vacantes</li>
-@endsection
-
 @section('content')
-    @include('partials.breadcrumb')
-
     <div class="container">
-        <div class="row">
+        <div class="row py-5">
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <div class="card-block">
@@ -26,7 +19,6 @@
                                 <div class="col-sm-12 mt-3">
                                     <div class="d-flex">
                                         <span>Ordenar por</span>
-                                        <a href="?by=relevant" class="ml-3">Relevancia</a>
                                         <a href="?by=date" class="ml-3">Fecha</a>
                                         <a href="?by=salary" class="ml-3">Salario</a>
                                     </div>
@@ -36,11 +28,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
@@ -48,8 +36,10 @@
                             <li class="list-group-item d-block">
                                 <h4 class="card-title"><a href="{{ url('vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $vacancy->company->user->name }} - {{ $vacancy->state }}, {{ $vacancy->city }}</h6>
-                                <p class="card-text">{{ $vacancy->description }}</p>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ date_format(date_create($vacancy->created_at), 'M d, Y') }}</h6>
+                                <p class="card-text">
+                                    {{ date_format(date_create($vacancy->created_at), 'M d, Y') }} -
+                                    {{ str_limit($vacancy->description) }}
+                                </p>
                             </li>
                         @endforeach
                     </ul>

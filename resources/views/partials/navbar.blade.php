@@ -3,6 +3,9 @@
 		<div class="row">
 			<div class="col-sm-12 d-flex">
 				<a href="{{ url('/') }}">Jobify</a>
+				@if (auth()->guest())
+					<a href="{{ url('vacancies') }}" class="ml-4">Vacantes</a>
+				@endif
 
 				@include('partials.links')
 

@@ -1,16 +1,8 @@
 @extends('layouts.master')
 
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="{{ url('/vacancies') }}">Vacantes</a></li>
-    <li class="breadcrumb-item active">{{ $vacancy->title }}</li>
-@endsection
-
 @section('content')
-    @include('partials.breadcrumb')
-
     <div class="container">
-        <div class="row">
+        <div class="row py-5">
             <div class="col-sm-8">
                 <div class="card mb-3">
                     <div class="card-block">
@@ -40,7 +32,7 @@
                 </div>
 
                 <div class="card mb-3">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color:#fff;">
                         Vacantes similares
                     </div>
                     <ul class="list-group list-group-flush">

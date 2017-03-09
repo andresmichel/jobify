@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Aspirant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Vacancy;
 
 class ApplicationController extends Controller
 {
@@ -15,9 +14,9 @@ class ApplicationController extends Controller
         return view('aspirant.applications', compact('applications'));
     }
 
-    public function edit($id)
+    public function update($id)
     {
-        $vacancy = Vacancy::find($id);
+        $vacancy = auth()->user()->aspirant->vacancies()->findOrFail($id);
 
         if ($vacancy->applied()) {
             auth()->user()->aspirant->vacancies()->detach($id);

@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'aspirant', 'middleware' => 'aspirant', 'namespace' => 'Aspirant'], function () {
         Route::get('/', 'HomeController@index');
         Route::get('/applications', 'ApplicationController@index');
-        Route::put('/applications/{id}', 'ApplicationController@edit');
+        Route::put('/applications/{id}', 'ApplicationController@update');
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
         Route::get('/resume', 'ResumeController@index');

@@ -9,13 +9,10 @@ class VacancyController extends Controller
 {
     public function index(Request $request)
     {
-        $vacancies = Vacancy::paginate();
+        $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate();
 
         if ($request->has('search')) {
             $vacancies = Vacancy::where('title', 'like', "%$request->search%")->paginate();
-        }
-        else if ($request->by == 'date') {
-            $vacancies = Vacancy::orderBy('created_at')->paginate();
         }
         else if ($request->by == 'salary') {
             $vacancies = Vacancy::orderBy('salary', 'desc')->paginate();

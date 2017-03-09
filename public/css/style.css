@@ -1,0 +1,9 @@
+*:hover {
+    text-decoration: none !important;
+}
+.edit-vacancy {
+    display: none;
+}
+.list-group-item:hover .edit-vacancy {
+    display: inline-block;
+}
