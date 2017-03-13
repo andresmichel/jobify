@@ -22,4 +22,9 @@ class Aspirant extends Model
     {
         return $this->hasMany('App\Application');
     }
+
+    public function resume()
+    {
+        return $this->hasOne('App\Resume');
+    }
 }

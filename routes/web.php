@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
         Route::get('/resume', 'ResumeController@index');
-        Route::post('/resume', 'ResumeController@update');
+        Route::post('/resume', 'ResumeController@store');
     });
 
     Route::group(['prefix' => 'company', 'middleware' => 'company', 'namespace' => 'Company'], function () {
