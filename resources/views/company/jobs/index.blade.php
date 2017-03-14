@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <a href="{{ url('company/vacancies/create') }}">
+    <a href="{{ url('company/jobs/create') }}">
         <div style="display:flex;
             width:60px; height:60px; position:fixed;
             bottom:30px; right:120px; background-color:#0275d8;
@@ -17,29 +17,29 @@
             <div class="col-sm-8 offset-sm-2">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
-                        @foreach ($vacancies as $vacancy)
+                        @foreach ($jobs as $job)
                             <li class="list-group-item d-block">
                                 <h4 class="card-title">
-                                    <a href="{{ url('company/vacancies', $vacancy->slug) }}">
-                                        {{ str_limit($vacancy->title, 40) }}
+                                    <a href="{{ url('company/jobs', $job->slug) }}">
+                                        {{ str_limit($job->title, 40) }}
                                     </a>
-                                    @if (count($vacancy->applications))
+                                    @if (count($job->applications))
                                         <span class="badge badge-success ml-2" style="font-size:1rem; font-weight:normal;">
-                                            {{ count($vacancy->applications) }} Solicitantes
+                                            {{ count($job->applications) }} Solicitantes
                                         </span>
                                     @endif
-                                    <a style="font-size:1rem; font-weight:normal;" class="edit-vacancy float-right" href="{{ url('company/vacancies/'.$vacancy->slug.'/edit') }}">Editar</a>
+                                    <a style="font-size:1rem; font-weight:normal;" class="edit-job float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">Editar</a>
                                 </h4>
                                 <p class="card-text">
-                                    {{ date_format(date_create($vacancy->created_at), 'M d, Y') }} -
-                                    {{ str_limit($vacancy->description, 60) }}
+                                    {{ date_format(date_create($job->created_at), 'M d, Y') }} -
+                                    {{ str_limit($job->description, 60) }}
                                 </p>
                             </li>
                         @endforeach
                     </ul>
                 </div>
 
-                {{ $vacancies->links('vendor.pagination.bootstrap-4') }}
+                {{ $jobs->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

@@ -10,8 +10,8 @@ class CompanyController extends Controller
     public function show($slug)
     {
         $company = Company::where('slug', $slug)->firstOrFail();
-        $vacancies = $company->vacancies()->paginate();
+        $jobs = $company->jobs()->paginate();
 
-        return view('public.company.show', compact('company', 'vacancies'));
+        return view('public.company.show', compact('company', 'jobs'));
     }
 }

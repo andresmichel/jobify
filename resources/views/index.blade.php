@@ -6,7 +6,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-block">
-                        <form action="{{ url('vacancies') }}" method="get">
+                        <form action="{{ url('jobs') }}" method="get">
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="input-group">

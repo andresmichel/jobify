@@ -1,9 +1,9 @@
 *:hover {
     text-decoration: none !important;
 }
-.edit-vacancy {
+.edit-job {
     display: none;
 }
-.list-group-item:hover .edit-vacancy {
+.list-group-item:hover .edit-job {
     display: inline-block;
 }

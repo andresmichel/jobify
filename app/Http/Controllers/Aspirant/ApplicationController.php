@@ -4,25 +4,25 @@ namespace App\Http\Controllers\Aspirant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Vacancy;
+use App\Job;
 
 class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = auth()->user()->aspirant->vacancies()->paginate();
+        $applications = auth()->user()->aspirant->jobs()->paginate();
 
         return view('aspirant.applications', compact('applications'));
     }
 
     public function update($id)
     {
-        $vacancy = Vacancy::findOrFail($id);
+        $job = Job::findOrFail($id);
 
-        if ($vacancy->applied()) {
-            auth()->user()->aspirant->vacancies()->detach($id);
+        if ($job->applied()) {
+            auth()->user()->aspirant->jobs()->detach($id);
         } else {
-            auth()->user()->aspirant->vacancies()->attach($id);
+            auth()->user()->aspirant->jobs()->attach($id);
         }
 
         return back();

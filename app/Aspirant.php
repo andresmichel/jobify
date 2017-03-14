@@ -13,9 +13,9 @@ class Aspirant extends Model
        return $this->belongsTo('App\User');
     }
 
-    public function vacancies()
+    public function jobs()
     {
-        return $this->belongsToMany('App\Vacancy', 'applications');
+        return $this->belongsToMany('App\Job', 'applications');
     }
 
     public function applications()

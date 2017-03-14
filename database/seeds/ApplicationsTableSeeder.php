@@ -17,7 +17,7 @@ class ApplicationsTableSeeder extends Seeder
             for ($c = 1; $c <= 10; $c++) {
                 array_push($data, [
                     'aspirant_id' => $i,
-                    'vacancy_id' => $c,
+                    'job_id' => $c,
                 ]);
             }
         }

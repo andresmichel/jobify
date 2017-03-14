@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/companies', 'CompanyController');
         Route::resource('/resumes', 'ResumeController');
         Route::resource('/users', 'UserController');
-        Route::resource('/vacancies', 'VacancyController');
+        Route::resource('/jobs', 'JobController');
     });
 
     Route::group(['prefix' => 'aspirant', 'middleware' => 'aspirant', 'namespace' => 'Aspirant'], function () {
@@ -45,13 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'HomeController@index');
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
-        Route::resource('/vacancies', 'VacancyController');
+        Route::resource('/jobs', 'JobController');
+        Route::get('/jobs/{job_id}/aspirant/{aspirant_id}', 'ResumeController@index');
     });
 });
 
 Route::get('/', 'HomeController@index');
 Route::get('/company/{slug}', 'CompanyController@show');
-Route::get('/vacancies', 'VacancyController@index');
-Route::get('/vacancies/{slug}', 'VacancyController@show');
+Route::get('/jobs', 'JobController@index');
+Route::get('/jobs/{slug}', 'JobController@show');
 
 Auth::routes();

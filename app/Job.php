@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Vacancy extends Model
+class Job extends Model
 {
-    protected $table = 'vacancies';
+    protected $table = 'jobs';
 
     protected $guarded = [];
 
@@ -28,7 +28,7 @@ class Vacancy extends Model
     public function applied()
     {
         if (auth()->user()->aspirant) {
-            foreach (auth()->user()->aspirant->vacancies as $v) {
+            foreach (auth()->user()->aspirant->jobs as $v) {
                 if ($v->id == $this->id) {
                     return true;
                 }

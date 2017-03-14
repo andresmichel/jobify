@@ -8,9 +8,9 @@ class Application extends Model
 {
     protected $guarded = [];
 
-    public function vacancy()
+    public function job()
     {
-        return $this->belongsTo('App\Vacancy');
+        return $this->belongsTo('App\Job');
     }
 
     public function aspirant()

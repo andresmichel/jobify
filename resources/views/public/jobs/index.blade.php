@@ -6,7 +6,7 @@
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <div class="card-block">
-                        <form action="{{ url('vacancies') }}" method="get">
+                        <form action="{{ url('jobs') }}" method="get">
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -32,20 +32,20 @@
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
-                        @foreach ($vacancies as $vacancy)
+                        @foreach ($jobs as $job)
                             <li class="list-group-item d-block">
-                                <h4 class="card-title"><a href="{{ url('vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $vacancy->company->user->name }} - {{ $vacancy->state }}, {{ $vacancy->city }}</h6>
+                                <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ $job->company->user->name }} - {{ $job->state }}, {{ $job->city }}</h6>
                                 <p class="card-text">
-                                    {{ date_format(date_create($vacancy->created_at), 'M d, Y') }} -
-                                    {{ str_limit($vacancy->description) }}
+                                    {{ date_format(date_create($job->created_at), 'M d, Y') }} -
+                                    {{ str_limit($job->description) }}
                                 </p>
                             </li>
                         @endforeach
                     </ul>
                 </div>
 
-                {{ $vacancies->links('vendor.pagination.bootstrap-4') }}
+                {{ $jobs->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

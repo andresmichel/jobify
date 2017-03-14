@@ -13,10 +13,10 @@
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
-                        @foreach ($applications as $vacancy)
+                        @foreach ($applications as $job)
                             <li class="list-group-item d-block">
-                                <h4 class="card-title"><a href="{{ url('vacancies', $vacancy->slug) }}">{{ $vacancy->title }}</a></h4>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $vacancy->company->user->name }} - {{ $vacancy->state }}, {{ $vacancy->city }}</h6>
+                                <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ $job->company->user->name }} - {{ $job->state }}, {{ $job->city }}</h6>
                             </li>
                         @endforeach
                     </ul>

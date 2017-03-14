@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aspirant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Resume;
+use Illuminate\Support\Facades\Storage;
 use File;
 
 class ResumeController extends Controller
@@ -27,18 +28,18 @@ class ResumeController extends Controller
         $file_fullname = date("Y_m_d_h_i_s_") . str_slug($file_name, '_') . '.' . $file_ext;
 
         $file = $request->resume;
-        $file->move('uploads/resumes', $file_fullname);
+        $file_path = $file->storeAs('resumes', $file_fullname);
 
         if ($resume) {
             try
             {
-                File::delete($resume->path);
+                Storage::delete($resume->path);
             } catch (\Exception $e) {
                 logger($e);
             }
 
             $resume->name = $file_name;
-            $resume->path = 'uploads/resumes/' . $file_fullname;
+            $resume->path = $file_path;
             $resume->size = $file->getClientSize();
             $resume->type = $file->getClientMimeType();
             $resume->ext = $file_ext;
@@ -47,7 +48,7 @@ class ResumeController extends Controller
             auth()->user()->aspirant->resume()->create([
                 'aspirant_id' => auth()->user()->aspirant->id,
                 'name' => $file_name,
-                'path' => 'uploads/resumes/' . $file_fullname,
+                'path' => $file_path,
                 'size' => $file->getClientSize(),
                 'type' => $file->getClientMimeType(),
                 'ext' => $file_ext,

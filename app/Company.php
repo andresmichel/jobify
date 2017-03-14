@@ -15,8 +15,8 @@ class Company extends Model
        return $this->belongsTo('App\User');
     }
 
-    public function vacancies()
+    public function jobs()
     {
-       return $this->hasMany('App\Vacancy');
+       return $this->hasMany('App\Job');
     }
 }
