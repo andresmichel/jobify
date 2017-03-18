@@ -33,7 +33,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header" style="background-color:#fff;">
-                        Vacantes similares
+                        Ofertas de trabajo similares
                     </div>
                     <ul class="list-group list-group-flush">
                         @foreach ($related_jobs as $job_loop)
@@ -53,7 +53,7 @@
                         <p>Área: {{ $job->area }}</p>
                         <p>Horario: {{ $job->schedule }}</p>
                         <p>Salario: {{ $job->salary }}</p>
-                        <a href="{{ url('company', $job->company->slug) }}" class="btn btn-primary btn-block">Vacantes de {{ $job->company->user->name }}</a>
+                        <a href="{{ url('company', $job->company->slug) }}" class="btn btn-primary btn-block">Ofertas de trabajo de {{ $job->company->user->name }}</a>
                     </div>
                 </div>
             </div>

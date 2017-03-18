@@ -10,7 +10,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = auth()->user()->aspirant->jobs()->paginate();
+        $applications = auth()->user()->aspirant->jobs()->paginate(10);
 
         return view('aspirant.applications', compact('applications'));
     }

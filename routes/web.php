@@ -27,7 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/aspirants', 'AspirantController');
         Route::resource('/companies', 'CompanyController');
         Route::resource('/resumes', 'ResumeController');
-        Route::resource('/users', 'UserController');
         Route::resource('/jobs', 'JobController');
     });
 

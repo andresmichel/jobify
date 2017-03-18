@@ -14,17 +14,17 @@
 
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-10 offset-sm-1">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
                         @foreach ($jobs as $job)
                             <li class="list-group-item d-block">
                                 <h4 class="card-title">
                                     <a href="{{ url('company/jobs', $job->slug) }}">
-                                        {{ str_limit($job->title, 40) }}
+                                        {{ str_limit($job->title, 60) }}
                                     </a>
                                     @if (count($job->applications))
-                                        <span class="badge badge-success ml-2" style="font-size:1rem; font-weight:normal;">
+                                        <span class="badge badge-success" style="font-size:1rem; font-weight:normal;">
                                             {{ count($job->applications) }} Solicitantes
                                         </span>
                                     @endif
@@ -32,7 +32,7 @@
                                 </h4>
                                 <p class="card-text">
                                     {{ date_format(date_create($job->created_at), 'M d, Y') }} -
-                                    {{ str_limit($job->description, 60) }}
+                                    {{ str_limit($job->description) }}
                                 </p>
                             </li>
                         @endforeach

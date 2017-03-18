@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $jobs = Job::paginate();
+        $jobs = Job::paginate(10);
 
         return view('aspirant.index', compact('jobs'));
     }

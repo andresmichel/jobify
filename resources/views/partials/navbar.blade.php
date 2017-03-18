@@ -4,7 +4,7 @@
 			<div class="col-sm-12 d-flex">
 				<a href="{{ url('/') }}">Jobify</a>
 				@if (auth()->guest())
-					<a href="{{ url('jobs') }}" class="ml-4">Vacantes</a>
+					<a href="{{ url('jobs') }}" class="ml-4">Ofertas de trabajo</a>
 				@endif
 
 				@include('partials.links')
@@ -17,10 +17,11 @@
 						{{ Auth::user()->name }}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" style="margin-right:15px;" aria-labelledby="dropdownMenuLink">
-						<a href="{{ url(Auth::user()->role.'/profile') }}" class="dropdown-item">Perfil</a>
+						@if (Auth::user()->role != 'admin')
+							<a href="{{ url(Auth::user()->role.'/profile') }}" class="dropdown-item">Perfil</a>
+						@endif
 						<a href="#" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>
 					</div>
-
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>
