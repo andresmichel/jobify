@@ -11,12 +11,16 @@ class HomeController extends Controller
         if (auth()->check()) {
             switch(auth()->user()->role) {
                 case 'admin':
-                case 'aspirant':
-                case 'company':
                     return redirect(auth()->user()->role);
+                case 'aspirant':
+                    return redirect('aspirant/resume');
+                    break;
+                case 'company':
+                    return redirect('company/jobs');
                     break;
                 default:
                     abort(404);
+                    break;
             }
         } else {
             return view('index');

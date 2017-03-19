@@ -28,7 +28,7 @@
                                             {{ count($job->applications) }} Solicitantes
                                         </span>
                                     @endif
-                                    <a style="font-size:1rem; font-weight:normal;" class="edit-job float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">Editar</a>
+                                    {{-- <a style="font-size:1rem; font-weight:normal;" class="edit-job float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">Editar</a> --}}
                                 </h4>
                                 <p class="card-text">
                                     {{ date_format(date_create($job->created_at), 'M d, Y') }} -

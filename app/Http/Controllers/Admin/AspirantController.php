@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Aspirant;
 
 class AspirantController extends Controller
 {
@@ -14,7 +16,8 @@ class AspirantController extends Controller
      */
     public function index()
     {
-        return view('admin.aspirants.index');
+        $items = Aspirant::paginate(10);
+        return view('admin.aspirants.index', compact('items'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AspirantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.aspirants.create');
     }
 
     /**
@@ -35,7 +38,34 @@ class AspirantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|confirmed',
+            'gender' => 'required|string',
+            'birth' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'phone' => 'string',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'aspirant',
+        ]);
+
+        $aspirant = Aspirant::create([
+            'user_id' => $user->id,
+            'gender' => $request->gender,
+            'birth' => $request->birth,
+            'state' => $request->state,
+            'city' => $request->city,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect('admin/aspirants');
     }
 
     /**
@@ -57,7 +87,7 @@ class AspirantController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.aspirants.create');
     }
 
     /**
@@ -69,7 +99,33 @@ class AspirantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => "required|email|unique:users,email,$user->id",
+            'password' => 'required|string|confirmed',
+            'gender' => 'required|string',
+            'birth' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'phone' => 'string',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $user->aspirant->update([
+            'gender' => $request->gender,
+            'birth' => $request->birth,
+            'state' => $request->state,
+            'city' => $request->city,
+            'phone' => $request->phone,
+        ]);
+
+        return back();
     }
 
     /**
@@ -80,6 +136,8 @@ class AspirantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sapirant = Aspirant::findOrFail($id);
+        $aspirant->delete();
+        $aspirant->user->delete();
     }
 }

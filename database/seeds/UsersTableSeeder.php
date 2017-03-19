@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
 
         array_push($data, [
             'id' => 1,
-            'name' => $faker->name,
+            'name' => 'Administrador',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'),
             'role' => 'admin',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Job;
 
 class JobController extends Controller
 {
@@ -14,7 +15,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('admin.jobs.index');
+        $items = Job::paginate(10);
+        return view('admin.jobs.index', compact('items'));
     }
 
     /**
