@@ -16,7 +16,7 @@ class AspirantController extends Controller
      */
     public function index()
     {
-        $items = Aspirant::paginate(10);
+        $items = Aspirant::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.aspirants.index', compact('items'));
     }
 
@@ -87,7 +87,8 @@ class AspirantController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.aspirants.create');
+        $aspirant = Aspirant::findOrFail($id);
+        return view('admin.aspirants.edit', compact('aspirant'));
     }
 
     /**
@@ -99,12 +100,12 @@ class AspirantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $aspirant = Aspirant::findOrFail($id);
+        $user = $aspirant->user;
 
         $this->validate($request, [
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
-            'password' => 'required|string|confirmed',
             'gender' => 'required|string',
             'birth' => 'required|string',
             'state' => 'required|string',
@@ -136,8 +137,10 @@ class AspirantController extends Controller
      */
     public function destroy($id)
     {
-        $sapirant = Aspirant::findOrFail($id);
+        $aspirant = Aspirant::findOrFail($id);
         $aspirant->delete();
         $aspirant->user->delete();
+
+        return redirect('admin/aspirants');
     }
 }

@@ -11,7 +11,6 @@ class JobController extends Controller
     public function index()
     {
         $jobs = auth()->user()->company->jobs()->orderBy('created_at', 'desc')->paginate(10);
-
         return view('company.jobs.index', compact('jobs'));
     }
 
@@ -23,52 +22,27 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $job = new Job;
-
         $job->company_id = auth()->user()->company->id;
-
         $job->slug = str_slug($request->title);
-
         $this->factory($job, $request);
-
         return redirect('company/jobs');
     }
 
     public function show($slug)
     {
         $job = auth()->user()->company->jobs()->where('slug', $slug)->firstOrFail();
-
         return view('company.jobs.show', compact('job'));
     }
 
     public function edit($slug)
     {
         $job = auth()->user()->company->jobs()->where('slug', $slug)->firstOrFail();
-
         return view('company.jobs.edit', compact('job'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'contract' => 'required|string',
-            'area' => 'required|string',
-            'education' => 'required|string',
-            'shift' => 'required|string',
-            'gender' => 'required|string',
-            'experience' => 'required|string',
-            'min_age' => 'required|string',
-            'max_age' => 'required|string',
-            'schedule' => 'required|string',
-            'hours' => 'required|string',
-            'salary' => 'required|string',
-            'language' => 'required|string',
-            'state' => 'required|string',
-            'city' => 'required|string',
-            'status' => 'required',
-        ]);
-
+        $this->validation($request);
         $job = auth()->user()->company->jobs()->findOrFail($id);
 
         return back();

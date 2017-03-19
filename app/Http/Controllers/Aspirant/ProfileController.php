@@ -19,7 +19,6 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
-            'password' => 'required|string|confirmed',
             'gender' => 'required|string',
             'birth' => 'required|string',
             'state' => 'required|string',

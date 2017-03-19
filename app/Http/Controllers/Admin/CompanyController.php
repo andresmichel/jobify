@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $items = Company::paginate(10);
+        $items = Company::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.companies.index', compact('items'));
     }
 

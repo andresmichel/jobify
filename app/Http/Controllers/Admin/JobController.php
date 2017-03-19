@@ -15,7 +15,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $items = Job::paginate(10);
+        $items = Job::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.jobs.index', compact('items'));
     }
 

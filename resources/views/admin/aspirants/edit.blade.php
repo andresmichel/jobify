@@ -15,12 +15,14 @@
                             @component('components.input')
                                 @slot('label', 'Nombre completo')
                                 @slot('name', 'name')
+                                {{ $aspirant->user->name }}
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Correo electrónico')
                                 @slot('name', 'email')
                                 @slot('type', 'email')
+                                {{ $aspirant->user->email }}
                             @endcomponent
 
                             @component('components.input')
@@ -44,36 +46,46 @@
                                 @slot('label', 'Fecha de nacimiento')
                                 @slot('name', 'birth')
                                 @slot('type', 'date')
+                                {{ $aspirant->birth }}
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
-                                <option value="male">Hombre</option>
-                                <option value="female">Mujer</option>
+                                <option {{ $aspirant->gender == 'male' ? 'selected' : '' }} value="male">Hombre</option>
+                                <option {{ $aspirant->gender == 'female' ? 'selected' : '' }} value="female">Mujer</option>
                             @endcomponent
 
                             @component('components.select')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option>Baja California</option>
+                                <option {{ $aspirant->state == 'Baja California' ? 'selected' : '' }} >Baja California</option>
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Ciudad')
                                 @slot('name', 'city')
+                                {{ $aspirant->city }}
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Teléfono')
                                 @slot('name', 'phone')
                                 @slot('type', 'phone')
+                                {{ $aspirant->phone }}
                             @endcomponent
 
                             @component('components.button')
                                 Guardar
                             @endcomponent
+
+                            <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
                         @endcomponent
+
+                        <form id="delete" action="{{ url('admin/aspirants', $aspirant->id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                        </form>
                     </div>
                 </div>
             </div>

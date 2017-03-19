@@ -10,8 +10,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = auth()->user()->aspirant->jobs()->paginate(10);
-
+        $applications = auth()->user()->aspirant->jobs()->orderBy('created_at', 'desc')->paginate(10);
         return view('aspirant.applications', compact('applications'));
     }
 
