@@ -138,8 +138,13 @@ class AspirantController extends Controller
     public function destroy($id)
     {
         $aspirant = Aspirant::findOrFail($id);
-        $aspirant->delete();
         $aspirant->user->delete();
+
+        if ($aspirant->resume) {
+            $aspirant->resume->delete();
+        }
+
+        $aspirant->delete();
 
         return redirect('admin/aspirants');
     }

@@ -71,7 +71,6 @@
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
                                 <option>Baja California</option>
-                            {{ auth()->user()->company->state }}
                             @endcomponent
 
                             @component('components.input')

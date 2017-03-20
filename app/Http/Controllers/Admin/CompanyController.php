@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.companies.create');
     }
 
     /**
@@ -37,7 +37,43 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|confirmed',
+            'logo' => 'image',
+            'description' => 'required|string',
+            'website' => 'required|string',
+            'category' => 'required|integer',
+            'employees' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'company',
+        ]);
+
+        $company = Company::create([
+            'user_id' => $user->id,
+            'slug' => str_slug($request->name),
+            'logo' => $request->logo,
+            'description' => $request->description,
+            'website' => $request->website,
+            'category' => $request->category,
+            'employees' => $request->employees,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect('admin/companies');
     }
 
     /**
@@ -59,7 +95,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
@@ -71,7 +108,45 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $user = $company->user;
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => "required|email|unique:users,email,$user->id",
+            'password' => 'required|string|confirmed',
+            'logo' => 'image',
+            'description' => 'required|string',
+            'website' => 'required|string',
+            'category' => 'required|integer',
+            'employees' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string',
+        ]);
+
+        $user->update([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => bcrypt($request->password),
+        ]);
+
+        $company->update([
+            'user_id' => $user->id,
+            'slug' => str_slug($request->name),
+            'logo' => $request->logo,
+            'description' => $request->description,
+            'website' => $request->website,
+            'category' => $request->category,
+            'employees' => $request->employees,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
+
+        return back();
     }
 
     /**
@@ -82,6 +157,15 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $company->user->delete();
+
+        if ($company->vacancies) {
+            $company->vacancies->delete();
+        }
+
+        $company->delete();
+
+        return redirect('admin/companies');
     }
 }
