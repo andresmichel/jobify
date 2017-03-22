@@ -26,7 +26,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.jobs.create');
     }
 
     /**
@@ -59,7 +59,8 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        return view('admin.jobs.edit', compact('job'));
     }
 
     /**

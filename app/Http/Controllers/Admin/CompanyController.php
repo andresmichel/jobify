@@ -160,8 +160,8 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         $company->user->delete();
 
-        if ($company->vacancies) {
-            $company->vacancies->delete();
+        if ($company->job) {
+            $company->job->delete();
         }
 
         $company->delete();
