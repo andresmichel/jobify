@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 @if (auth()->user()->aspirant->resume)
                                     <small class="form-text text-muted">
-                                        <a href="{{ url(auth()->user()->aspirant->resume->path) }}">
+                                        <a href="{{ url('aspirant/resume/download') }}">
                                             {{ auth()->user()->aspirant->resume->name.'.'.auth()->user()->aspirant->resume->ext }}</small>
                                         </a>
                                 @endif

@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/applications', 'ApplicationController');
         Route::resource('/aspirants', 'AspirantController');
         Route::resource('/companies', 'CompanyController');
-        Route::resource('/resumes', 'ResumeController');
+        Route::delete('/resume/{id}', 'ResumeController@destroy');
         Route::resource('/jobs', 'JobController');
     });
 
@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/profile', 'ProfileController@update');
         Route::get('/resume', 'ResumeController@index');
         Route::post('/resume', 'ResumeController@store');
+        Route::get('/resume/download', 'ResumeController@download');
     });
 
     Route::group(['prefix' => 'company', 'middleware' => 'company', 'namespace' => 'Company'], function () {

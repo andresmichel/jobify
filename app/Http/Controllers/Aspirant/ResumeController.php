@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Aspirant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Resume;
 use Illuminate\Support\Facades\Storage;
-use File;
 
 class ResumeController extends Controller
 {
@@ -56,5 +54,19 @@ class ResumeController extends Controller
         }
 
         return back();
+    }
+
+    public function download()
+    {
+        $aspirant = auth()->user()->aspirant;
+        $path = Storage::getDriver()->getAdapter()->getPathPrefix();
+
+        if (!$aspirant->resume) {
+            abort(404);
+        }
+
+        return response()->file($path.$aspirant->resume->path, [
+            'Content-Disposition' => 'inline; filename*="nofunciona.pdf"'
+        ]);
     }
 }

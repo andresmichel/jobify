@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\Company;
 
 class JobController extends Controller
 {
@@ -26,7 +27,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.jobs.create');
+        $companies = Company::all();
+        return view('admin.jobs.create', compact('companies'));
     }
 
     /**
@@ -83,6 +85,7 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Job::destroy($id);
+        return redirect('admin/jobs');
     }
 }

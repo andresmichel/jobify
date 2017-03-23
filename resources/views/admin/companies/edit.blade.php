@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-sm-6">
                 <div class="card">
                     <div class="card-block">
                         @component('components.form')
@@ -106,6 +106,22 @@
                     </div>
                 </div>
             </div>
+            @if ($company->jobs)
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header" style="background-color:#fff;">
+                            Ofertas de trabajo
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @foreach ($company->jobs as $job)
+                                <li class="list-group-item {{ $loop->first ? 'border-top-0' : '' }}">
+                                    <a href="{{ url('admin/jobs/'.$job->id.'/edit') }}">{{ $job->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

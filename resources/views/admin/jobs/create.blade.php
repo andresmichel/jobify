@@ -16,6 +16,14 @@
                                 @slot('name', 'title')
                             @endcomponent
 
+                            @component('components.select')
+                                @slot('label', 'Empresa')
+                                @slot('name', 'company_id')
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->user->name }}</option>
+                                @endforeach
+                            @endcomponent
+
                             @component('components.textarea')
                                 @slot('label', 'Descripción')
                                 @slot('name', 'description')

@@ -3,7 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-6 offset-sm-3">
+            @if ($aspirant->resume)
+                <div class="col-sm-6">
+            @else
+                <div class="col-sm-6 offset-sm-3">
+            @endif
                 <div class="card">
                     <div class="card-block">
                         @component('components.form')
@@ -78,7 +82,6 @@
                             @component('components.button')
                                 Guardar
                             @endcomponent
-
                             <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
                         @endcomponent
 
@@ -89,6 +92,24 @@
                     </div>
                 </div>
             </div>
+            @if ($aspirant->resume)
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header" style="background-color:#fff;">
+                            Currículum
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item border-top-0">
+                                <form id="deleteResume" action="{{ url('admin/resume', $aspirant->resume->id) }}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                </form>
+                                <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

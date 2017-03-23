@@ -10,6 +10,7 @@ class ResumeController extends Controller
 {
     public function destroy($id)
     {
-        //
+        Resume::findOrFail($id);
+        return back();
     }
 }
