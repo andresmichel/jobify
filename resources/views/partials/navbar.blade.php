@@ -1,4 +1,4 @@
-<div class="container-flud" style="border-bottom:1px solid rgba(0,0,0,0.125); position:fixed; top:0; left:0; right:0; z-index:999; background-color:#fff;">
+<div id="navbar" class="container-flud">
 	<div class="container py-4">
 		<div class="row">
 			<div class="col-sm-12 d-flex">

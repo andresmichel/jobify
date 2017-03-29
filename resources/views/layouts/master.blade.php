@@ -6,7 +6,7 @@
     <body style="margin-top:72px;">
         @include('partials.navbar')
 
-        <div style="min-height:calc(100vh - 130px);">
+        <div class="main-container" style="min-height:calc(100vh - 130px);">
             @yield('content')
         </div>
 

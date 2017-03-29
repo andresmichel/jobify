@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-6">
+            <div class="col-sm-6 offset-sm-1">
                 <div class="card">
                     <div class="card-block">
                         @component('components.form')
