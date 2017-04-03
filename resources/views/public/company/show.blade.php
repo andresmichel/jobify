@@ -23,11 +23,11 @@
             <div class="col-sm-4">
                 <div class="card mb-3">
                     <div class="card-block">
-                        <p>{{ $company->user->name }}</p>
-                        <p>{{ $company->user->email }}</p>
-                        <p>{{ $company->description }}</p>
-                        <p>{{ $company->address }}</p>
-                        <p>{{ $company->phone }}</p>
+                        <h3 class="card-title mb-3">{{ $company->user->name }}</h3>
+                        <p>Email: {{ $company->user->email }}</p>
+                        <p>Descripción: {{ $company->description }}</p>
+                        <p>Domicilio: {{ $company->address }}</p>
+                        <p>Teléfono: {{ $company->phone }}</p>
                     </div>
                 </div>
             </div>
