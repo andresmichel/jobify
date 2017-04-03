@@ -4,8 +4,16 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card mb-3">
                     <ul class="list-group list-group-flush">
+                        @if (!count($applications))
+                            <li class="list-group-item d-block">
+                                <p class="card-text">
+                                    No tienes solicitudes.
+                                </p>
+                            </li>
+                        @endif
+
                         @foreach ($applications as $job)
                             <li class="list-group-item d-block">
                                 <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>

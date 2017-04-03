@@ -17,6 +17,14 @@
             <div class="col-sm-10 offset-sm-1">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
+                        @if (!count($jobs))
+                            <li class="list-group-item d-block">
+                                <p class="card-text">
+                                    No tienes ofertas de trabajo.
+                                </p>
+                            </li>
+                        @endif
+
                         @foreach ($jobs as $job)
                             <li class="list-group-item d-block">
                                 <h4 class="card-title">

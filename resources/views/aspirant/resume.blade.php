@@ -3,7 +3,78 @@
 @section('content')
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-12">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="card">
+                    <div class="card-block">
+                        @component('components.form')
+                            @slot('action', url('aspirant/profile'))
+                            {{ csrf_field() }}
+
+                            @component('components.input')
+                                @slot('label', 'Nombre completo')
+                                @slot('name', 'name')
+                                {{ auth()->user()->name }}
+                            @endcomponent
+
+                            @component('components.input')
+                                @slot('label', 'Correo electrónico')
+                                @slot('name', 'email')
+                                @slot('type', 'email')
+                                {{ auth()->user()->email }}
+                            @endcomponent
+
+                            @component('components.input')
+                                @slot('label', 'Fecha de nacimiento')
+                                @slot('name', 'birth')
+                                @slot('type', 'date')
+                                {{ auth()->user()->aspirant->birth }}
+                            @endcomponent
+
+                            @component('components.select')
+                                @slot('label', 'Género')
+                                @slot('name', 'gender')
+                                <option {{ auth()->user()->aspirant->gender == 'male' ? 'selected' : '' }} value="male">Hombre</option>
+                                <option {{ auth()->user()->aspirant->gender == 'female' ? 'selected' : '' }} value="female">Mujer</option>
+                            @endcomponent
+
+                            @component('components.select')
+                                @slot('label', 'Estado')
+                                @slot('name', 'state')
+                                <option {{ auth()->user()->aspirant->state == 'Baja California' ? 'selected' : '' }} >Baja California</option>
+                            @endcomponent
+
+                            @component('components.input')
+                                @slot('label', 'Ciudad')
+                                @slot('name', 'city')
+                                {{ auth()->user()->aspirant->city }}
+                            @endcomponent
+
+                            @component('components.input')
+                                @slot('label', 'Teléfono')
+                                @slot('name', 'phone')
+                                @slot('type', 'phone')
+                                {{ auth()->user()->aspirant->phone }}
+                            @endcomponent
+
+                            @component('components.textarea')
+                                @slot('label', 'Formación académica')
+                                @slot('name', 'academic_data')
+                            @endcomponent
+
+                            @component('components.textarea')
+                                @slot('label', 'Formación complementaria')
+                                @slot('name', 'complementary_data')
+                            @endcomponent
+
+                            @component('components.button')
+                                Guardar
+                            @endcomponent
+                        @endcomponent
+                    </div>
+                </div>
+            </div>
+
+            {{-- <div class="col-sm-12">
                 <div class="card mb-3">
                     <div class="card-block">
                         @component('components.form')
@@ -31,7 +102,7 @@
                         @endcomponent
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

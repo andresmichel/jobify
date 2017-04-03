@@ -14,7 +14,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+                                    <button class="btn btn-primary btn-block" type="submit" style="height:38px;">
+                                        <i class="material-icons">search</i>
+                                    </button>
                                 </div>
                                 <div class="col-sm-12 mt-3">
                                     <div class="d-flex">
@@ -32,6 +34,14 @@
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
+                        @if (!count($jobs))
+                            <li class="list-group-item d-block">
+                                <p class="card-text">
+                                    No hay resultados.
+                                </p>
+                            </li>
+                        @endif
+
                         @foreach ($jobs as $job)
                             <li class="list-group-item d-block">
                                 <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>

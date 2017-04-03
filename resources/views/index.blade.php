@@ -7,14 +7,16 @@
                 <div class="card">
                     <div class="card-block">
                         <form action="{{ url('jobs') }}" method="get">
-                            <div class="row">
+                            <div class="row ">
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <input name="search" type="text" class="form-control" placeholder="Escribe un puesto o área">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+                                <div class="col-sm-3 flex flex-center">
+                                    <button class="btn btn-primary btn-block" type="submit" style="height:38px;">
+                                        <i class="material-icons">search</i>
+                                    </button>
                                 </div>
                             </div>
                         </form>

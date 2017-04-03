@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Aspirant
+class CheckUserRole
 {
     /**
      * Handle an incoming request.
@@ -13,9 +13,9 @@ class Aspirant
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role = null)
     {
-        if (auth()->guest() || auth()->user()->role != 'aspirant') {
+        if (!$role || auth()->user()->role != $role) {
             return redirect('login');
         }
 

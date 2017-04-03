@@ -85,7 +85,9 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        Job::destroy($id);
-        return redirect('admin/jobs');
+        $job = Job::findOrFail($id);
+        $company = $job->company;
+        $job->delete();
+        return redirect('admin/companies/'.$company->id.'/edit');
     }
 }

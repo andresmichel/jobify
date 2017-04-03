@@ -15,6 +15,14 @@
     @parent
 
     @section('data')
+        @if (!count($items))
+            <li class="list-group-item d-block">
+                <p class="card-text">
+                    No hay empresas.
+                </p>
+            </li>
+        @endif
+
         @foreach ($items as $item)
             <li class="list-group-item d-block">
                 <h4 class="card-title"><a href="{{ url('admin/companies/'.$item->id.'/edit') }}">{{ $item->user->name}}</a></h4>

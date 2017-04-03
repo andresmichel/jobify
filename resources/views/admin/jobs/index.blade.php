@@ -15,6 +15,14 @@
     @parent
 
     @section('data')
+        @if (!count($items))
+            <li class="list-group-item d-block">
+                <p class="card-text">
+                    No hay ofertas de trabajo.
+                </p>
+            </li>
+        @endif
+
         @foreach ($items as $item)
             <li class="list-group-item d-block">
                 <h4 class="card-title"><a href="{{ url('admin/jobs/'.$item->id.'/edit') }}">{{ $item->title}}</a></h4>

@@ -21,7 +21,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'namespace' => 'Admin'], function () {
         Route::get('/', 'HomeController@index');
         Route::resource('/applications', 'ApplicationController');
         Route::resource('/aspirants', 'AspirantController');
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/jobs', 'JobController');
     });
 
-    Route::group(['prefix' => 'aspirant', 'middleware' => 'aspirant', 'namespace' => 'Aspirant'], function () {
+    Route::group(['prefix' => 'aspirant', 'middleware' => 'role:aspirant', 'namespace' => 'Aspirant'], function () {
         Route::get('/', 'HomeController@index');
         Route::get('/applications', 'ApplicationController@index');
         Route::put('/applications/{id}', 'ApplicationController@update');
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/resume/download', 'ResumeController@download');
     });
 
-    Route::group(['prefix' => 'company', 'middleware' => 'company', 'namespace' => 'Company'], function () {
+    Route::group(['prefix' => 'company', 'middleware' => 'role:company', 'namespace' => 'Company'], function () {
         Route::get('/', 'HomeController@index');
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');

@@ -21,6 +21,13 @@ class CreateResumesTable extends Migration
             $table->string('path');
             $table->integer('size');
             $table->string('type');
+            //
+            // $table->string('address');
+            // $table->string('cp');
+            // $table->string('academic_data');
+            // $table->string('complementary_data');
+            // $table->string('languages');
+            // $table->string('experiance');
             $table->timestamps();
         });
     }
