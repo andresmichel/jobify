@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Company;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,10 @@ class HomeController extends Controller
                     break;
             }
         } else {
-            return view('index');
+            $companies = Company::all();
+            $companies = $companies->random(count($companies));
+            
+            return view('index', compact('companies'));
         }
     }
 }

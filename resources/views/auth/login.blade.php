@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('/login'))
@@ -35,6 +35,16 @@
                                 Iniciar sesión
                             @endcomponent
                         @endcomponent
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="card">
+                    <div class="card-block">
+                        No tienes cuenta?
+                        <a href="{{ url('register') }}" class="ml-1">Regístrate</a>
                     </div>
                 </div>
             </div>

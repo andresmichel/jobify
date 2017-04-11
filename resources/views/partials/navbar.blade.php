@@ -4,14 +4,14 @@
 			<div class="col-sm-12 d-flex">
 				<a href="{{ url('/') }}">Jobify</a>
 				@if (auth()->guest())
-					<a href="{{ url('jobs') }}" class="ml-4">Ofertas de trabajo</a>
+					<a href="{{ url('jobs') }}" class="ml-4 {{ request()->is('jobs') ? 'active' : '' }}">Ofertas de trabajo</a>
 				@endif
 
 				@include('partials.links')
 
 				@if (Auth::guest())
-					<a href="{{ url('login') }}" class="ml-auto">Inciar sesión</a>
-					<a href="{{ url('register') }}" class="ml-4">Registrarme</a>
+					<a href="{{ url('login') }}" class="ml-auto {{ request()->is('login') ? 'active' : '' }}">Inciar sesión</a>
+					<a href="{{ url('register') }}" class="ml-4 {{ request()->is('register') ? 'active' : '' }}">Registrarme</a>
 				@else
 					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::user()->name }}

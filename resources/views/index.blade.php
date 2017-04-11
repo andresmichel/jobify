@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('header')
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -24,24 +24,19 @@
                 </div>
             </div>
         </div>
-        <div class="row pb-5">
+    </div>
+@endsection
+
+@section('content')
+    <div class="container">
+        <div class="row">
             <div class="col-sm-12">
-                <div class="w-100" style="display:flex; justify-content:space-between;">
-                    <div class="card">
-                        <div class="card-block" style="height:100px; width:200px;"></div>
-                    </div>
-                    <div class="card">
-                        <div class="card-block" style="height:100px; width:200px;"></div>
-                    </div>
-                    <div class="card">
-                        <div class="card-block" style="height:100px; width:200px;"></div>
-                    </div>
-                    <div class="card">
-                        <div class="card-block" style="height:100px; width:200px;"></div>
-                    </div>
-                    <div class="card">
-                        <div class="card-block" style="height:100px; width:200px;"></div>
-                    </div>
+                <div class="w-100" style="display:flex; justify-content:space-between;overflow-x: auto;">
+                    @foreach ($companies as $company)
+                        <div class="card">
+                            <div class="card-block" style="height:100px; width:200px;">{{ $company->user->name }}</div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
