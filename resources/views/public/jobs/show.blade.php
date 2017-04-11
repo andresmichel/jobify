@@ -23,9 +23,9 @@
                                 {{ method_field('PUT') }}
 
                                 @if (auth()->check() && $job->applied())
-                                    <button type="submit" class="btn btn-danger btn-block-off">Cancelar solicitud</button>
+                                    <button type="submit" class="btn btn-danger btn-block">Cancelar solicitud</button>
                                 @else
-                                    <button type="submit" class="btn btn-primary btn-block-off">Enviar mi currículum</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Enviar mi currículum</button>
                                 @endif
                             </form>
                     </div>

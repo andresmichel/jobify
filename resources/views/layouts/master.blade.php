@@ -6,6 +6,8 @@
     <body style="margin-top:72px;">
         @include('partials.navbar')
 
+        @include('partials.cover', ['title' => 'Login'])
+
         <div class="main-container py-5" style="min-height:calc(100vh - 130px);">
             @yield('content')
         </div>
