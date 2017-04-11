@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row py-5">
+        <div class="row">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-block">
                         <form action="{{ url('jobs') }}" method="get">
                             <div class="row ">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row py-5">
+        <div class="row">
             @if (count($job->applications))
                 <div class="col-sm-8">
             @else

@@ -11,6 +11,7 @@ a:hover, a:visited, a:active, a:focus {
 * {
     border: none;
 }
+
 .main-container {
     background-color: #f3f6f8;
 }
@@ -43,6 +44,11 @@ div, li, a, span {
     align-items: center;
     justify-content: flex-start;
 }
+.flex-column {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 .flex-center {
     justify-content: center;
 }
@@ -54,4 +60,22 @@ div, li, a, span {
 }
 .flex-bottom {
     align-items: flex-end;
+}
+.flex-column-center {
+    align-items: center;
+}
+.flex-column-right {
+    align-items: flex-end;
+}
+.flex-column-top {
+    justify-content: flex-start;
+}
+.flex-column-bottom {
+    justify-content: flex-end;
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+.text-nowrap {
+    white-space: nowrap;
 }

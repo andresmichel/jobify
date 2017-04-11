@@ -2,19 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row py-5">
+        <div class="row">
             <div class="col-sm-8">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
                         @foreach ($jobs as $job)
-                            <li class="list-group-item d-block">
-                                <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $job->company->user->name }} - {{ $job->state }}, {{ $job->city }}</h6>
-                                <p class="card-text">
-                                    {{ date_format(date_create($job->created_at), 'M d, Y') }} -
-                                    {{ str_limit($job->description, 60) }}
-                                </p>
-                            </li>
+                            @include('partials.job-item')
                         @endforeach
                     </ul>
                 </div>

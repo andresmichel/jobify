@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row py-5">
+        <div class="row">
             @if ($company->jobs)
                 <div class="col-sm-6 offset-sm-1">
             @else

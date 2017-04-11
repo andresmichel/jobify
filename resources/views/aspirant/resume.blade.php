@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row py-5">
+    <div class="container" id="resumeApp">
+        <div class="row">
             <div class="col-sm-6 offset-sm-3">
                 <div class="card">
                     <div class="card-block">
@@ -66,6 +66,8 @@
                                 @slot('name', 'complementary_data')
                             @endcomponent
 
+                            <input v-for="school in education"class="form-control" type="text" name="" value="">
+
                             @component('components.button')
                                 Guardar
                             @endcomponent
@@ -105,4 +107,8 @@
             </div> --}}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/vue/resume.js') }}" charset="utf-8"></script>
 @endsection

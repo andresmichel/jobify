@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row py-5">
-            <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-8">
                 <div class="card mb-3">
                     <div class="card-block">
                         <form action="{{ url('jobs') }}" method="get">
@@ -18,20 +18,17 @@
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>
-                                <div class="col-sm-12 mt-3">
+                                {{-- <div class="col-sm-12 mt-3">
                                     <div class="d-flex">
                                         <span>Ordenar por</span>
                                         <a href="?by=date" class="ml-3">Fecha</a>
                                         <a href="?by=salary" class="ml-3">Salario</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-12">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
                         @if (!count($jobs))
@@ -43,19 +40,24 @@
                         @endif
 
                         @foreach ($jobs as $job)
-                            <li class="list-group-item d-block">
-                                <h4 class="card-title"><a href="{{ url('jobs', $job->slug) }}">{{ $job->title }}</a></h4>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $job->company->user->name }} - {{ $job->state }}, {{ $job->city }}</h6>
-                                <p class="card-text">
-                                    {{ date_format(date_create($job->created_at), 'M d, Y') }} -
-                                    {{ str_limit($job->description) }}
-                                </p>
-                            </li>
+                            @include('partials.job-item')
                         @endforeach
                     </ul>
                 </div>
 
                 {{ $jobs->links('vendor.pagination.bootstrap-4') }}
+            </div>
+            <div class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-block">
+                        <a href="{{ url('company/jobs/create') }}" class="btn btn-primary btn-block">Poner oferta de trabajo</a>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-block" style="height:500px;">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

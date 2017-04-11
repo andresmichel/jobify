@@ -13,7 +13,7 @@
     </a>
 
     <div class="container">
-        <div class="row py-5">
+        <div class="row">
             <div class="col-sm-10 offset-sm-1">
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
