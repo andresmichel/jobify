@@ -9,7 +9,7 @@
                 <div class="col-sm-8 offset-sm-2">
             @endif
 
-                <div class="card mb-3">
+                <div class="card mb-5">
                     <div class="card-header" style="background-color:#fff;">
                         {{ $job->title }}
                         <a class="float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
@@ -34,7 +34,7 @@
 
             @if (count($job->applications))
                 <div class="col-sm-4">
-                    <div class="card mb-3">
+                    <div class="card mb-5">
                         <div class="card-header" style="background-color:#fff;">
                             {{ count($job->applications) }} Solicitantes
                         </div>

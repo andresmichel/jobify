@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card mb-3">
+                <div class="card mb-5">
                     <ul class="list-group list-group-flush">
                         @if (!count($applications))
                             <li class="list-group-item d-block">

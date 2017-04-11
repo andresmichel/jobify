@@ -6,7 +6,7 @@
     <body style="margin-top:72px;">
         @include('partials.navbar')
 
-        <div class="main-container py-3" style="min-height:calc(100vh - 130px);">
+        <div class="main-container py-5" style="min-height:calc(100vh - 130px);">
             @yield('content')
         </div>
 

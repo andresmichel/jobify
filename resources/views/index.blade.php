@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card mb-3">
+                <div class="card mb-5">
                     <div class="card-block">
                         <form action="{{ url('jobs') }}" method="get">
                             <div class="row ">
