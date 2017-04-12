@@ -16,8 +16,7 @@ class CreateAspirantsTable extends Migration
         Schema::create('aspirants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->unique();
-            $table->string('picture')->nullable();
-            $table->string('gender');
+            $table->enum('gender', ['M', 'F']);
             $table->date('birth');
             $table->string('state');
             $table->string('city');

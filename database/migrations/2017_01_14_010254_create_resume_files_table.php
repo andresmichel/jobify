@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLanguagesTable extends Migration
+class CreateResumeFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('resume_files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('resume_id')->unsigned();
-            $table->enum('language', ['en', 'es', 'fr']);
-            $table->float('percent')->unsigned();
+            $table->integer('aspirant_id')->unsigned()->unique();
+            $table->string('name');
+            $table->string('ext');
+            $table->string('path');
+            $table->integer('size');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('resume_files');
     }
 }

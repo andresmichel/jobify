@@ -11,53 +11,37 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [];
-        $faker = Faker\Factory::create();
-
-        array_push($data, [
-            'id' => 1,
+        factory(App\User::class, 1)->states('admin')->make([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('secret'),
-            'role' => 'admin',
         ]);
 
-        array_push($data, [
-            'id' => 2,
-            'name' => $faker->name,
-            'email' => 'aspirante@gmail.com',
-            'password' => bcrypt('secret'),
-            'role' => 'aspirant',
-        ]);
+        factory(App\User::class, 1)->states('aspirant')
+            ->create([
+                'email' => 'aspirante@gmail.com',
+            ])
+            ->each(function ($u) {
+                $u->aspirant()->save(factory(App\Aspirant::class)->make());
+            });
 
-        array_push($data, [
-            'id' => 3,
-            'name' => $faker->company,
-            'email' => 'empresa@gmail.com',
-            'password' => bcrypt('secret'),
-            'role' => 'company',
-        ]);
+        factory(App\User::class, 50)->states('aspirant')
+            ->create()
+            ->each(function ($u) {
+                $u->aspirant()->save(factory(App\Aspirant::class)->make());
+            });
 
-        for ($i = 4; $i <= 54; $i++) {
-            array_push($data, [
-                'id' => $i,
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => bcrypt('secret'),
-                'role' => 'aspirant',
-            ]);
-        }
+        factory(App\User::class, 1)->states('company')
+            ->create([
+                'email' => 'empresa@gmail.com',
+            ])
+            ->each(function ($u) {
+                $u->company()->save(factory(App\Company::class)->make());
+            });
 
-        for ($i = 55; $i <= 105; $i++) {
-            array_push($data, [
-                'id' => $i,
-                'name' => $faker->company,
-                'email' => $faker->email,
-                'password' => bcrypt('secret'),
-                'role' => 'company',
-            ]);
-        }
-
-        DB::table('users')->insert($data);
+        factory(App\User::class, 50)->states('company')
+            ->create()
+            ->each(function ($u) {
+                $u->company()->save(factory(App\Company::class)->make());
+            });
     }
 }

@@ -16,16 +16,13 @@ class CreateResumesTable extends Migration
         Schema::create('resumes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('aspirant_id')->unsigned()->unique();
-            // $table->string('name');
-            // $table->string('ext');
-            // $table->string('path');
-            // $table->integer('size');
-            // $table->string('type');
-            //
             $table->text('description');
             $table->text('goal');
             $table->string('address');
-            $table->text('certifications');
+            $table->text('languages'); // JSON
+            $table->text('skills'); // JSON
+            $table->text('education'); // JSON
+            $table->text('experience'); // JSON
             $table->timestamps();
         });
     }

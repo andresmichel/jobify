@@ -19,21 +19,19 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->text('contract');
+            $table->string('contract');
             $table->string('area');
-            $table->string('education');
+            $table->text('education'); // JSON
             $table->string('shift');
-            $table->string('gender');
-            $table->text('experience');
-            $table->integer('min_age');
-            $table->integer('max_age');
-            $table->string('schedule');
-            $table->string('hours');
-            $table->string('salary');
-            $table->string('language');
+            $table->text('gender'); // JSON
+            $table->text('requirements'); // JSON
+            $table->integer('min_age')->nullable();
+            $table->integer('max_age')->nullable();
+            $table->float('salary')->nullable();
+            $table->text('language'); // JSON
             $table->string('state');
             $table->string('city');
-            $table->boolean('status');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

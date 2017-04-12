@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Language extends Model
+class ResumeFile extends Model
 {
     protected $guarded = [];
 
-    public function resume()
+    public function aspirant()
     {
-       return $this->belongsTo('App\Resume');
+       return $this->belongsTo('App\Aspirant');
     }
 }

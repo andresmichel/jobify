@@ -27,4 +27,9 @@ class Aspirant extends Model
     {
         return $this->hasOne('App\Resume');
     }
+
+    public function fileResume()
+    {
+        return $this->hasOne('App\FileResume');
+    }
 }

@@ -20,5 +20,50 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'avatar' => null,
+    ];
+});
+
+$factory->state(App\User::class, 'admin', function ($faker) {
+    return [
+        'role' => 'admin',
+    ];
+});
+
+$factory->state(App\User::class, 'aspirant', function ($faker) {
+    return [
+        'role' => 'aspirant',
+    ];
+});
+
+$factory->state(App\User::class, 'company', function ($faker) {
+    return [
+        'role' => 'company',
+    ];
+});
+
+$factory->define(App\Aspirant::class, function (Faker\Generator $faker) {
+    return [
+        'gender' => 'M',
+        'birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'state' => $faker->state,
+        'city' => $faker->city,
+        'phone' => $faker->tollFreePhoneNumber,
+    ];
+});
+
+$factory->define(App\Company::class, function (Faker\Generator $faker) {
+    $name = $faker->company;
+
+    return [
+        'slug' => str_slug($name),
+        'description' => $faker->jobTitle,
+        'website' => str_slug($name).'.com',
+        'category' => $faker->state,
+        'employees' => rand(1, 100000),
+        'state' => $faker->state,
+        'city' => $faker->city,
+        'address' => $faker->address,
+        'phone' => $faker->tollFreePhoneNumber,
     ];
 });
