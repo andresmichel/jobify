@@ -23,7 +23,6 @@
                                             @slot('action', url('aspirant/resume'))
 
                                             @component('components.file')
-                                                @slot('label', '')
                                                 @slot('name', 'resume')
                                             @endcomponent
 

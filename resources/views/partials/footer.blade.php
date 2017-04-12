@@ -1,4 +1,4 @@
-<footer class="container-fluid py-3 footer">
+<footer class="container-fluid py-3">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">

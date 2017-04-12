@@ -33,13 +33,13 @@
 
 @section('content')
     <div class="container">
-        <div class="row my-5">
-            <div class="col-sm-12">
-                <div class="w-100 slick-carousel">
+        <div class="row">
+            <div class="col-sm-12 py-5">
+                <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden;">
                     @foreach ($companies as $company)
                         <div class="card m-3 d-inline-block">
                             <div class="card-block">
-                                <img src="{{ asset('img/apple.png') }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $company->user->name }}">
+                                <img src="{{ asset('/') }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $company->user->name }}">
                             </div>
                         </div>
                     @endforeach

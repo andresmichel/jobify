@@ -19,9 +19,8 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->boolean('fulltime')->default(true);
+            $table->boolean('fulltime')->default(1);
             $table->string('area');
-            $table->text('education'); // JSON
             $table->string('shift');
             $table->text('gender'); // JSON
             $table->text('requirements'); // JSON
@@ -30,7 +29,7 @@ class CreateJobsTable extends Migration
             $table->float('salary')->nullable();
             $table->string('state');
             $table->string('city');
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

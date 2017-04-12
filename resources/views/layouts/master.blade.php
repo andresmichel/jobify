@@ -7,7 +7,7 @@
         @include('partials.navbar')
 
         <div class="main-container @yield('padding', 'py-5')"
-            style="min-height:calc(100vh - 130px);">
+            style="min-height:calc(100vh - 128px);">
             @yield('header')
             @yield('content')
         </div>

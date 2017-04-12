@@ -71,7 +71,6 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'slug' => str_slug($title),
         'description' => $faker->text,
         'area' => $faker->jobTitle,
-        'education' => '[]',
         'shift' => 'Matutino',
         'gender' => '[]',
         'requirements' => '[]',
