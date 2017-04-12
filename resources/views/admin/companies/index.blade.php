@@ -19,8 +19,19 @@
 
         @foreach ($items as $item)
             <li class="list-group-item d-block">
-                <h4 class="card-title"><a href="{{ url('admin/companies/'.$item->id.'/edit') }}">{{ $item->user->name}}</a></h4>
-                <h6 class="card-subtitle mb-2 text-muted">{{ $item->description }}</h6>
+                <div class="flex">
+                    <div class="flex">
+                        <img src="" alt="" width="64" height="64">
+                    </div>
+                    <div class="ml-4 flex flex-column w-100">
+                        <h5 class="card-title">
+                            <a href="{{ url('admin/companies/'.$item->id.'/edit') }}">
+                                {{ $item->user->name}}
+                            </a>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $item->user->email }}</h6>
+                    </div>
+                </div>
             </li>
         @endforeach
     @endsection

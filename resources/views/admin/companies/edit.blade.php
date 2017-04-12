@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @if ($company->jobs)
+            @if (count($company->jobs))
                 <div class="col-sm-6 offset-sm-1">
             @else
                 <div class="col-sm-6 offset-sm-3">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            @if ($company->jobs)
+            @if (count($company->jobs))
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-header" style="background-color:#fff;">

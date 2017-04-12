@@ -66,6 +66,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
     $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
 
     return [
+        'company_id' => 1,
         'title' => $title,
         'slug' => str_slug($title),
         'description' => $faker->text,

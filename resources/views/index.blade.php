@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="w-100" style="display:flex; justify-content:space-between;overflow-x: auto;">
+                <div class="w-100" style="display:flex; justify-content:space-between;">
                     @foreach ($companies as $company)
                         <div class="card">
                             <div class="card-block" style="height:100px; width:200px;">{{ $company->user->name }}</div>
