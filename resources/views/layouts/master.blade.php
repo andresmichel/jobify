@@ -6,9 +6,9 @@
     <body style="margin-top:72px;">
         @include('partials.navbar')
 
-        @yield('header')
-
-        <div class="main-container py-5" style="min-height:calc(100vh - 130px);">
+        <div class="main-container @yield('padding', 'py-5')"
+            style="min-height:calc(100vh - 130px);">
+            @yield('header')
             @yield('content')
         </div>
 

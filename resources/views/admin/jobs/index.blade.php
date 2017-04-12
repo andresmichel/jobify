@@ -17,7 +17,7 @@
         @endif
 
         @foreach ($items as $item)
-            <li class="list-group-item d-block">
+            <li class="list-group-item d-block py-4">
                 <div class="flex flex-column w-100">
                     <h5 class="card-title">
                         <a href="{{ url('admin/jobs/'.$item->id.'/edit') }}">

@@ -18,7 +18,7 @@
         @endif
 
         @foreach ($items as $item)
-            <li class="list-group-item d-block">
+            <li class="list-group-item d-block py-4">
                 <div class="flex">
                     <div class="flex">
                         <img src="" alt="" width="64" height="64">
