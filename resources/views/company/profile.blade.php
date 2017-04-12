@@ -8,9 +8,7 @@
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('company/profile'))
-
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                            @slot('method_field', 'PUT')
 
                             @component('components.input')
                                 @slot('label', 'Nombre de la empresa')
@@ -45,8 +43,8 @@
 
                             @component('components.file')
                                 @slot('label', 'Logotipo')
-                                @slot('name', 'logo')
-                                {{ auth()->user()->company->logo }}
+                                @slot('name', 'avatar')
+                                {{ auth()->user()->avatar }}
                             @endcomponent
 
                             @component('components.input')
@@ -55,7 +53,7 @@
                                 {{ auth()->user()->company->website }}
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Categoría')
                                 @slot('name', 'category')
                                 {{ auth()->user()->company->category }}
@@ -64,13 +62,14 @@
                             @component('components.input')
                                 @slot('label', 'Número de empleados')
                                 @slot('name', 'employees')
+                                @slot('type', 'numeric')
                                 {{ auth()->user()->company->employees }}
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option>Baja California</option>
+                                {{ auth()->user()->company->state }}
                             @endcomponent
 
                             @component('components.input')

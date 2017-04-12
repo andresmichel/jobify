@@ -9,8 +9,6 @@
                         @component('components.form')
                             @slot('action', url('register/aspirant'))
 
-                            {{ csrf_field() }}
-
                             @component('components.input')
                                 @slot('label', 'Nombre completo')
                                 @slot('name', 'name')
@@ -35,8 +33,8 @@
                             @endcomponent
 
                             @component('components.file')
-                                @slot('label', 'Fotografía')
-                                @slot('name', 'picture')
+                                @slot('label', 'Foto de perfil')
+                                @slot('name', 'avatar')
                             @endcomponent
 
                             @component('components.input')
@@ -48,14 +46,13 @@
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
-                                <option value="male">Hombre</option>
-                                <option value="female">Mujer</option>
+                                <option value="M">Hombre</option>
+                                <option value="F">Mujer</option>
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option>Baja California</option>
                             @endcomponent
 
                             @component('components.input')

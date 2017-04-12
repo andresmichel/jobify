@@ -18,13 +18,6 @@
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>
-                                {{-- <div class="col-sm-12 mt-5">
-                                    <div class="d-flex">
-                                        <span>Ordenar por</span>
-                                        <a href="?by=date" class="ml-3">Fecha</a>
-                                        <a href="?by=salary" class="ml-3">Salario</a>
-                                    </div>
-                                </div> --}}
                             </div>
                         </form>
                     </div>
@@ -51,11 +44,6 @@
                 <div class="card mb-5">
                     <div class="card-block">
                         <a href="{{ url('company/jobs/create') }}" class="btn btn-primary btn-block">Poner oferta de trabajo</a>
-                    </div>
-                </div>
-                <div class="card mb-5">
-                    <div class="card-block" style="height:500px;">
-
                     </div>
                 </div>
             </div>

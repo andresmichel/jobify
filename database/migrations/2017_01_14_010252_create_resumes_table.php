@@ -16,6 +16,7 @@ class CreateResumesTable extends Migration
         Schema::create('resumes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('aspirant_id')->unsigned()->unique();
+            $table->boolean('picture')->default(false);
             $table->text('description');
             $table->text('goal');
             $table->string('address');

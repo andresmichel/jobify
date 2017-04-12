@@ -10,6 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::get('/test', 'TestController@index');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::group(['prefix' => 'register', 'namespace' => 'Auth'], function () {

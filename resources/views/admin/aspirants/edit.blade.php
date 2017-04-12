@@ -12,9 +12,7 @@
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('admin/aspirants', $aspirant->id))
-
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                            @slot('method_field', 'PUT')
 
                             @component('components.input')
                                 @slot('label', 'Nombre completo')
@@ -42,8 +40,8 @@
                             @endcomponent
 
                             @component('components.file')
-                                @slot('label', 'Fotografía')
-                                @slot('name', 'picture')
+                                @slot('label', 'Foto de perfil')
+                                @slot('name', 'avatar')
                             @endcomponent
 
                             @component('components.input')
@@ -63,7 +61,7 @@
                             @component('components.select')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option {{ $aspirant->state == 'Baja California' ? 'selected' : '' }} >Baja California</option>
+                                {{ $aspirant->state }}
                             @endcomponent
 
                             @component('components.input')

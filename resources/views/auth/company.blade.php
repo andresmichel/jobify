@@ -9,8 +9,6 @@
                         @component('components.form')
                             @slot('action', url('register/company'))
 
-                            {{ csrf_field() }}
-
                             @component('components.input')
                                 @slot('label', 'Nombre de la empresa')
                                 @slot('name', 'name')
@@ -41,7 +39,7 @@
 
                             @component('components.file')
                                 @slot('label', 'Logotipo')
-                                @slot('name', 'logo')
+                                @slot('name', 'avatar')
                             @endcomponent
 
                             @component('components.input')
@@ -57,12 +55,12 @@
                             @component('components.input')
                                 @slot('label', 'Número de empleados')
                                 @slot('name', 'employees')
+                                @slot('type', 'numeric')
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option>Baja California</option>
                             @endcomponent
 
                             @component('components.input')

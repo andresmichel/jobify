@@ -8,9 +8,7 @@
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('aspirant/profile'))
-
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                            @slot('method_field', 'PUT')
 
                             @component('components.input')
                                 @slot('label', 'Nombre completo')
@@ -38,8 +36,8 @@
                             @endcomponent
 
                             @component('components.file')
-                                @slot('label', 'Fotografía')
-                                @slot('name', 'picture')
+                                @slot('label', 'Foto de perfil')
+                                @slot('name', 'avatar')
                             @endcomponent
 
                             @component('components.input')
@@ -52,14 +50,14 @@
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
-                                <option {{ auth()->user()->aspirant->gender == 'male' ? 'selected' : '' }} value="male">Hombre</option>
-                                <option {{ auth()->user()->aspirant->gender == 'female' ? 'selected' : '' }} value="female">Mujer</option>
+                                <option {{ auth()->user()->aspirant->gender == 'M' ? 'selected' : '' }} value="M">Hombre</option>
+                                <option {{ auth()->user()->aspirant->gender == 'F' ? 'selected' : '' }} value="F">Mujer</option>
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option {{ auth()->user()->aspirant->state == 'Baja California' ? 'selected' : '' }} >Baja California</option>
+                                {{ auth()->user()->aspirant->state }}
                             @endcomponent
 
                             @component('components.input')

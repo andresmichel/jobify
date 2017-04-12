@@ -28,8 +28,8 @@ class Aspirant extends Model
         return $this->hasOne('App\Resume');
     }
 
-    public function fileResume()
+    public function resumeFile()
     {
-        return $this->hasOne('App\FileResume');
+        return $this->hasOne('App\ResumeFile');
     }
 }

@@ -12,9 +12,7 @@
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('admin/companies', $company->id))
-
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                            @slot('method_field', 'PUT')
 
                             @component('components.input')
                                 @slot('label', 'Nombre de la empresa')
@@ -49,8 +47,8 @@
 
                             @component('components.file')
                                 @slot('label', 'Logotipo')
-                                @slot('name', 'logo')
-                                {{ $company->logo }}
+                                @slot('name', 'avatar')
+                                {{ $company->user->avatar }}
                             @endcomponent
 
                             @component('components.input')
@@ -68,13 +66,14 @@
                             @component('components.input')
                                 @slot('label', 'Número de empleados')
                                 @slot('name', 'employees')
+                                @slot('type', 'numeric')
                                 {{ $company->employees }}
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option>Baja California</option>
+                                {{ $company->state }}
                             @endcomponent
 
                             @component('components.input')
