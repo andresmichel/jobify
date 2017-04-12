@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Company;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,10 +24,13 @@ class HomeController extends Controller
                     break;
             }
         } else {
-            $companies = Company::all();
-            $companies = $companies->random(count($companies));
-            
-            return view('index', compact('companies'));
+            $users = User::where('role', 'company')
+                ->whereNotNull('avatar')
+                ->limit(10)
+                ->inRandomOrder()
+                ->get();
+
+            return view('index', compact('users'));
         }
     }
 }

@@ -57,7 +57,7 @@
                                 {{ $company->website }}
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Categoría')
                                 @slot('name', 'category')
                                 {{ $company->category }}

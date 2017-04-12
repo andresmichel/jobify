@@ -3,7 +3,7 @@
 @section('padding', 'py-0')
 
 @section('header')
-    <div class="container-fluid" style="background-color: #1863dc;padding:110px;">
+    <div class="container-fluid" style="background-color: #75abeb;padding:110px;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -32,21 +32,23 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 py-5">
-                <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden;">
-                    @foreach ($companies as $company)
-                        <div class="card m-3 d-inline-block">
-                            <div class="card-block">
-                                <img src="{{ asset('/') }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $company->user->name }}">
+    @if (count($users) > 4)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 py-5">
+                    <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden;">
+                        @foreach ($users as $user)
+                            <div class="card m-3 d-inline-block">
+                                <div class="card-block text-center">
+                                    <img src="{{ asset($user->avatar) }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $user->name }}">
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection
 
 @section('scripts')
@@ -56,7 +58,8 @@
             slidesToShow: 5,
             slidesToScroll: 1,
             arrows: false,
-            autoplay: true
+            autoplay: true,
+            autoplaySpeed: 1000
         });
     </script>
 @endsection

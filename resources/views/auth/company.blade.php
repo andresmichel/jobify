@@ -47,7 +47,7 @@
                                 @slot('name', 'website')
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Categoría')
                                 @slot('name', 'category')
                             @endcomponent
