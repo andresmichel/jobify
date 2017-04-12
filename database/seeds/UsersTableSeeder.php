@@ -17,9 +17,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         factory(App\User::class, 1)->states('aspirant')
-            ->create([
-                'email' => 'aspirante@gmail.com',
-            ])
+            ->create(['email' => 'aspirante@gmail.com'])
             ->each(function ($u) {
                 $u->aspirant()->save(factory(App\Aspirant::class)->make());
             });
@@ -31,9 +29,7 @@ class UsersTableSeeder extends Seeder
             });
 
         factory(App\User::class, 1)->states('company')
-            ->create([
-                'email' => 'empresa@gmail.com',
-            ])
+            ->create(['email' => 'empresa@gmail.com'])
             ->each(function ($u) {
                 $u->company()->save(factory(App\Company::class)->make());
             });

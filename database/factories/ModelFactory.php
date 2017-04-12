@@ -25,21 +25,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->state(App\User::class, 'admin', function ($faker) {
-    return [
-        'role' => 'admin',
-    ];
+    return ['role' => 'admin'];
 });
 
 $factory->state(App\User::class, 'aspirant', function ($faker) {
-    return [
-        'role' => 'aspirant',
-    ];
+    return ['role' => 'aspirant'];
 });
 
 $factory->state(App\User::class, 'company', function ($faker) {
-    return [
-        'role' => 'company',
-    ];
+    return ['role' => 'company'];
 });
 
 $factory->define(App\Aspirant::class, function (Faker\Generator $faker) {
@@ -65,5 +59,26 @@ $factory->define(App\Company::class, function (Faker\Generator $faker) {
         'city' => $faker->city,
         'address' => $faker->address,
         'phone' => $faker->tollFreePhoneNumber,
+    ];
+});
+
+$factory->define(App\Job::class, function (Faker\Generator $faker) {
+    $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+
+    return [
+        'title' => $title,
+        'slug' => str_slug($title),
+        'description' => $faker->text,
+        'area' => $faker->jobTitle,
+        'education' => '[]',
+        'shift' => 'Matutino',
+        'gender' => '[]',
+        'requirements' => '[]',
+        'min_age' => 18,
+        'max_age' => 40,
+        'salary' => rand(5, 10),
+        'state' => $faker->state,
+        'city' => $faker->city,
+        'created_at' => $faker->date($format = 'Y-m-d', $max = 'now'),
     ];
 });
