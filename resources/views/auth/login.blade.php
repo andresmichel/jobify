@@ -43,7 +43,7 @@
             <div class="col-sm-6 offset-sm-3">
                 <div class="card">
                     <div class="card-block">
-                        No tienes cuenta?
+                        ¿No tienes una cuenta?
                         <a href="{{ url('register') }}" class="ml-1">Regístrate</a>
                     </div>
                 </div>

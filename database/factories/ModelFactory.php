@@ -82,3 +82,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'created_at' => $faker->date($format = 'Y-m-d', $max = 'now'),
     ];
 });
+
+$factory->define(App\Application::class, function (Faker\Generator $faker) {
+    return ['aspirant_id' => 1];
+});

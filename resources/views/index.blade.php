@@ -36,12 +36,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 py-5">
-                    <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden;">
+                    <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden; margin-left:-15px;margin-right:-15px;">
                         @foreach ($users as $user)
                             <div class="card m-3 d-inline-block">
-                                <div class="card-block text-center">
-                                    <img src="{{ asset($user->avatar) }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $user->name }}">
-                                </div>
+                                <a href="{{ url('company', $user->company->slug) }}">
+                                    <div class="card-block text-center">
+                                        <img src="{{ asset($user->avatar) }}" alt="" class="img-fluid mx-auto" style="height:50px;" title="{{ $user->name }}">
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -59,7 +61,7 @@
             slidesToScroll: 1,
             arrows: false,
             autoplay: true,
-            autoplaySpeed: 1000
+            autoplaySpeed: 2000
         });
     </script>
 @endsection
