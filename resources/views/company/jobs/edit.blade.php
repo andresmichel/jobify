@@ -8,14 +8,26 @@
                     <div class="card-block">
                         @component('components.form')
                             @slot('action', url('company/jobs', $job->id))
-
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                            @slot('method_field', 'PUT')
 
                             @component('components.input')
                                 @slot('label', 'Título')
                                 @slot('name', 'title')
                                 {{ $job->title }}
+                            @endcomponent
+
+                            @component('components.select')
+                                @slot('label', 'Empresa')
+                                @slot('name', 'company_id')
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->user->name }}</option>
+                                @endforeach
+                            @endcomponent
+
+                            @component('components.input')
+                                @slot('label', 'Área')
+                                @slot('name', 'area')
+                                {{ $job->area }}
                             @endcomponent
 
                             @component('components.textarea')
@@ -24,88 +36,58 @@
                                 {{ $job->description }}
                             @endcomponent
 
-                            @component('components.textarea')
-                                @slot('label', 'Contrato')
-                                @slot('name', 'contract')
-                                {{ $job->contract }}
+                            @component('components.select')
+                                @slot('label', 'Horario')
+                                @slot('name', 'fulltime')
+                                <option value="1">Tiempo completo</option>
+                                <option value="0">Medio tiempo</option>
                             @endcomponent
 
-                            @component('components.select')
-                                @slot('label', 'Área')
-                                @slot('name', 'area')
-                                <option {{ $job->area == 'Ventas' ? 'selected' : '' }}>Ventas</option>
-                                <option {{ $job->area == 'Recursos Humanos' ? 'selected' : '' }}>Recursos Humanos</option>
-                                <option {{ $job->area == 'Sistemas' ? 'selected' : '' }}>Sistemas</option>
-                            @endcomponent
-
-                            @component('components.select')
-                                @slot('label', 'Educación')
-                                @slot('name', 'education')
-                                <option {{ $job->education == 'Universidad' ? 'selected' : '' }}>Universidad</option>
-                                <option {{ $job->education == 'Preparatoria' ? 'selected' : '' }}>Preparatoria</option>
-                                <option {{ $job->education == 'Doctorado' ? 'selected' : '' }}>Doctorado</option>
-                            @endcomponent
-
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Turno')
                                 @slot('name', 'shift')
-                                <option {{ $job->shift == 'Matutino' ? 'selected' : '' }}>Matutino</option>
-                                <option {{ $job->shift == 'Vespertino' ? 'selected' : '' }}>Vespertino</option>
-                            @endcomponent
-
-                            @component('components.select')
-                                @slot('label', 'Género')
-                                @slot('name', 'gender')
-                                <option value="male" {{ $job->gender == 'male' ? 'selected' : '' }}>Hombre</option>
-                                <option value="female" {{ $job->gender == 'female' ? 'selected' : '' }}>Mujer</option>
+                                {{ $job->shift }}
                             @endcomponent
 
                             @component('components.textarea')
-                                @slot('label', 'Experiencia')
-                                @slot('name', 'experience')
-                                {{ $job->experience }}
+                                @slot('label', 'Género')
+                                @slot('name', 'gender')
+                                {{ $job->gender }}
+                                {{-- @slot('hidden', true) --}}
+                            @endcomponent
+
+                            @component('components.textarea')
+                                @slot('label', 'Requisitos')
+                                @slot('name', 'requirements')
+                                {{ $job->requirements }}
+                                {{-- @slot('hidden', true) --}}
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Edad mínima')
                                 @slot('name', 'min_age')
                                 {{ $job->min_age }}
+                                @slot('type', 'age')
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Edad máxima')
                                 @slot('name', 'max_age')
                                 {{ $job->max_age }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Horario')
-                                @slot('name', 'schedule')
-                                {{ $job->schedule }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Horas a la semana')
-                                @slot('name', 'hours')
-                                {{ $job->hours }}
+                                @slot('type', 'age')
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Salario')
                                 @slot('name', 'salary')
                                 {{ $job->salary }}
+                                @slot('type', 'numeric')
                             @endcomponent
 
                             @component('components.input')
-                                @slot('label', 'Idiomas')
-                                @slot('name', 'language')
-                                {{ $job->language }}
-                            @endcomponent
-
-                            @component('components.select')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option {{ $job->state == 'Baja California' ? 'selected' : '' }}>Baja California</option>
+                                {{ $job->state }}
                             @endcomponent
 
                             @component('components.input')
@@ -114,11 +96,10 @@
                                 {{ $job->city }}
                             @endcomponent
 
-                            @component('components.select')
-                                @slot('label', 'Estatus')
-                                @slot('name', 'status')
-                                <option value="1" {{ $job->status == "1" ? 'selected' : '' }}>Abierto</option>
-                                <option value="0" {{ $job->status == "0" ? 'selected' : '' }}>Cerrado</option>
+                            @component('components.checkbox')
+                                @slot('label', 'Mostrar oferta de trabajo')
+                                @slot('name', 'active')
+                                {{ $job->active ? 'checked' : '' }}
                             @endcomponent
 
                             @component('components.button')

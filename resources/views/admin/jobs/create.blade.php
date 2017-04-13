@@ -9,8 +9,6 @@
                         @component('components.form')
                             @slot('action', url('admin/jobs'))
 
-                            {{ csrf_field() }}
-
                             @component('components.input')
                                 @slot('label', 'Título')
                                 @slot('name', 'title')
@@ -24,85 +22,61 @@
                                 @endforeach
                             @endcomponent
 
+                            @component('components.input')
+                                @slot('label', 'Área')
+                                @slot('name', 'area')
+                            @endcomponent
+
                             @component('components.textarea')
                                 @slot('label', 'Descripción')
                                 @slot('name', 'description')
                             @endcomponent
 
-                            @component('components.textarea')
-                                @slot('label', 'Contrato')
-                                @slot('name', 'contract')
+                            @component('components.select')
+                                @slot('label', 'Horario')
+                                @slot('name', 'fulltime')
+                                <option value="1">Tiempo completo</option>
+                                <option value="0">Medio tiempo</option>
                             @endcomponent
 
-                            @component('components.select')
-                                @slot('label', 'Área')
-                                @slot('name', 'area')
-                                <option>Ventas</option>
-                                <option>Recursos Humanos</option>
-                                <option>Sistemas</option>
-                            @endcomponent
-
-                            @component('components.select')
-                                @slot('label', 'Educación')
-                                @slot('name', 'education')
-                                <option>Preparatoria</option>
-                                <option>Universidad</option>
-                                <option>Doctorado</option>
-                            @endcomponent
-
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Turno')
                                 @slot('name', 'shift')
-                                <option>Matutino</option>
-                                <option>Vespertino</option>
-                            @endcomponent
-
-                            @component('components.select')
-                                @slot('label', 'Género')
-                                @slot('name', 'gender')
-                                <option>Hombre</option>
-                                <option>Mujer</option>
                             @endcomponent
 
                             @component('components.textarea')
-                                @slot('label', 'Experiencia')
-                                @slot('name', 'experience')
+                                @slot('label', 'Género')
+                                @slot('name', 'gender')
+                                {{-- @slot('hidden', true) --}}
+                            @endcomponent
+
+                            @component('components.textarea')
+                                @slot('label', 'Requisitos')
+                                @slot('name', 'requirements')
+                                {{-- @slot('hidden', true) --}}
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Edad mínima')
                                 @slot('name', 'min_age')
+                                @slot('type', 'age')
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Edad máxima')
                                 @slot('name', 'max_age')
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Horario')
-                                @slot('name', 'schedule')
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Horas a la semana')
-                                @slot('name', 'hours')
+                                @slot('type', 'age')
                             @endcomponent
 
                             @component('components.input')
                                 @slot('label', 'Salario')
                                 @slot('name', 'salary')
+                                @slot('type', 'numeric')
                             @endcomponent
 
                             @component('components.input')
-                                @slot('label', 'Idiomas')
-                                @slot('name', 'language')
-                            @endcomponent
-
-                            @component('components.select')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
-                                <option >Baja California</option>
                             @endcomponent
 
                             @component('components.input')
@@ -110,11 +84,10 @@
                                 @slot('name', 'city')
                             @endcomponent
 
-                            @component('components.select')
-                                @slot('label', 'Estatus')
-                                @slot('name', 'status')
-                                    <option value="1">Abierto</option>
-                                    <option value="0">Cerrado</option>
+                            @component('components.checkbox')
+                                @slot('label', 'Mostrar oferta de trabajo')
+                                @slot('name', 'active')
+                                checked
                             @endcomponent
 
                             @component('components.button')
