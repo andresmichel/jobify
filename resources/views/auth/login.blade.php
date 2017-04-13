@@ -9,8 +9,6 @@
                         @component('components.form')
                             @slot('action', url('/login'))
 
-                            {{ csrf_field() }}
-
                             <input style="display:none" type="text" name="email"/>
                             <input style="display:none" type="password" name="password"/>
 

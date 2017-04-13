@@ -10,102 +10,23 @@
             @endif
                 <div class="card">
                     <div class="card-block">
-                        @component('components.form')
+                        @component('forms.company')
                             @slot('action', url('admin/companies', $company->id))
-                            @slot('method_field', 'PUT')
+                            @slot('update', true)
+                            @slot('delete', true)
 
-                            @component('components.input')
-                                @slot('label', 'Nombre de la empresa')
-                                @slot('name', 'name')
-                                {{ $company->user->name }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Correo electrónico')
-                                @slot('name', 'email')
-                                @slot('type', 'email')
-                                {{ $company->user->email }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Contraseña')
-                                @slot('name', 'password')
-                                @slot('type', 'password')
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Confirmar contraseña')
-                                @slot('name', 'password')
-                                @slot('type', 'password_confirmation')
-                            @endcomponent
-
-                            @component('components.textarea')
-                                @slot('label', 'Descripción')
-                                @slot('name', 'description')
-                                {{ $company->description }}
-                            @endcomponent
-
-                            @component('components.file')
-                                @slot('label', 'Logotipo')
-                                @slot('name', 'avatar')
-                                {{ $company->user->avatar }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Sitio Web')
-                                @slot('name', 'website')
-                                {{ $company->website }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Categoría')
-                                @slot('name', 'category')
-                                {{ $company->category }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Número de empleados')
-                                @slot('name', 'employees')
-                                @slot('type', 'numeric')
-                                {{ $company->employees }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Estado')
-                                @slot('name', 'state')
-                                {{ $company->state }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Ciudad')
-                                @slot('name', 'city')
-                                {{ $company->city }}
-                            @endcomponent
-
-                            @component('components.textarea')
-                                @slot('label', 'Domicilio')
-                                @slot('name', 'address')
-                                {{ $company->address }}
-                            @endcomponent
-
-                            @component('components.input')
-                                @slot('label', 'Teléfono')
-                                @slot('name', 'phone')
-                                @slot('type', 'phone')
-                                {{ $company->phone }}
-                            @endcomponent
-
-                            @component('components.button')
-                                Guardar
-                            @endcomponent
-
-                            <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
+                            @slot('name', $company->user->name)
+                            @slot('email', $company->user->email)
+                            @slot('description', $company->description)
+                            @slot('avatar', $company->user->avatar)
+                            @slot('website', $company->website)
+                            @slot('category', $company->category)
+                            @slot('employees', $company->employees)
+                            @slot('state', $company->state)
+                            @slot('city', $company->city)
+                            @slot('address', $company->address)
+                            @slot('phone', $company->phone)
                         @endcomponent
-
-                        <form id="delete" action="{{ url('admin/companies', $company->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                        </form>
                     </div>
                 </div>
             </div>

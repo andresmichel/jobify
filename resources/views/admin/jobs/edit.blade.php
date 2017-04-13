@@ -6,6 +6,27 @@
             <div class="col-sm-6 offset-sm-3">
                 <div class="card">
                     <div class="card-block">
+                        @component('forms.job')
+                            @slot('action', url('admn/jobs', $job->id))
+                            @slot('update', true)
+                            @slot('delete', true)
+
+                            @slot('title', $job->title)
+                            @slot('company_id', $job->company_id)
+                            @slot('area', $job->area)
+                            @slot('description', $job->description)
+                            @slot('fulltime', $job->fulltime)
+                            @slot('shift', $job->shift)
+                            @slot('gender', $job->gender)
+                            @slot('requirements', $job->requirements)
+                            @slot('min_age', $job->min_age)
+                            @slot('max_age', $job->max_age)
+                            @slot('salary', $job->salary)
+                            @slot('state', $job->state)
+                            @slot('city', $job->city)
+                            @slot('active', $job->active)
+                        @endcomponent
+
                         @component('components.form')
                             @slot('action', url('admn/jobs', $job->id))
                             @slot('method_field', 'PUT')

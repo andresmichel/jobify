@@ -76,7 +76,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'requirements' => '[]',
         'min_age' => 18,
         'max_age' => 40,
-        'salary' => rand(5, 10),
+        'salary' => rand(10000, 100000),
         'state' => $faker->state,
         'city' => $faker->city,
         'created_at' => $faker->date($format = 'Y-m-d', $max = 'now'),
