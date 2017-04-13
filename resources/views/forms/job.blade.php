@@ -4,6 +4,7 @@
     @if (isset($update) && $update)
         {{ method_field('PUT') }}
     @endif
+
     @component('components.input')
         @slot('label', 'Título')
         @slot('name', 'title')
