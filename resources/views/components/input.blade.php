@@ -2,7 +2,11 @@
     <label for="{{ $name or '' }}">{{ $label or '' }}</label>
     <input class="form-control" name="{{ $name or '' }}"
     @if (isset($type))
-        @if ($type == 'phone')
+        @if ($type == 'password')
+            type="password"
+        @elseif ($type == 'email')
+            type="email"
+        @elseif ($type == 'phone')
             type="phone"
             data-mask="(000) 000-0000"
         @elseif ($type == 'date')
@@ -15,6 +19,6 @@
     @endif
         value="{{ $slot or (($type != 'password')? old($name) : '') }}" id="{{ $name or '' }}">
     @if ($errors->has($name))
-        <small class="form-text text-muted">{{ $errors->first($name) }}</small>
+        <small class="form-text text-danger">{{ $errors->first($name) }}</small>
     @endif
 </div>

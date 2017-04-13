@@ -4,6 +4,6 @@
     @endif
     <input type="file" class="form-control-file" name="{{ $name or '' }}" id="{{ $name or '' }}">
     @if ($errors->has($name))
-        <small class="form-text text-muted">{{ $errors->first($name) }}</small>
+        <small class="form-text text-danger">{{ $errors->first($name) }}</small>
     @endif
 </div>

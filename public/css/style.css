@@ -11,7 +11,7 @@ a {
     text-decoration: none !important;
 }
 div, li, a, span {
-    border-color: #f0f0f0 !important;
+    border-color: #eee !important;
 }
 .btn:focus {
     box-shadow: none;
@@ -176,14 +176,19 @@ label:hover:before {
 .btn-primary {
     background-color: #75abeb;
     border-color: #75abeb;
+    color: #fff;
 }
 .btn-primary:hover, .btn-primary:visited, .btn-primary:active, .btn-primary:focus {
     background-color: #75abeb;
     border-color: #75abeb;
+    color: #fff;
 }
 a {
     color: #75abeb;
 }
 a:hover, a:visited, a:active, a:focus {
     color: #75abeb;
+}
+.text-success {
+    color: #87d690 !important;
 }

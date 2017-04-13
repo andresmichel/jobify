@@ -54,11 +54,11 @@
                             @component('components.select')
                                 @slot('label', 'Género')
                                 @slot('name', 'gender')
-                                <option {{ $aspirant->gender == 'male' ? 'selected' : '' }} value="male">Hombre</option>
-                                <option {{ $aspirant->gender == 'female' ? 'selected' : '' }} value="female">Mujer</option>
+                                <option {{ $aspirant->gender == 'M' ? 'selected' : '' }} value="M">Hombre</option>
+                                <option {{ $aspirant->gender == 'F' ? 'selected' : '' }} value="F">Mujer</option>
                             @endcomponent
 
-                            @component('components.select')
+                            @component('components.input')
                                 @slot('label', 'Estado')
                                 @slot('name', 'state')
                                 {{ $aspirant->state }}
