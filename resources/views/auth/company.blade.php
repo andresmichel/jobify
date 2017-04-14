@@ -6,7 +6,7 @@
             <div class="col-sm-6 offset-sm-3">
                 <div class="card">
                     <div class="card-block">
-                        @component('forms.aspirant')
+                        @component('forms.company')
                             @slot('action', url('register/company'))
                         @endcomponent
                     </div>

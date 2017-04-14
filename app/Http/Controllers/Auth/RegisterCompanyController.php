@@ -49,11 +49,10 @@ class RegisterCompanyController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
-            'logo' => 'image',
             'description' => 'required|string',
             'website' => 'required|string',
-            'category' => 'required|integer',
-            'employees' => 'required|string',
+            'category' => 'required|string',
+            'employees' => 'required|integer',
             'state' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string',
@@ -65,12 +64,12 @@ class RegisterCompanyController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'company',
+            'avatar' => $request->avatar,
         ]);
 
         $company = Company::create([
             'user_id' => $user->id,
             'slug' => str_slug($request->name),
-            'logo' => $request->logo,
             'description' => $request->description,
             'website' => $request->website,
             'category' => $request->category,

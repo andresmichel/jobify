@@ -26,8 +26,8 @@
 
     @component('components.input')
         @slot('label', 'Confirmar contraseña')
-        @slot('name', 'password')
-        @slot('type', 'password_confirmation')
+        @slot('name', 'password_confirmation')
+        @slot('type', 'password')
     @endcomponent
 
     @component('components.textarea')
