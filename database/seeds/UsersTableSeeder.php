@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use App\Company;
+use App\Aspirant;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,33 +14,33 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 1)->states('admin')->create([
+        factory(User::class, 1)->states('admin')->create([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
         ]);
 
-        factory(App\User::class, 1)->states('aspirant')
+        factory(User::class, 1)->states('aspirant')
             ->create(['email' => 'aspirante@gmail.com'])
             ->each(function ($u) {
-                $u->aspirant()->save(factory(App\Aspirant::class)->make());
+                $u->aspirant()->save(factory(Aspirant::class)->make());
             });
 
-        factory(App\User::class, 50)->states('aspirant')
+        factory(User::class, 50)->states('aspirant')
             ->create()
             ->each(function ($u) {
-                $u->aspirant()->save(factory(App\Aspirant::class)->make());
+                $u->aspirant()->save(factory(Aspirant::class)->make());
             });
 
-        factory(App\User::class, 1)->states('company')
+        factory(User::class, 1)->states('company')
             ->create(['email' => 'empresa@gmail.com'])
             ->each(function ($u) {
-                $u->company()->save(factory(App\Company::class)->make());
+                $u->company()->save(factory(Company::class)->make());
             });
 
-        factory(App\User::class, 50)->states('company')
+        factory(User::class, 50)->states('company')
             ->create()
             ->each(function ($u) {
-                $u->company()->save(factory(App\Company::class)->make());
+                $u->company()->save(factory(Company::class)->make());
             });
     }
 }

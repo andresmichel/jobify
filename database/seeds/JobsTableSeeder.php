@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Job;
+use App\Application;
 
 class JobsTableSeeder extends Seeder
 {
@@ -11,10 +13,10 @@ class JobsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Job::class, 50)
+        factory(Job::class, 50)
             ->create()
             ->each(function ($a) {
-                $a->applications()->save(factory(App\Application::class)->make());
+                $a->applications()->save(factory(Application::class)->make());
             });
     }
 }
