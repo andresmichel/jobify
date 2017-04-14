@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 offset-sm-1">
+            <div class="col-sm-8 offset-sm-2">
                 <div class="card mb-5">
                     <ul class="list-group list-group-flush">
                         @if (!count($jobs))
@@ -19,22 +19,24 @@
                         @endif
 
                         @foreach ($jobs as $job)
-                            <li class="list-group-item d-block">
-                                <h4 class="card-title">
-                                    <a href="{{ url('company/jobs', $job->slug) }}">
-                                        {{ str_limit($job->title, 60) }}
-                                    </a>
-                                    @if (count($job->applications))
-                                        <span class="badge badge-success" style="font-size:1rem; font-weight:normal;">
-                                            {{ count($job->applications) }} Solicitantes
-                                        </span>
-                                    @endif
-                                    {{-- <a style="font-size:1rem; font-weight:normal;" class="edit-job float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">Editar</a> --}}
-                                </h4>
-                                <p class="card-text">
-                                    {{ date_format(date_create($job->created_at), 'M d, Y') }} -
-                                    {{ str_limit($job->description) }}
-                                </p>
+                            <li class="list-group-item d-block py-4">
+                                <div class="flex">
+                                    <div class="flex flex-column w-100">
+                                        <div class="flex w-100">
+                                            <h5 class="card-title"><a href="{{ url('company/jobs', $job->slug) }}" class="fw-300">{{ $job->title }}</a></h5>
+                                            <p class="card-subtitle mb-2 ml-auto text-nowrap">Full time</p>
+                                        </div>
+                                        <div class="flex w-100">
+                                            <p class="card-subtitle mb-2">
+                                                {{ count($job->applications) }} Solicitantes
+                                            </p>
+                                            <p class="card-subtitle mb-2 ml-auto flex">
+                                                <i class="material-icons mr-1 text-muted">place</i>
+                                                {{ $job->state }}, {{ $job->city }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         @endforeach
                     </ul>

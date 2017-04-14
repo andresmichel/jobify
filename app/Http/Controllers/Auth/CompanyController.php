@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Company;
 use App\User;
+use DB;
 
-class RegisterCompanyController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Where to redirect users after login / registration.
@@ -59,26 +60,28 @@ class RegisterCompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'company',
-            'avatar' => $request->avatar,
-        ]);
+        DB::transaction(function () {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => 'company',
+                'avatar' => $request->avatar,
+            ]);
 
-        $company = Company::create([
-            'user_id' => $user->id,
-            'slug' => str_slug($request->name),
-            'description' => $request->description,
-            'website' => $request->website,
-            'category' => $request->category,
-            'employees' => $request->employees,
-            'state' => $request->state,
-            'city' => $request->city,
-            'address' => $request->address,
-            'phone' => $request->phone,
-        ]);
+            $company = Company::create([
+                'user_id' => $user->id,
+                'slug' => str_slug($request->name),
+                'description' => $request->description,
+                'website' => $request->website,
+                'category' => $request->category,
+                'employees' => $request->employees,
+                'state' => $request->state,
+                'city' => $request->city,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+        });
 
         auth()->login($user);
 

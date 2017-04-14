@@ -12,15 +12,15 @@
 
                             @slot('name', auth()->user()->name)
                             @slot('email', auth()->user()->email)
-                            @slot('description', auth()->user->company->description)
+                            @slot('description', auth()->user()->company->description)
                             @slot('avatar', auth()->user()->avatar)
-                            @slot('website', auth()->user->company->website)
-                            @slot('category', auth()->user->company->category)
-                            @slot('employees', auth()->user->company->employees)
-                            @slot('state', auth()->user->company->state)
-                            @slot('city', auth()->user->company->city)
-                            @slot('address', auth()->user->company->address)
-                            @slot('phone', auth()->user->company->phone)
+                            @slot('website', auth()->user()->company->website)
+                            @slot('category', auth()->user()->company->category)
+                            @slot('employees', auth()->user()->company->employees)
+                            @slot('state', auth()->user()->company->state)
+                            @slot('city', auth()->user()->company->city)
+                            @slot('address', auth()->user()->company->address)
+                            @slot('phone', auth()->user()->company->phone)
                         @endcomponent
                     </div>
                 </div>

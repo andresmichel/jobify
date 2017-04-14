@@ -13,7 +13,7 @@
                     <a href="{{ url('company', $job->company->slug) }}">{{ $job->company->user->name }}</a>
                 </p>
                 <p class="card-subtitle mb-2 ml-auto flex">
-                    {{-- <i class="material-icons mr-1" style="opacity:0.5">place</i> --}}
+                    <i class="material-icons mr-1 text-muted">place</i>
                     {{ $job->state }}, {{ $job->city }}
                 </p>
             </div>

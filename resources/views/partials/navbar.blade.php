@@ -16,7 +16,7 @@
 					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::user()->name }}
 					</a>
-					<div class="dropdown-menu dropdown-menu-right" style="margin-right:15px;" aria-labelledby="dropdownMenuLink">
+					<div class="dropdown-menu dropdown-menu-right box-shadow" style="margin-right:15px;" aria-labelledby="dropdownMenuLink">
 						@if (Auth::user()->role != 'admin')
 							<a href="{{ url(Auth::user()->role.'/profile') }}" class="dropdown-item">Perfil</a>
 						@endif

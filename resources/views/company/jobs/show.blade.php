@@ -9,35 +9,66 @@
                 <div class="col-sm-8 offset-sm-2">
             @endif
 
+                <div class="flex mb-4">
+                    <h3>{{ $job->title }}</h3>
+                    <a class="ml-5" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
+                        <i class="material-icons">edit</i>
+                    </a>
+                </div>
                 <div class="card mb-5">
-                    <div class="card-header" style="background-color:#fff;">
-                        {{ $job->title }}
-                        <a class="float-right" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
-                            <i class="material-icons">edit</i>
-                        </a>
-                    </div>
                     <div class="card-block">
-                        <p class="card-text">{!! $job->description !!}</p>
-                        <p class="card-text">{!! $job->description !!}</p>
+                        <h5 class="text-muted mb-1">Descripción</h5>
+                        <p>{{ $job->description }}</p>
 
-                        <h5 class="card-title">Experiencia</h5>
-                        <p class="card-text">{{ $job->experience }}</p>
+                        <h5 class="text-muted mb-1">Requerimientos</h5>
+                        <p>{{ $job->requirements }}</p>
 
-                        <h5 class="card-title">Salario</h5>
-                        <p class="card-text">{{ $job->salary }}</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5 class="text-muted mb-1">Área</h5>
+                                <p>{{ $job->area }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="text-muted mb-1">Horario</h5>
+                                <p>{{ $job->fulltime ? 'Tiempo completo' : 'Medio tiempo' }}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="text-muted mb-1">Turno</h5>
+                                <p>{{ $job->shift }}</p>
+                            </div>
 
-                        <h5 class="card-title">Ubicación</h5>
-                        <p class="card-text">{{ $job->state }}, {{ $job->city }}</p>
+                            @if ($job->salary)
+                                <div class="col-sm-6">
+                                    <h5 class="text-muted mb-1">Salario</h5>
+                                    <p>{{ $job->salary }}</p>
+                                </div>
+                            @endif
+
+                            <div class="col-sm-6">
+                                <h5 class="text-muted mb-1">Ubicación</h5>
+                                <p>{{ $job->city }}, {{ $job->state }}</p>
+                            </div>
+
+                            @if ($job->min_age)
+                                <div class="col-sm-6">
+                                    <h5 class="text-muted mb-1">Edad</h5>
+                                    <p>
+                                        A partir de {{ $job->min_age }} años
+                                        @if ($job->max_age)
+                                            hasta {{ $job->max_age }} años.
+                                        @endif
+                                    </p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
 
             @if (count($job->applications))
                 <div class="col-sm-4">
+                    <h3 class="mb-4">{{ count($job->applications) }} Solicitantes</h3>
                     <div class="card mb-5">
-                        <div class="card-header" style="background-color:#fff;">
-                            {{ count($job->applications) }} Solicitantes
-                        </div>
                         <ul class="list-group list-group-flush" style="max-height:400px; overflow-y:auto;">
                             @foreach ($job->applications as $application)
                                 <li class="list-group-item d-flex align-items-center {{ $loop->first ? 'border-top-0' : '' }}" style="flex-shrink:0;">

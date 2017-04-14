@@ -72,14 +72,28 @@ div, li, span {
 #navbar a {
     position: relative;
 }
-#navbar a.active::after {
+#navbar a:not(.dropdown-toggle)::after {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 0;
     height: 2px;
     background-color: #75abeb;
     left: 0;
     bottom: 0;
+}
+#navbar a:not(.dropdown-toggle).active::after {
+    animation: active-link;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+@keyframes active-link {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 .flex {
     display: flex;
@@ -137,12 +151,12 @@ a.fav-button {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #fff !important;
     font-size: 32px;
     box-shadow: 0 5px 10px rgba(0, 0, 200, 0.25);
 }
 .dropdown-menu {
-    top: 46px;
+    top: 55px;
 }
 [type="checkbox"] {
   position: absolute;
@@ -163,12 +177,12 @@ a.fav-button {
   border: 2px solid #75abeb;
   background: #fff;
   border-radius: 4px;
+  transition: all 0.3s;
 }
 [type="checkbox"]:checked + label:before {
   background: #75abeb;
 }
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
+[type="checkbox"] + label:after {
   content: 'check';
   position: absolute;
   top: 3px;
@@ -177,12 +191,13 @@ a.fav-button {
   font-size: 18px;
   line-height: 0.8;
   color: #fff;
-}
-[type="checkbox"]:not(:checked) + label:after {
   opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s;
 }
 [type="checkbox"]:checked + label:after {
   opacity: 1;
+  transform: scale(1);
 }
 .clear-focus:focus {
     box-shadow: none !important;
@@ -223,4 +238,13 @@ a:hover, a:visited, a:active, a:focus {
 }
 .text-success {
     color: #87d690 !important;
+}
+.dropdown-menu > a.dropdown-item {
+    color: #000;
+}
+.dropdown-menu > a.dropdown-item:hover,
+.dropdown-menu > a.dropdown-item:focus,
+.dropdown-menu > a.dropdown-item:active {
+    color: #fff;
+    background-color: #75abeb;
 }

@@ -14,10 +14,10 @@ Route::get('/test', 'TestController@index');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::group(['prefix' => 'register', 'namespace' => 'Auth'], function () {
-        Route::get('/aspirant', 'RegisterAspirantController@index');
-        Route::post('/aspirant', 'RegisterAspirantController@store');
-        Route::get('/company', 'RegisterCompanyController@index');
-        Route::post('/company', 'RegisterCompanyController@store');
+        Route::get('/aspirant', 'AspirantController@index');
+        Route::post('/aspirant', 'AspirantController@store');
+        Route::get('/company', 'CompanyController@index');
+        Route::post('/company', 'CompanyController@store');
     });
 });
 

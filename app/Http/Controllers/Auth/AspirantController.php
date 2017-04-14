@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Aspirant;
 use App\User;
+use DB;
 
-class RegisterAspirantController extends Controller
+class AspirantController extends Controller
 {
     /**
      * Where to redirect users after login / registration.
@@ -57,21 +58,23 @@ class RegisterAspirantController extends Controller
             'avatar' => 'image|max:5000',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'aspirant',
-        ]);
+        DB::transaction(function () {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => 'aspirant',
+            ]);
 
-        $aspirant = Aspirant::create([
-            'user_id' => $user->id,
-            'gender' => $request->gender,
-            'birth' => $request->birth,
-            'state' => $request->state,
-            'city' => $request->city,
-            'phone' => $request->phone,
-        ]);
+            $aspirant = Aspirant::create([
+                'user_id' => $user->id,
+                'gender' => $request->gender,
+                'birth' => $request->birth,
+                'state' => $request->state,
+                'city' => $request->city,
+                'phone' => $request->phone,
+            ]);
+        });
 
         Auth::login($user);
 
