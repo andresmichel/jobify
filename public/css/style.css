@@ -207,6 +207,9 @@ a.fav-button {
     min-width: 120px;
     border-width: 2px;
 }
+.btn.disabled {
+    opacity: 0.4;
+}
 .btn:focus {
     box-shadow: none;
 }

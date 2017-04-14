@@ -10,8 +10,8 @@
             @endif
 
                 <div class="flex mb-4">
-                    <h3>{{ $job->title }}</h3>
-                    <a class="ml-5" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
+                    <h3 class="m-0">{{ $job->title }}</h3>
+                    <a class="ml-4 my-0" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
                         <i class="material-icons">edit</i>
                     </a>
                 </div>
