@@ -24,7 +24,6 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'namespace' => 'Admin'], function () {
         Route::get('/', 'HomeController@index');
-        Route::resource('/applications', 'ApplicationController');
         Route::resource('/aspirants', 'AspirantController');
         Route::resource('/companies', 'CompanyController');
         Route::delete('/resume/{id}', 'ResumeController@destroy');

@@ -52,16 +52,20 @@
                             @endif
                         </div>
 
-                        <form action="{{ url('aspirant/applications', $job->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                        @if (auth()->guest())
+                            <a href="{{ url('login') }}"class="btn btn-primary">Enviar mi currículum</a>
+                        @else
+                            <form action="{{ url('aspirant/applications', $job->id) }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
 
-                            @if (auth()->check() && $job->applied())
-                                <button type="submit" class="btn btn-danger btn-block">Cancelar solicitud</button>
-                            @else
-                                <button type="submit" class="btn btn-primary btn-block">Enviar mi currículum</button>
-                            @endif
-                        </form>
+                                @if (auth()->check() && $job->applied())
+                                    <button type="submit" class="btn btn-danger">Cancelar solicitud</button>
+                                @else
+                                    <button type="submit" class="btn btn-primary">Enviar mi currículum</button>
+                                @endif
+                            </form>
+                        @endif
                     </div>
                 </div>
 

@@ -25,5 +25,5 @@ class ApplicationController extends Controller
         }
 
         return back();
-    }
+    }    
 }
