@@ -22,7 +22,6 @@ class CreateJobsTable extends Migration
             $table->boolean('fulltime')->default(1);
             $table->string('area');
             $table->string('shift');
-            $table->text('gender'); // JSON
             $table->text('requirements'); // JSON
             $table->integer('min_age')->nullable();
             $table->integer('max_age')->nullable();

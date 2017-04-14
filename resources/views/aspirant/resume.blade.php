@@ -50,9 +50,9 @@
                           <div class="col-sm-12">
                               <div class="card">
                                     <div class="card-block">
-                                        @component('forms.aspirant')
+                                        @component('forms.resume')
                                             @slot('action', url('aspirant/resume'))
-                                            
+
                                             @slot('name', auth()->user()->name)
                                             @slot('email', auth()->user()->email)
                                             @slot('picture', true)

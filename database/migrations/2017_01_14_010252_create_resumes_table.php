@@ -20,10 +20,11 @@ class CreateResumesTable extends Migration
             $table->text('description');
             $table->text('goal');
             $table->string('address');
-            $table->text('languages'); // JSON
-            $table->text('skills'); // JSON
-            $table->text('education'); // JSON
-            $table->text('experience'); // JSON
+            $table->text('data'); // JSON
+            // $table->text('languages'); // JSON
+            // $table->text('skills'); // JSON
+            // $table->text('education'); // JSON
+            // $table->text('experience'); // JSON
             $table->timestamps();
         });
     }

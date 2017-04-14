@@ -76,23 +76,9 @@
     @endcomponent
 
     @component('components.textarea')
-        @slot('label', 'Experiencia')
-        @slot('name', 'experience')
-        {{ $experience or old('experience') }}
-        {{-- @slot('hidden', true) --}}
-    @endcomponent
-
-    @component('components.textarea')
-        @slot('label', 'Habilidades')
-        @slot('name', 'skills')
-        {{ $skills or old('skills') }}
-        {{-- @slot('hidden', true) --}}
-    @endcomponent
-
-    @component('components.textarea')
-        @slot('label', 'Idiomas')
-        @slot('name', 'laguages')
-        {{ $laguages or old('laguages') }}
+        @slot('label', 'Datos')
+        @slot('name', 'data')
+        {{ $data or old('data') }}
         {{-- @slot('hidden', true) --}}
     @endcomponent
 

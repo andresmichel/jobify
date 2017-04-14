@@ -1,7 +1,7 @@
 <div id="navbar" class="container-flud">
-	<div class="container py-4">
+	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 d-flex">
+			<div class="col-sm-12 flex" style="height:72px;">
 				<a href="{{ url('/') }}">Jobify</a>
 				@if (auth()->guest())
 					<a href="{{ url('jobs') }}" class="ml-4 {{ request()->is('jobs*') ? 'active' : '' }}">Ofertas de trabajo</a>
@@ -11,7 +11,7 @@
 
 				@if (Auth::guest())
 					<a href="{{ url('login') }}" class="ml-auto {{ request()->is('login*') ? 'active' : '' }}">Inciar sesión</a>
-					<a href="{{ url('register') }}" class="ml-4 {{ request()->is('register*') ? 'active' : '' }}">Registrarme</a>
+					<a href="{{ url('register') }}" class="ml-4 btn {{ request()->is('register*') ? 'btn-primary' : 'btn-outline-primary' }}">Registrarme</a>
 				@else
 					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::user()->name }}

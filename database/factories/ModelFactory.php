@@ -72,7 +72,6 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'description' => $faker->text,
         'area' => $faker->jobTitle,
         'shift' => 'Matutino',
-        'gender' => '[]',
         'requirements' => '[]',
         'min_age' => 18,
         'max_age' => 40,

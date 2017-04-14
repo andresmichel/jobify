@@ -45,8 +45,8 @@
     @component('components.select')
         @slot('label', 'Género')
         @slot('name', 'gender')
-        <option {{ $gender == 'M' ? 'selected' : old('gender') }} value="M">Hombre</option>
-        <option {{ $gender == 'F' ? 'selected' : old('gender') }} value="F">Mujer</option>
+        <option {{ isset($gender) && $gender == 'M' ? 'selected' : old('gender') }} value="M">Hombre</option>
+        <option {{ isset($gender) && $gender == 'F' ? 'selected' : old('gender') }} value="F">Mujer</option>
     @endcomponent
 
     @component('components.input')

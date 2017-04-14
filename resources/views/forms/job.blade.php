@@ -47,13 +47,6 @@
     @endcomponent
 
     @component('components.textarea')
-        @slot('label', 'Género')
-        @slot('name', 'gender')
-        {{ $gender or old('gender') }}
-        {{-- @slot('hidden', true) --}}
-    @endcomponent
-
-    @component('components.textarea')
         @slot('label', 'Requisitos')
         @slot('name', 'requirements')
         {{ $requirements or old('requirements') }}

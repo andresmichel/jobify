@@ -16,7 +16,6 @@
                             @slot('description', $job->description)
                             @slot('fulltime', $job->fulltime)
                             @slot('shift', $job->shift)
-                            @slot('gender', $job->gender)
                             @slot('requirements', $job->requirements)
                             @slot('min_age', $job->min_age)
                             @slot('max_age', $job->max_age)
