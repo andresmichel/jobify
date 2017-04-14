@@ -7,10 +7,10 @@
                 <h3 class="mb-4">{{ $company->user->name }}</h3>
                 <div class="card mb-5">
                     <div class="card-block row">
-                        <div class="col-sm-3 flex flex-center">
-                            <img src="{{ asset('img/apple.png') }}" alt="" class="img-fluid" style="max-height:140px;">
+                        <div class="col-sm-4 flex flex-center">
+                            <img src="{{ asset($company->user->avatar) }}" alt="" class="img-fluid" style="max-height:140px; max-width:160px;">
                         </div>
-                        <div class="col-sm-9 flex flex-column">
+                        <div class="col-sm-8 flex flex-column">
                             <h5 class="text-muted mb-1">Descripción</h5>
                             <p>{{ $company->description }}</p>
 

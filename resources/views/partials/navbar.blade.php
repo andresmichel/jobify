@@ -2,15 +2,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 flex" style="height:72px;">
-				<a href="{{ url('/') }}">Jobify</a>
+				<a href="{{ url('/') }}" class="h-100 flex">Jobify</a>
 				@if (auth()->guest())
-					<a href="{{ url('jobs') }}" class="ml-4 {{ request()->is('jobs*') ? 'active' : '' }}">Ofertas de trabajo</a>
+					<a href="{{ url('jobs') }}" class="h-100 flex ml-4 {{ request()->is('jobs*') ? 'active' : '' }}">Ofertas de trabajo</a>
 				@endif
 
 				@include('partials.links')
 
 				@if (Auth::guest())
-					<a href="{{ url('login') }}" class="ml-auto {{ request()->is('login*') ? 'active' : '' }}">Inciar sesión</a>
+					<a href="{{ url('login') }}" class="h-100 flex ml-auto {{ request()->is('login*') ? 'active' : '' }}">Inciar sesión</a>
 					<a href="{{ url('register') }}" class="ml-4 btn {{ request()->is('register*') ? 'btn-primary' : 'btn-outline-primary' }}">Registrarme</a>
 				@else
 					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

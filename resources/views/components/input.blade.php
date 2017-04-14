@@ -10,7 +10,7 @@
             type="phone"
             data-mask="(000) 000-0000"
         @elseif ($type == 'date')
-            data-mask="00/00/0000"
+            data-mask="0000-00-00"
         @elseif ($type == 'age')
             data-mask="00"
         @elseif ($type == 'numeric')

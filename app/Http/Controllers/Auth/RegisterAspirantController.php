@@ -50,10 +50,11 @@ class RegisterAspirantController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
             'gender' => 'required|string',
-            'birth' => 'required|string',
+            'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
             'city' => 'required|string',
             'phone' => 'string',
+            'avatar' => 'image|max:5000',
         ]);
 
         $user = User::create([
