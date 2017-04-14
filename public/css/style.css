@@ -186,6 +186,9 @@ a.fav-button {
 label:hover:before {
   border: 2px solid #4778d9!important;
 }
+.btn {
+    min-width: 120px;
+}
 .btn:focus {
     box-shadow: none;
 }
