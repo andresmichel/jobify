@@ -38,9 +38,9 @@
                 <div class="col-sm-12 py-5">
                     <div class="w-100 slick-carousel text-nowrap" style="overflow-x:hidden;">
                         @foreach ($users as $user)
-                            <div class="card m-3 d-inline-block">
-                                <a href="{{ url('company', $user->company->slug) }}">
-                                    <div class="card-block text-center">
+                            <div class="card m-3 d-inline-block" style="height:120px;">
+                                <a href="{{ url('company', $user->company->slug) }}" class="flex" style="height:100%">
+                                    <div class="card-block flex" style="height:100%">
                                         <img src="{{ asset($user->avatar) }}" alt="" class="img-fluid mx-auto" style="max-height:60px;" title="{{ $user->name }}">
                                     </div>
                                 </a>
