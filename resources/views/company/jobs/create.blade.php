@@ -8,7 +8,6 @@
                     <div class="card-block">
                         @component('forms.job')
                             @slot('action', url('company/jobs'))
-                            @slot('companies', $companies)
                         @endcomponent
                     </div>
                 </div>

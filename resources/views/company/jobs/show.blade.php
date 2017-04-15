@@ -11,47 +11,47 @@
 
                 <div class="flex mb-4">
                     <h3 class="m-0">{{ $job->title }}</h3>
-                    <a class="ml-4 my-0" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
+                    <a class="ml-4" style="line-height:0;" href="{{ url('company/jobs/'.$job->slug.'/edit') }}">
                         <i class="material-icons">edit</i>
                     </a>
                 </div>
                 <div class="card mb-5">
                     <div class="card-block">
-                        <h5 class="text-muted mb-1">Descripción</h5>
+                        <h6 class="text-muted mb-1">Descripción</h6>
                         <p>{{ $job->description }}</p>
 
-                        <h5 class="text-muted mb-1">Requerimientos</h5>
+                        <h6 class="text-muted mb-1">Requerimientos</h6>
                         <p>{{ $job->requirements }}</p>
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Área</h5>
+                                <h6 class="text-muted mb-1">Área</h6>
                                 <p>{{ $job->area }}</p>
                             </div>
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Horario</h5>
+                                <h6 class="text-muted mb-1">Horario</h6>
                                 <p>{{ $job->fulltime ? 'Tiempo completo' : 'Medio tiempo' }}</p>
                             </div>
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Turno</h5>
+                                <h6 class="text-muted mb-1">Turno</h6>
                                 <p>{{ $job->shift }}</p>
                             </div>
 
                             @if ($job->salary)
                                 <div class="col-sm-6">
-                                    <h5 class="text-muted mb-1">Salario</h5>
+                                    <h6 class="text-muted mb-1">Salario</h6>
                                     <p>{{ $job->salary }}</p>
                                 </div>
                             @endif
 
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Ubicación</h5>
+                                <h6 class="text-muted mb-1">Ubicación</h6>
                                 <p>{{ $job->city }}, {{ $job->state }}</p>
                             </div>
 
                             @if ($job->min_age)
                                 <div class="col-sm-6">
-                                    <h5 class="text-muted mb-1">Edad</h5>
+                                    <h6 class="text-muted mb-1">Edad</h6>
                                     <p>
                                         A partir de {{ $job->min_age }} años
                                         @if ($job->max_age)
@@ -72,14 +72,14 @@
                         <ul class="list-group list-group-flush" style="max-height:400px; overflow-y:auto;">
                             @foreach ($job->applications as $application)
                                 <li class="list-group-item d-flex align-items-center {{ $loop->first ? 'border-top-0' : '' }}" style="flex-shrink:0;">
-                                    <h6 class="card-title m-0">{{ $application->aspirant->user->name }}</h6>
+                                    <p class="card-title m-0">{{ $application->aspirant->user->name }}</p>
                                     @if ($application->aspirant->resume)
                                         <a class="btn btn-primary btn-sm ml-auto" href="{{ url("company/jobs/$job->id/aspirant/".$application->aspirant->id) }}">
-                                            Currículum
+                                            Ver currículum
                                         </a>
                                     @else
                                         <a class="btn btn-primary btn-sm ml-auto disabled" href="#">
-                                            Currículum
+                                            Currículum no disponible
                                         </a>
                                     @endif
                                 </li>

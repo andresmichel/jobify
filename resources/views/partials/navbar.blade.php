@@ -13,7 +13,7 @@
 					<a href="{{ url('login') }}" class="h-100 flex ml-auto {{ request()->is('login*') ? 'active' : '' }}">Inciar sesión</a>
 					<a href="{{ url('register') }}" class="ml-4 btn {{ request()->is('register*') ? 'btn-primary' : 'btn-outline-primary' }}">Registrarme</a>
 				@else
-					<a class="ml-auto dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="ml-auto dropdown-toggle h-100 flex {{ request()->is('*profile*') ? 'active' : '' }}" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::user()->name }}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right box-shadow" style="margin-right:15px;" aria-labelledby="dropdownMenuLink">

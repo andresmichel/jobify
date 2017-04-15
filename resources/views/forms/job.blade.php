@@ -36,8 +36,8 @@
     @component('components.select')
         @slot('label', 'Horario')
         @slot('name', 'fulltime')
-        <option {{ $fulltime ? 'selected' : '' }} value="1">Tiempo completo</option>
-        <option {{ !$fulltime ? 'selected' : '' }} value="0">Medio tiempo</option>
+        <option {{ isset($fulltime) && $fulltime ? 'selected' : '' }} value="1">Tiempo completo</option>
+        <option {{ isset($fulltime) && !$fulltime ? 'selected' : '' }} value="0">Medio tiempo</option>
     @endcomponent
 
     @component('components.input')

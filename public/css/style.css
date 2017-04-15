@@ -11,11 +11,8 @@
 html, body {
     font-size: 15px;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300 !important;
-}
-.fw-300 {
-    font-weight: 300 !important;
+h1, h2, h3, h4, h5, h6, .fw-100 {
+    /*font-weight: 300 !important;*/
 }
 .text-muted {
     color: #99adc3 !important;
@@ -30,7 +27,7 @@ div, li, span {
     min-width: 992px !important;
 }
 .card, .box-shadow {
-    box-shadow: 0px 6px 30px rgba(0, 0, 100, 0.05), 0px 1px 10px rgba(0, 0, 100, 0.01);
+    box-shadow: 0px 6px 30px rgba(153, 173, 195, 0.08), 0px 1px 10px rgba(153, 173, 195, 0.1);
     transition: box-shadow 1s;
 }
 .main-container {
@@ -72,7 +69,7 @@ div, li, span {
 #navbar a {
     position: relative;
 }
-#navbar a:not(.dropdown-toggle)::after {
+#navbar a::before {
     content: '';
     position: absolute;
     width: 0;
@@ -81,8 +78,9 @@ div, li, span {
     left: 0;
     bottom: 0;
 }
-#navbar a:not(.dropdown-toggle).active::after {
-    animation: active-link;
+#navbar a.active::before {
+    width: 100%;
+    /*animation-name: active-link;*/
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-timing-function: ease-in-out;
@@ -153,7 +151,7 @@ a.fav-button {
     justify-content: center;
     color: #fff !important;
     font-size: 32px;
-    box-shadow: 0 5px 10px rgba(0, 0, 200, 0.25);
+    box-shadow: 0 5px 10px rgba(135, 214, 144, 0.4);
 }
 .dropdown-menu {
     top: 55px;
@@ -248,6 +246,5 @@ a:hover, a:visited, a:active, a:focus {
 .dropdown-menu > a.dropdown-item:hover,
 .dropdown-menu > a.dropdown-item:focus,
 .dropdown-menu > a.dropdown-item:active {
-    color: #fff;
-    background-color: #75abeb;
+    background-color: #f6f7fb;
 }

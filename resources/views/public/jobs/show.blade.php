@@ -7,41 +7,41 @@
                 <h3 class="mb-4">{{ $job->title }}</h3>
                 <div class="card mb-5">
                     <div class="card-block">
-                        <h5 class="text-muted mb-1">Descripción</h5>
+                        <h6 class="text-muted mb-1">Descripción</h6>
                         <p>{{ $job->description }}</p>
 
-                        <h5 class="text-muted mb-1">Requerimientos</h5>
+                        <h6 class="text-muted mb-1">Requerimientos</h6>
                         <p>{{ $job->requirements }}</p>
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Área</h5>
+                                <h6 class="text-muted mb-1">Área</h6>
                                 <p>{{ $job->area }}</p>
                             </div>
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Horario</h5>
+                                <h6 class="text-muted mb-1">Horario</h6>
                                 <p>{{ $job->fulltime ? 'Tiempo completo' : 'Medio tiempo' }}</p>
                             </div>
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Turno</h5>
+                                <h6 class="text-muted mb-1">Turno</h6>
                                 <p>{{ $job->shift }}</p>
                             </div>
 
                             @if ($job->salary)
                                 <div class="col-sm-6">
-                                    <h5 class="text-muted mb-1">Salario</h5>
+                                    <h6 class="text-muted mb-1">Salario</h6>
                                     <p>{{ $job->salary }}</p>
                                 </div>
                             @endif
 
                             <div class="col-sm-6">
-                                <h5 class="text-muted mb-1">Ubicación</h5>
+                                <h6 class="text-muted mb-1">Ubicación</h6>
                                 <p>{{ $job->city }}, {{ $job->state }}</p>
                             </div>
 
                             @if ($job->min_age)
                                 <div class="col-sm-6">
-                                    <h5 class="text-muted mb-1">Edad</h5>
+                                    <h6 class="text-muted mb-1">Edad</h6>
                                     <p>
                                         A partir de {{ $job->min_age }} años
                                         @if ($job->max_age)
@@ -82,10 +82,10 @@
                 <h3 class="mb-4">{{ $job->company->user->name }}</h3>
                 <div class="card mb-5">
                     <div class="card-block">
-                        <h5 class="text-muted mb-1">Descripción</h5>
+                        <h6 class="text-muted mb-1">Descripción</h6>
                         <p>{{ $job->company->description }}</p>
 
-                        <h5 class="text-muted mb-1">Correo electrónico</h5>
+                        <h6 class="text-muted mb-1">Correo electrónico</h6>
                         <p>{{ $job->company->user->email }}</p>
 
                         <a href="{{ url('company', $job->company->slug) }}" class="btn btn-primary btn-block-off text-truncate">Ver ofertas de trabajo</a>

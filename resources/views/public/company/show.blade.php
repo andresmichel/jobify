@@ -11,13 +11,13 @@
                             <img src="{{ asset($company->user->avatar) }}" alt="" class="img-fluid" style="max-height:140px; max-width:160px;">
                         </div>
                         <div class="col-sm-8 flex flex-column">
-                            <h5 class="text-muted mb-1">Descripción</h5>
+                            <h6 class="text-muted mb-1">Descripción</h6>
                             <p>{{ $company->description }}</p>
 
-                            <h5 class="text-muted mb-1">Correo electrónico</h5>
+                            <h6 class="text-muted mb-1">Correo electrónico</h6>
                             <p>{{ $company->user->email }}</p>
 
-                            <h5 class="text-muted mb-1">Dirección</h5>
+                            <h6 class="text-muted mb-1">Dirección</h6>
                             <p class="mb-0">{{ $company->address }}</p>
                         </div>
                     </div>
