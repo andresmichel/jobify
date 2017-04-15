@@ -20,15 +20,17 @@ class ProfileController extends Controller
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
             'gender' => 'required|string',
-            'birth' => 'required|string',
+            'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
             'city' => 'required|string',
+            'avatar' => 'image|max:5000',
             'phone' => 'string',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $request->avatar,
         ]);
 
         auth()->user()->aspirant->update([

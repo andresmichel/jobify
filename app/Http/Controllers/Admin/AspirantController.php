@@ -44,9 +44,10 @@ class AspirantController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
             'gender' => 'required|string',
-            'birth' => 'required|string',
+            'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
             'city' => 'required|string',
+            'avatar' => 'image|max:5000',
             'phone' => 'string',
         ]);
 
@@ -54,6 +55,7 @@ class AspirantController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'avatar' => $request->avatar,
                 'password' => bcrypt($request->password),
                 'role' => 'aspirant',
             ]);
@@ -110,7 +112,7 @@ class AspirantController extends Controller
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
             'gender' => 'required|string',
-            'birth' => 'required|string',
+            'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
             'city' => 'required|string',
             'phone' => 'string',
@@ -119,6 +121,7 @@ class AspirantController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $request->avatar,
         ]);
 
         $user->aspirant->update([
