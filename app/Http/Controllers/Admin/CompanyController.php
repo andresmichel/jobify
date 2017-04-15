@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Company;
+use DB;
 
 class CompanyController extends Controller
 {
@@ -52,26 +53,28 @@ class CompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'company',
-        ]);
+        DB::transaction(function () {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => 'company',
+            ]);
 
-        $company = Company::create([
-            'user_id' => $user->id,
-            'slug' => str_slug($request->name),
-            'logo' => $request->logo,
-            'description' => $request->description,
-            'website' => $request->website,
-            'category' => $request->category,
-            'employees' => $request->employees,
-            'state' => $request->state,
-            'city' => $request->city,
-            'address' => $request->address,
-            'phone' => $request->phone,
-        ]);
+            $company = Company::create([
+                'user_id' => $user->id,
+                'slug' => str_slug($request->name),
+                'logo' => $request->logo,
+                'description' => $request->description,
+                'website' => $request->website,
+                'category' => $request->category,
+                'employees' => $request->employees,
+                'state' => $request->state,
+                'city' => $request->city,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+        });
 
         return redirect('admin/companies');
     }

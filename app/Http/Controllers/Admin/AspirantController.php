@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Aspirant;
+use DB;
 
 class AspirantController extends Controller
 {
@@ -49,21 +50,23 @@ class AspirantController extends Controller
             'phone' => 'string',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'aspirant',
-        ]);
+        DB::transaction(function () {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => 'aspirant',
+            ]);
 
-        $aspirant = Aspirant::create([
-            'user_id' => $user->id,
-            'gender' => $request->gender,
-            'birth' => $request->birth,
-            'state' => $request->state,
-            'city' => $request->city,
-            'phone' => $request->phone,
-        ]);
+            $aspirant = Aspirant::create([
+                'user_id' => $user->id,
+                'gender' => $request->gender,
+                'birth' => $request->birth,
+                'state' => $request->state,
+                'city' => $request->city,
+                'phone' => $request->phone,
+            ]);
+        });
 
         return redirect('admin/aspirants');
     }
