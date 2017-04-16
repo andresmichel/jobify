@@ -24,7 +24,7 @@
                                     <div class="flex flex-column w-100">
                                         <div class="flex w-100">
                                             <h5 class="card-title"><a href="{{ url('company/jobs', $job->slug) }}" class="fw-300">{{ $job->title }}</a></h5>
-                                            <p class="card-subtitle mb-2 ml-auto text-nowrap">Full time</p>
+                                            <p class="card-subtitle mb-2 ml-auto text-nowrap">{{ $job->active ? 'Activa' : 'Oculta' }}</p>
                                         </div>
                                         <div class="flex w-100">
                                             <p class="card-subtitle mb-2">

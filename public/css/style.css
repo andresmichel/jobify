@@ -33,6 +33,9 @@ div, li, span {
 .main-container {
     background-color: #f6f7fb;
 }
+select.form-control {
+    min-height: 37px;
+}
 .form-control {
     border-width: 2px;
     border-color: #f6f7fb;

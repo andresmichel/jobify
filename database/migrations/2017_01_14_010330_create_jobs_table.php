@@ -23,11 +23,10 @@ class CreateJobsTable extends Migration
             $table->string('area');
             $table->string('shift');
             $table->text('requirements'); // JSON
-            $table->integer('min_age')->nullable();
-            $table->integer('max_age')->nullable();
             $table->float('salary')->nullable();
-            $table->string('state');
-            $table->string('city');
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->boolean('remote')->default(0);
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

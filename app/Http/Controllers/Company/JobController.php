@@ -59,21 +59,14 @@ class JobController extends Controller
         $this->validate($request, [
             'title' => 'required|string',
             'description' => 'required|string',
-            'contract' => 'required|string',
+            'fulltime' => 'required|boolean',
             'area' => 'required|string',
-            'education' => 'required|string',
+            'requirements' => 'required|string',
             'shift' => 'required|string',
-            'gender' => 'required|string',
-            'experience' => 'required|string',
-            'min_age' => 'required|string',
-            'max_age' => 'required|string',
-            'schedule' => 'required|string',
-            'hours' => 'required|string',
             'salary' => 'required|string',
-            'language' => 'required|string',
             'state' => 'required|string',
             'city' => 'required|string',
-            'status' => 'required',
+            'active' => 'boolean',
         ]);
     }
 
@@ -81,21 +74,14 @@ class JobController extends Controller
     {
         $job->title = $request->title;
         $job->description = $request->description;
-        $job->contract = $request->contract;
+        $job->fulltime = $request->fulltime;
         $job->area = $request->area;
-        $job->education = $request->education;
+        $job->requirements = $request->requirements;
         $job->shift = $request->shift;
-        $job->gender = $request->gender;
-        $job->experience = $request->experience;
-        $job->min_age = $request->min_age;
-        $job->max_age = $request->max_age;
-        $job->schedule = $request->schedule;
-        $job->hours = $request->hours;
         $job->salary = $request->salary;
-        $job->language = $request->language;
         $job->state = $request->state;
         $job->city = $request->city;
-        $job->status = $request->status;
+        $job->active = $request->active ? 1 : 0;
         $job->save();
     }
 }

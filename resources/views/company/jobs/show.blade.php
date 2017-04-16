@@ -46,20 +46,12 @@
 
                             <div class="col-sm-6">
                                 <h6 class="text-muted mb-1">Ubicación</h6>
-                                <p>{{ $job->city }}, {{ $job->state }}</p>
+                                @if ($job->remote)
+                                    <p>Remoto</p>
+                                @else
+                                    <p>{{ $job->city }}, {{ $job->state }}</p>
+                                @endif
                             </div>
-
-                            @if ($job->min_age)
-                                <div class="col-sm-6">
-                                    <h6 class="text-muted mb-1">Edad</h6>
-                                    <p>
-                                        A partir de {{ $job->min_age }} años
-                                        @if ($job->max_age)
-                                            hasta {{ $job->max_age }} años.
-                                        @endif
-                                    </p>
-                                </div>
-                            @endif
                         </div>
                     </div>
                 </div>

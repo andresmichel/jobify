@@ -26,8 +26,6 @@ $factory->define(Job::class, function (Faker $faker) {
         'area' => $faker->jobTitle,
         'shift' => 'Matutino',
         'requirements' => '[]',
-        'min_age' => 18,
-        'max_age' => 40,
         'salary' => rand(10000, 100000),
         'state' => $faker->state,
         'city' => $faker->city,

@@ -19,12 +19,12 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
-            'password' => 'required|string|confirmed',
-            'logo' => 'image',
+            'password' => 'nullable|string|confirmed',
+            'avatar' => 'image|max:5000',
             'description' => 'required|string',
             'website' => 'required|string',
-            'category' => 'required|integer',
-            'employees' => 'required|string',
+            'category' => 'required|string',
+            'employees' => 'required|integer',
             'state' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string',
@@ -34,13 +34,13 @@ class ProfileController extends Controller
         $user->update([
             'name'      => $request->name,
             'email'     => $request->email,
-            'password'  => bcrypt($request->password),
+            // 'password'  => bcrypt($request->password),
+            'avatar' => $request->avatar,
         ]);
 
         auth()->user()->company->update([
             'user_id' => $user->id,
             'slug' => str_slug($request->name),
-            'logo' => $request->logo,
             'description' => $request->description,
             'website' => $request->website,
             'category' => $request->category,
