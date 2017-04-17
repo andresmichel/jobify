@@ -19,6 +19,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
+            'password' => 'required|string|confirmed',
             'gender' => 'required|string',
             'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
@@ -27,9 +28,14 @@ class ProfileController extends Controller
             'phone' => 'string',
         ]);
 
+        if ($request->avatar) {
+            //
+        }
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'password' => bcrypt($request->password),
             'avatar' => $request->avatar,
         ]);
 

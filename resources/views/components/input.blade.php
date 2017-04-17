@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="{{ $name or '' }}">{{ $label or '' }}</label>
-    <input class="form-control" name="{{ $name or '' }}"
+    <input class="form-control" name="{{ $name or '' }}" maxlength="191"
     @if (isset($type))
         @if ($type == 'password')
             type="password"

@@ -17,11 +17,10 @@
                             @slot('fulltime', $job->fulltime)
                             @slot('shift', $job->shift)
                             @slot('requirements', $job->requirements)
-                            @slot('min_age', $job->min_age)
-                            @slot('max_age', $job->max_age)
                             @slot('salary', $job->salary)
                             @slot('state', $job->state)
                             @slot('city', $job->city)
+                            @slot('remote', $job->remote)
                             @slot('active', $job->active)
                         @endcomponent
                     </div>

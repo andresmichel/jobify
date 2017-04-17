@@ -13,7 +13,6 @@
         </div>
 
         @include('partials.footer')
-
         @include('partials.scripts')
 
         @yield('scripts')

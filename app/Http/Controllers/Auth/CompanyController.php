@@ -51,6 +51,7 @@ class CompanyController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
             'description' => 'required|string',
+            'avatar' => 'image|max:5000',
             'website' => 'required|string',
             'category' => 'required|string',
             'employees' => 'required|integer',
@@ -60,28 +61,34 @@ class CompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
-        DB::transaction(function () {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => 'company',
-                'avatar' => $request->avatar,
-            ]);
+        if ($request->avatar) {
+            //
+        }
 
-            $company = Company::create([
-                'user_id' => $user->id,
-                'slug' => str_slug($request->name),
-                'description' => $request->description,
-                'website' => $request->website,
-                'category' => $request->category,
-                'employees' => $request->employees,
-                'state' => $request->state,
-                'city' => $request->city,
-                'address' => $request->address,
-                'phone' => $request->phone,
-            ]);
-        });
+        DB::beginTransaction();
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'company',
+            'avatar' => $request->avatar,
+        ]);
+
+        $company = Company::create([
+            'user_id' => $user->id,
+            'slug' => str_slug($request->name),
+            'description' => $request->description,
+            'website' => $request->website,
+            'category' => $request->category,
+            'employees' => $request->employees,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
+
+        DB::commit();
 
         auth()->login($user);
 

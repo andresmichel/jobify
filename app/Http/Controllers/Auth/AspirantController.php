@@ -50,33 +50,40 @@ class AspirantController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
+            'avatar' => 'image|max:5000',
             'gender' => 'required|string',
             'birth' => 'required|date_format:Y-m-d',
             'state' => 'required|string',
             'city' => 'required|string',
             'phone' => 'string',
-            'avatar' => 'image|max:5000',
         ]);
 
-        DB::transaction(function () {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => 'aspirant',
-            ]);
+        if ($request->avatar) {
+            //
+        }
 
-            $aspirant = Aspirant::create([
-                'user_id' => $user->id,
-                'gender' => $request->gender,
-                'birth' => $request->birth,
-                'state' => $request->state,
-                'city' => $request->city,
-                'phone' => $request->phone,
-            ]);
-        });
+        DB::beginTransaction();
 
-        Auth::login($user);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'aspirant',
+            'avatar' => $request->avatar,
+        ]);
+
+        $aspirant = Aspirant::create([
+            'user_id' => $user->id,
+            'gender' => $request->gender,
+            'birth' => $request->birth,
+            'state' => $request->state,
+            'city' => $request->city,
+            'phone' => $request->phone,
+        ]);
+
+        DB::commit();
+
+        auth()->login($user);
 
         return redirect('/');
     }

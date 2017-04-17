@@ -54,24 +54,16 @@
     @endcomponent
 
     @component('components.input')
-        @slot('label', 'Edad mínima')
-        @slot('name', 'min_age')
-        {{ $min_age or old('min_age') }}
-        @slot('type', 'age')
-    @endcomponent
-
-    @component('components.input')
-        @slot('label', 'Edad máxima')
-        @slot('name', 'max_age')
-        @slot('type', 'age')
-        {{ $max_age or old('max_age') }}
-    @endcomponent
-
-    @component('components.input')
         @slot('label', 'Salario')
         @slot('name', 'salary')
         @slot('type', 'numeric')
         {{ $salary or old('salary') }}
+    @endcomponent
+
+    @component('components.checkbox')
+        @slot('label', 'Remoto')
+        @slot('name', 'remote')
+        {{ isset($remote) && $remote ? 'checked' : '' }}
     @endcomponent
 
     @component('components.input')

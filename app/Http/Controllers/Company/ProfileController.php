@@ -19,7 +19,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
-            'password' => 'nullable|string|confirmed',
+            'password' => 'required|string|confirmed',
             'avatar' => 'image|max:5000',
             'description' => 'required|string',
             'website' => 'required|string',
@@ -31,10 +31,14 @@ class ProfileController extends Controller
             'phone' => 'required|string',
         ]);
 
+        if ($request->avatar) {
+            //
+        }
+
         $user->update([
             'name'      => $request->name,
             'email'     => $request->email,
-            // 'password'  => bcrypt($request->password),
+            'password'  => bcrypt($request->password),
             'avatar' => $request->avatar,
         ]);
 

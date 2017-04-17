@@ -39,7 +39,7 @@
         @slot('label', 'Fecha de nacimiento')
         @slot('name', 'birth')
         @slot('type', 'date')
-        {{ $date or old('birth') }}
+        {{ $birth or old('birth') }}
     @endcomponent
 
     @component('components.select')

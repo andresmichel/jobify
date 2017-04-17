@@ -64,9 +64,17 @@
                 <h3 class="mb-4">Ofertas de trabajo similares</h3>
                 <div class="card mb-5">
                     <ul class="list-group list-group-flush">
-                        @foreach ($related_jobs as $job_loop)
-                            @include('partials.job-item', ['job' => $job_loop])
-                        @endforeach
+                        @if (count($related_jobs))
+                            @foreach ($related_jobs as $job_loop)
+                                @include('partials.job-item', ['job' => $job_loop])
+                            @endforeach
+                        @else
+                            <li class="list-group-item d-block">
+                                <p class="card-text">
+                                    No encontramos ofertas similares.
+                                </p>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
