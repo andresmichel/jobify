@@ -14,7 +14,7 @@ class ResumeController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {        
         $this->validate($request, [
             'description' => 'required|string',
             'goal' => 'required|string',

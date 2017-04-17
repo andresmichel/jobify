@@ -12,4 +12,9 @@ class ResumeFile extends Model
     {
        return $this->belongsTo('App\Aspirant');
     }
+
+    public function fullName()
+    {
+       return $this->name . '.' . $this->ext;
+    }
 }

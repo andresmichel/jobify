@@ -29,8 +29,8 @@
                                             <div class="form-group">
                                                 @if (auth()->user()->aspirant->resumeFile)
                                                     <small class="form-text text-muted">
-                                                        <a href="{{ url('aspirant/resume/download') }}">
-                                                            {{ auth()->user()->aspirant->resumeFile->name.'.'.auth()->user()->aspirant->resumeFile->ext }}
+                                                        <a href="{{ url('aspirant/resume/download', auth()->user()->aspirant->resumeFile->fullName()) }}" target="_blank">
+                                                            {{ auth()->user()->aspirant->resumeFile->fullName() }}
                                                         </a>
                                                     </small>
                                                 @endif
@@ -39,7 +39,16 @@
                                             @component('components.button')
                                                 Guardar
                                             @endcomponent
+
+                                            @if (auth()->user()->aspirant->resumeFile)
+                                                <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
+                                            @endif
                                         @endcomponent
+
+                                        <form id="delete" action="{{ url('aspirant/resume/file') }}" method="post" hidden>
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
                                     </div>
                                 </div>
                             </div>

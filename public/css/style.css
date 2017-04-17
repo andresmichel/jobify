@@ -225,6 +225,7 @@ a.fav-button {
     color: #fff;
 }
 .btn-outline-primary {
+    color: #75abeb;
     border-color: #75abeb;
 }
 .btn-outline-primary:hover {
@@ -250,4 +251,18 @@ a:hover, a:visited, a:active, a:focus {
 .dropdown-menu > a.dropdown-item:focus,
 .dropdown-menu > a.dropdown-item:active {
     background-color: #f6f7fb;
+}
+.nav-tabs {
+    border-radius: 3px;
+    overflow: hidden;
+}
+.nav-tabs .nav-item .nav-link {
+    border-radius: 0;
+    border: none;
+    background-color: #fff;
+    color: #75abeb;
+}
+.nav-tabs .nav-item .nav-link.active {
+    background-color: #75abeb;
+    color: #fff;
 }
