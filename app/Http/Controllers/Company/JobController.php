@@ -21,10 +21,13 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
+        $this->validation($request);
+
         $job = new Job;
         $job->company_id = auth()->user()->company->id;
         $job->slug = str_slug($request->title);
         $this->factory($job, $request);
+
         return redirect('company/jobs');
     }
 
@@ -44,6 +47,8 @@ class JobController extends Controller
     {
         $this->validation($request);
         $job = auth()->user()->company->jobs()->findOrFail($id);
+        $job->slug = str_slug($request->title);
+        $this->factory($job, $request);
 
         return back();
     }
@@ -59,14 +64,12 @@ class JobController extends Controller
         $this->validate($request, [
             'title' => 'required|string',
             'description' => 'required|string',
-            'fulltime' => 'required|boolean',
             'area' => 'required|string',
             'requirements' => 'required|string',
             'shift' => 'required|string',
-            'salary' => 'required|string',
+            'salary' => 'required|numeric',
             'state' => 'required|string',
             'city' => 'required|string',
-            'active' => 'boolean',
         ]);
     }
 
@@ -74,13 +77,14 @@ class JobController extends Controller
     {
         $job->title = $request->title;
         $job->description = $request->description;
-        $job->fulltime = $request->fulltime;
+        $job->fulltime = $request->fulltime ? 1 : 0;
         $job->area = $request->area;
         $job->requirements = $request->requirements;
         $job->shift = $request->shift;
         $job->salary = $request->salary;
         $job->state = $request->state;
         $job->city = $request->city;
+        $job->remote = $request->remote ? 1 : 0;
         $job->active = $request->active ? 1 : 0;
         $job->save();
     }

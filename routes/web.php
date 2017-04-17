@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
         Route::get('/resume', 'ResumeController@index');
-        Route::post('/resume', 'ResumeController@store');
-        Route::get('/resume/download', 'ResumeController@download');
+        Route::post('/resume/file', 'ResumeFileController@store');
+        Route::get('/resume/download', 'ResumeFileController@download');
     });
 
     Route::group(['prefix' => 'company', 'middleware' => 'role:company', 'namespace' => 'Company'], function () {

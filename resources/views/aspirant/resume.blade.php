@@ -20,7 +20,7 @@
                                 <div class="card mb-5">
                                     <div class="card-block">
                                         @component('components.form')
-                                            @slot('action', url('aspirant/resume-file'))
+                                            @slot('action', url('aspirant/resume/file'))
 
                                             @component('components.file')
                                                 @slot('name', 'resume')
