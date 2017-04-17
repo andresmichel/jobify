@@ -14,32 +14,30 @@ class ResumeFileController extends Controller
             'resume'   => 'required|file|max:5000|mimes:doc,docx,pdf',
         ]);
 
-        $resume = auth()->user()->aspirant->resumeFile;
-
-        $file_name     = pathinfo($request->resume->getClientOriginalName(), PATHINFO_FILENAME);
-        $file_ext      = pathinfo($request->resume->getClientOriginalName(), PATHINFO_EXTENSION);
-        $file_fullname = date("Y_m_d_h_i_s_") . str_slug($file_name, '_') . '.' . $file_ext;
+        $resume_file = auth()->user()->aspirant->resumeFile;
 
         $file = $request->resume;
+        $file_name     = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $file_ext      = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $file_fullname = date("Y_m_d_h_i_s_") . str_slug($file_name, '_') . '.' . $file_ext;
+
         $file_path = $file->storeAs('resumes', $file_fullname);
 
-        if ($resume) {
-            try
-            {
-                Storage::delete($resume->path);
+        if ($resume_file) {
+            try {
+                Storage::delete($resume_file->path);
             } catch (\Exception $e) {
                 logger($e);
             }
 
-            $resume->name = $file_name;
-            $resume->path = $file_path;
-            $resume->size = $file->getClientSize();
-            $resume->type = $file->getClientMimeType();
-            $resume->ext = $file_ext;
-            $resume->save();
+            $resume_file->name = $file_name;
+            $resume_file->path = $file_path;
+            $resume_file->size = $file->getClientSize();
+            $resume_file->type = $file->getClientMimeType();
+            $resume_file->ext = $file_ext;
+            $resume_file->save();
         } else {
             auth()->user()->aspirant->resumeFile()->create([
-                'aspirant_id' => auth()->user()->aspirant->id,
                 'name' => $file_name,
                 'path' => $file_path,
                 'size' => $file->getClientSize(),
@@ -60,8 +58,23 @@ class ResumeFileController extends Controller
             abort(404);
         }
 
-        return response()->file($path.$aspirant->resumeFile->path, [
-            'Content-Disposition' => 'inline; filename*="nofunciona.pdf"'
-        ]);
+        return response()->file($path.$aspirant->resumeFile->path);
+    }
+
+    public function destroy()
+    {
+        $resume_file = auth()->user()->aspirant->resumeFile;
+
+        if ($resume_file) {
+            try {
+                Storage::delete($resume_file->path);
+            } catch (\Exception $e) {
+                logger($e);
+            }
+
+            $resume_file->delete();
+        }
+
+        return redirect('/');
     }
 }

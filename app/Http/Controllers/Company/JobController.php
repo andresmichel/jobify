@@ -27,6 +27,7 @@ class JobController extends Controller
         $job->company_id = auth()->user()->company->id;
         $job->slug = str_slug($request->title);
         $this->factory($job, $request);
+        $job->save();
 
         return redirect('company/jobs');
     }
@@ -49,6 +50,7 @@ class JobController extends Controller
         $job = auth()->user()->company->jobs()->findOrFail($id);
         $job->slug = str_slug($request->title);
         $this->factory($job, $request);
+        $job->save();
 
         return back();
     }
@@ -65,7 +67,7 @@ class JobController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'area' => 'required|string',
-            'requirements' => 'required|string',
+            'requirements' => 'required|json',
             'shift' => 'required|string',
             'salary' => 'required|numeric',
             'state' => 'required|string',
@@ -86,6 +88,5 @@ class JobController extends Controller
         $job->city = $request->city;
         $job->remote = $request->remote ? 1 : 0;
         $job->active = $request->active ? 1 : 0;
-        $job->save();
     }
 }

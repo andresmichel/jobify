@@ -19,8 +19,6 @@ class ResumeController extends Controller
         }
 
         // return response()->download($path.$aspirant->resume->path, 'cv-'.str_slug($aspirant->user->name).'.'.$aspirant->resume->ext);
-        return response()->file($path.$aspirant->resume->path, [
-            'Content-Disposition' => 'inline; filename*="nofunciona.pdf"'
-        ]);
+        return response()->file($path.$aspirant->resume->path);
     }
 }
