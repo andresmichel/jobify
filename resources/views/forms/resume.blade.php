@@ -76,13 +76,24 @@
     @endcomponent
 
     @component('components.textarea')
-        @slot('label', 'Datos')
-        @slot('name', 'data')
-        {{ $data or old('data') }}
+        @slot('label', 'Sections')
+        @slot('name', 'sections')
+        {{ $sections or old('sections') }}
         {{-- @slot('hidden', true) --}}
     @endcomponent
 
     @component('components.button')
         {{ $submit or 'Guardar' }}
     @endcomponent
+
+    @if (isset($delete) && $delete)
+        <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
+    @endif
 @endcomponent
+
+@if (isset($delete) && $delete)
+    <form id="delete" action="{{ $action }}" method="post" hidden>
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+    </form>
+@endif

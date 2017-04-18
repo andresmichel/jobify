@@ -1,60 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container" id="resumeApp">
+    <div class="container">
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
-                <ul class="nav nav-tabs w-100 box-shadow mb-5" role="tablist" style="border:none;">
+                <ul class="nav nav-tabs w-100 box-shadow mb-5" style="border:none;">
                     <li class="nav-item w-50 text-center">
-                        <a class="w-100 nav-link active" data-toggle="tab" href="#f" role="tab">Subir archivo</a>
+                        <a class="w-100 nav-link" href="{{ url('aspirant/resume/file') }}">Subir archivo</a>
                     </li>
                     <li class="nav-item w-50 text-center">
-                        <a class="w-100 nav-link" data-toggle="tab" href="#r" role="tab">Crear currículum</a>
+                        <a class="w-100 nav-link active" href="{{ url('aspirant/resume') }}">Crear currículum</a>
                     </li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="f" role="tabpanel">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card mb-5">
-                                    <div class="card-block">
-                                        @component('components.form')
-                                            @slot('action', url('aspirant/resume/file'))
-
-                                            @component('components.file')
-                                                @slot('name', 'resume')
-                                            @endcomponent
-
-                                            <div class="form-group">
-                                                @if (auth()->user()->aspirant->resumeFile)
-                                                    <small class="form-text text-muted">
-                                                        <a href="{{ url('aspirant/resume/download', auth()->user()->aspirant->resumeFile->fullName()) }}" target="_blank">
-                                                            {{ auth()->user()->aspirant->resumeFile->fullName() }}
-                                                        </a>
-                                                    </small>
-                                                @endif
-                                            </div>
-
-                                            @component('components.button')
-                                                Guardar
-                                            @endcomponent
-
-                                            @if (auth()->user()->aspirant->resumeFile)
-                                                <button class="btn btn-danger" form="delete" type="submit">Eliminar</button>
-                                            @endif
-                                        @endcomponent
-
-                                        <form id="delete" action="{{ url('aspirant/resume/file') }}" method="post" hidden>
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  <div class="tab-pane" id="r" role="tabpanel">
+                  <div class="tab-pane active">
                       <div class="row">
                           <div class="col-sm-12">
                               <div class="card">
@@ -64,12 +24,22 @@
 
                                             @slot('name', auth()->user()->name)
                                             @slot('email', auth()->user()->email)
-                                            @slot('picture', true)
                                             @slot('birth', auth()->user()->aspirant->birth)
                                             @slot('gender', auth()->user()->aspirant->gender)
                                             @slot('state', auth()->user()->aspirant->state)
                                             @slot('city', auth()->user()->aspirant->city)
                                             @slot('phone', auth()->user()->aspirant->phone)
+
+                                            @if (auth()->user()->aspirant->resume)
+                                                @slot('picture', auth()->user()->aspirant->resume->picture)
+                                                @slot('description', auth()->user()->aspirant->resume->description)
+                                                @slot('goal', auth()->user()->aspirant->resume->goal)
+                                                @slot('address', auth()->user()->aspirant->resume->address)
+                                                @slot('sections', auth()->user()->aspirant->resume->sections)
+                                                @slot('delete', true)
+                                            @else
+                                                @slot('picture', true)
+                                            @endif
                                         @endcomponent
                                     </div>
                               </div>

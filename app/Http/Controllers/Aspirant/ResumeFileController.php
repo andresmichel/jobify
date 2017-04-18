@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ResumeFileController extends Controller
 {
+    public function index()
+    {
+        return view('aspirant.resume-file');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -75,6 +80,6 @@ class ResumeFileController extends Controller
             $resume_file->delete();
         }
 
-        return redirect('/');
+        return redirect('resume/file');
     }
 }
