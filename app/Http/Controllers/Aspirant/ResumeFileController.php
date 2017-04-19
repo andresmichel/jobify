@@ -80,6 +80,6 @@ class ResumeFileController extends Controller
             $resume_file->delete();
         }
 
-        return redirect('resume/file');
+        return redirect('aspirant/resume/file');
     }
 }

@@ -6,10 +6,12 @@
             <div class="col-sm-6 offset-sm-3">
                 <ul class="nav nav-tabs w-100 box-shadow mb-5" style="border:none;">
                     <li class="nav-item w-50 text-center">
-                        <a class="w-100 nav-link active" href="{{ url('aspirant/resume/file') }}">Subir archivo</a>
+                        <a class="w-100 nav-link active" href="{{ url('aspirant/resume/file') }}">Subir documento</a>
                     </li>
                     <li class="nav-item w-50 text-center">
-                        <a class="w-100 nav-link" href="{{ url('aspirant/resume') }}">Crear currículum</a>
+                        <a class="w-100 nav-link" href="{{ url('aspirant/resume') }}">
+                            {{ auth()->user()->aspirant->resume ? 'Editar' : 'Crear' }} currículum
+                        </a>
                     </li>
                 </ul>
 

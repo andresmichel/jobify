@@ -14,7 +14,7 @@ class HomeController extends Controller
                 case 'admin':
                     return redirect(auth()->user()->role);
                 case 'aspirant':
-                    return redirect('aspirant/resume');
+                    return redirect('aspirant/resume/file');
                     break;
                 case 'company':
                     return redirect('company/jobs');

@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-block">
                         @component('forms.job')
-                            @slot('action', url('admn/jobs', $job->id))
+                            @slot('action', url('admin/jobs', $job->id))
                             @slot('update', true)
                             @slot('delete', true)
 

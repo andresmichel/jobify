@@ -38,7 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/profile', 'ProfileController@update');
         Route::resource('/resume', 'ResumeController', ['only' => ['index', 'store']]);
         Route::delete('/resume', 'ResumeController@destroy');
-        Route::resource('/resume/file', 'ResumeFileController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('/resume/file', 'ResumeFileController', ['only' => ['index', 'store']]);
+        Route::delete('/resume/file', 'ResumeFileController@destroy');
         Route::get('/resume/download/{file}', 'ResumeFileController@download');
     });
 
