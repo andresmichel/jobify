@@ -16,10 +16,11 @@ class ResumeController extends Controller
 
     public function store(Request $request)
     {
+        $aspirant = auth()->user()->aspirant;
+
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|string',
-            'picture' => 'image:max:5000',
+            'email' => 'required|string|unique:users,email,'.$aspirant->user->id,
             'birth' => 'required|date_format:Y-m-d',
             'gender' => 'required|string',
             'state' => 'required|string',
@@ -31,7 +32,6 @@ class ResumeController extends Controller
             'sections' => 'required|json',
         ]);
 
-        $aspirant = auth()->user()->aspirant;
         $aspirant->name = $request->name;
         $aspirant->email = $request->email;
         $aspirant->birth = $request->birth;
@@ -40,8 +40,7 @@ class ResumeController extends Controller
         $aspirant->city = $request->city;
         $aspirant->phone = $request->phone;
 
-        $resume = $aspirant->resume;
-        $resume = $resume ?: new Resume;
+        $resume = $aspirant->resume ?: new Resume;
         $resume->aspirant_id = auth()->user()->aspirant->id;
         $resume->description = $request->description;
         $resume->goal = $request->goal;
