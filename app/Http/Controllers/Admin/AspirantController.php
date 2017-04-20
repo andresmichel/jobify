@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Aspirant;
 use DB;
+use File;
+use Exception;
 
 class AspirantController extends Controller
 {
@@ -51,11 +53,17 @@ class AspirantController extends Controller
             'phone' => 'string',
         ]);
 
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
+        }
+
         DB::transaction(function () {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'avatar' => $request->avatar,
+                'avatar' => $avatar,
                 'password' => bcrypt($request->password),
                 'role' => 'aspirant',
             ]);
@@ -118,13 +126,22 @@ class AspirantController extends Controller
             'phone' => 'string',
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'avatar' => $request->avatar,
-        ]);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
 
-        $user->aspirant->update([
+            if ($user->avatar) {
+                try { File::delete($user->avatar); }
+                catch (Exception $e) { logger($e); }
+            }
+
+            $user->avatar = $avatar;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $aspirant->update([
             'gender' => $request->gender,
             'birth' => $request->birth,
             'state' => $request->state,
@@ -148,6 +165,11 @@ class AspirantController extends Controller
 
         if ($aspirant->resume) {
             $aspirant->resume->delete();
+        }
+
+        if ($aspirant->user->avatar) {
+            try { File::delete($aspirant->user->avatar); }
+            catch (Exception $e) { logger($e); }
         }
 
         $aspirant->delete();

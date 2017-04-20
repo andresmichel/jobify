@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Company;
 use DB;
+use File;
+use Exception;
 
 class CompanyController extends Controller
 {
@@ -42,7 +44,7 @@ class CompanyController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
-            'logo' => 'image',
+            'avatar' => 'image|max:5000',
             'description' => 'required|string',
             'website' => 'required|string',
             'category' => 'required|integer',
@@ -53,18 +55,24 @@ class CompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
+        }
+
         DB::transaction(function () {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'company',
+                'avatar' => $avatar,
             ]);
 
             $company = Company::create([
                 'user_id' => $user->id,
                 'slug' => str_slug($request->name),
-                'logo' => $request->logo,
                 'description' => $request->description,
                 'website' => $request->website,
                 'category' => $request->category,
@@ -118,7 +126,7 @@ class CompanyController extends Controller
             'name' => 'required|string',
             'email' => "required|email|unique:users,email,$user->id",
             'password' => 'required|string|confirmed',
-            'logo' => 'image',
+            'avatar' => 'image|max:5000',
             'description' => 'required|string',
             'website' => 'required|string',
             'category' => 'required|integer',
@@ -129,16 +137,25 @@ class CompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
-        $user->update([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => bcrypt($request->password),
-        ]);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
+
+            if ($user->avatar) {
+                try { File::delete($user->avatar); }
+                catch (Exception $e) { logger($e); }
+            }
+
+            $user->avatar = $avatar;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
         $company->update([
             'user_id' => $user->id,
             'slug' => str_slug($request->name),
-            'logo' => $request->logo,
             'description' => $request->description,
             'website' => $request->website,
             'category' => $request->category,
@@ -165,6 +182,11 @@ class CompanyController extends Controller
 
         if ($company->job) {
             $company->job->delete();
+        }
+
+        if ($company->user->avatar) {
+            try { File::delete($company->user->avatar); }
+            catch (Exception $e) { logger($e); }
         }
 
         $company->delete();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aspirant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\ResumeFile;
 
 class ResumeFileController extends Controller
 {
@@ -19,37 +20,28 @@ class ResumeFileController extends Controller
             'resume'   => 'required|file|max:5000|mimes:doc,docx,pdf',
         ]);
 
-        $resume_file = auth()->user()->aspirant->resumeFile;
+        $current_file = auth()->user()->aspirant->resumeFile;
 
-        $file = $request->resume;
-        $file_name     = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $file_ext      = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-        $file_fullname = date("Y_m_d_h_i_s_") . str_slug($file_name, '_') . '.' . $file_ext;
+        $file = $request->file('resume');
+        $file_path = $file->store('resumes');
 
-        $file_path = $file->storeAs('resumes', $file_fullname);
-
-        if ($resume_file) {
+        if ($current_file) {
             try {
-                Storage::delete($resume_file->path);
+                Storage::delete($current_file->path);
             } catch (\Exception $e) {
                 logger($e);
             }
-
-            $resume_file->name = $file_name;
-            $resume_file->path = $file_path;
-            $resume_file->size = $file->getClientSize();
-            $resume_file->type = $file->getClientMimeType();
-            $resume_file->ext = $file_ext;
-            $resume_file->save();
         } else {
-            auth()->user()->aspirant->resumeFile()->create([
-                'name' => $file_name,
-                'path' => $file_path,
-                'size' => $file->getClientSize(),
-                'type' => $file->getClientMimeType(),
-                'ext' => $file_ext,
-            ]);
+            $current_file = new ResumeFile;
+            $current_file->aspirant_id = auth()->user()->aspirant->id;
         }
+
+        $current_file->path = $file_path;
+        $current_file->size = $file->getClientSize();
+        $current_file->type = $file->getClientMimeType();
+        $current_file->name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $current_file->ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $current_file->save();
 
         return back();
     }
@@ -57,27 +49,26 @@ class ResumeFileController extends Controller
     public function download()
     {
         $aspirant = auth()->user()->aspirant;
-        $path = Storage::getDriver()->getAdapter()->getPathPrefix();
 
-        if (!$aspirant->resumeFile) {
+        if (! $aspirant->resumeFile) {
             abort(404);
         }
 
-        return response()->file($path.$aspirant->resumeFile->path);
+        return response()->file(storage_path('app/').$aspirant->resumeFile->path);
     }
 
     public function destroy()
     {
-        $resume_file = auth()->user()->aspirant->resumeFile;
+        $file = auth()->user()->aspirant->resumeFile;
 
-        if ($resume_file) {
+        if ($file) {
             try {
-                Storage::delete($resume_file->path);
+                Storage::delete($file->path);
             } catch (\Exception $e) {
                 logger($e);
             }
 
-            $resume_file->delete();
+            $file->delete();
         }
 
         return redirect('aspirant/resume/file');
