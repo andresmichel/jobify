@@ -61,8 +61,10 @@ class CompanyController extends Controller
             'phone' => 'required|string',
         ]);
 
-        if ($request->avatar) {
-            //
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
         }
 
         DB::beginTransaction();
@@ -72,7 +74,7 @@ class CompanyController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'company',
-            'avatar' => $request->avatar,
+            'avatar' => $avatar,
         ]);
 
         $company = Company::create([

@@ -21,29 +21,29 @@ a {
     text-decoration: none !important;
 }
 div, li, span {
-    border-color: #f6f7fb !important;
+    border-color: #f4f4f4 !important;
 }
 .container, .container-fluid, .main-container {
     min-width: 992px !important;
 }
 .card, .box-shadow {
-    box-shadow: 0px 6px 30px rgba(153, 173, 195, 0.08), 0px 1px 10px rgba(153, 173, 195, 0.1);
+    box-shadow: 0px 2px 4px #ebeced, 0px 2px 20px #ebeced;
     transition: box-shadow 1s;
 }
 .main-container {
-    background-color: #f6f7fb;
+    background-color: #f4f4f4;
 }
 select.form-control {
     min-height: 37px;
 }
 .form-control {
     border-width: 2px;
-    border-color: #f6f7fb;
-    background-color: #f6f7fb;
+    border-color: #f4f4f4;
+    background-color: #f4f4f4;
 }
 .form-control:focus {
     border-color: #75abeb;
-    background-color: #f6f7fb;
+    background-color: #f4f4f4;
 }
 .form-control::placeholder {
     color: #99adc3;
@@ -194,7 +194,7 @@ a.fav-button {
   color: #fff;
   opacity: 0;
   transform: scale(0.3);
-  transition: all 0.3s;
+  transition: all 0.2;
 }
 [type="checkbox"]:checked + label:after {
   opacity: 1;
@@ -250,7 +250,7 @@ a:hover, a:visited, a:active, a:focus {
 .dropdown-menu > a.dropdown-item:hover,
 .dropdown-menu > a.dropdown-item:focus,
 .dropdown-menu > a.dropdown-item:active {
-    background-color: #f6f7fb;
+    background-color: #f4f4f4;
 }
 .nav-tabs {
     border-radius: 3px;

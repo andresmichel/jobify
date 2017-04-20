@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Aspirant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use File;
+use Exception;
 
 class ProfileController extends Controller
 {
@@ -28,16 +30,24 @@ class ProfileController extends Controller
             'phone' => 'string',
         ]);
 
-        if ($request->avatar) {
-            //
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
+
+            if ($user->avatar) {
+                try {
+                    File::delete($user->avatar);
+                } catch (Exception $e) {
+                    logger($e);
+                }
+            }
+
+            $user->avatar = $avatar;
         }
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'avatar' => $request->avatar,
-        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
         auth()->user()->aspirant->update([
             'gender' => $request->gender,

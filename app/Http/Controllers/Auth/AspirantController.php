@@ -58,8 +58,10 @@ class AspirantController extends Controller
             'phone' => 'string',
         ]);
 
-        if ($request->avatar) {
-            //
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar')->store('uploads', 'public');
         }
 
         DB::beginTransaction();
@@ -69,7 +71,7 @@ class AspirantController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'aspirant',
-            'avatar' => $request->avatar,
+            'avatar' => $avatar,
         ]);
 
         $aspirant = Aspirant::create([
