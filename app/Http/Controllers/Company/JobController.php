@@ -57,7 +57,7 @@ class JobController extends Controller
 
     public function destroy($id)
     {
-        auth()->user()->company->jobs->find($id)->delete();
+        auth()->user()->company->jobs->findOrFail($id)->delete();
         return redirect('company/jobs');
     }
 

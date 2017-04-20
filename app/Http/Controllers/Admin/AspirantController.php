@@ -167,6 +167,14 @@ class AspirantController extends Controller
             $aspirant->resume->delete();
         }
 
+        if ($aspirant->resumeFile) {
+            try {
+                Storage::delete($aspirant->resumeFile->path);
+            } catch (\Exception $e) {
+                logger($e);
+            }
+        }
+
         if ($aspirant->user->avatar) {
             try { File::delete($aspirant->user->avatar); }
             catch (Exception $e) { logger($e); }
