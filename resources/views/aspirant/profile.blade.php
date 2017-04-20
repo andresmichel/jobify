@@ -17,6 +17,11 @@
                             @slot('state', auth()->user()->aspirant->state)
                             @slot('city', auth()->user()->aspirant->city)
                             @slot('phone', auth()->user()->aspirant->phone)
+
+                            @if (auth()->user()->avatar)
+                                @slot('avatar', 'Ver foto de perfil')
+                                @slot('avatar_url', asset(auth()->user()->avatar))
+                            @endif
                         @endcomponent
                     </div>
                 </div>

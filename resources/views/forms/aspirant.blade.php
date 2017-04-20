@@ -33,6 +33,10 @@
     @component('components.file')
         @slot('label', 'Foto de perfil')
         @slot('name', 'avatar')
+        @slot('url')
+            {{ $avatar_url or '#' }}
+        @endslot
+        {{ $avatar or '' }}
     @endcomponent
 
     @component('components.input')

@@ -39,7 +39,10 @@
     @component('components.file')
         @slot('label', 'Logotipo')
         @slot('name', 'avatar')
-        {{ $avatar or old('avatar') }}
+        @slot('url')
+            {{ $avatar_url or '#' }}
+        @endslot
+        {{ $avatar or '' }}
     @endcomponent
 
     @component('components.input')

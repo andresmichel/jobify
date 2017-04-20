@@ -21,6 +21,11 @@
                             @slot('city', auth()->user()->company->city)
                             @slot('address', auth()->user()->company->address)
                             @slot('phone', auth()->user()->company->phone)
+
+                            @if (auth()->user()->avatar)
+                                @slot('avatar', 'Ver logotipo')
+                                @slot('avatar_url', asset(auth()->user()->avatar))
+                            @endif
                         @endcomponent
                     </div>
                 </div>
