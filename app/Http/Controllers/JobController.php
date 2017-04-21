@@ -16,7 +16,7 @@ class JobController extends Controller
         if ($request->has('q')) {
             $words = explode(' ', $request->q);
             $jobs = Job::where('active', 1);
-            $companies = User::query();
+            // $companies = User::query();
 
             foreach ($words as $word) {
                 $jobs->where('description', 'like', "%$word%")
@@ -26,41 +26,41 @@ class JobController extends Controller
                     ->orWhere('state', 'like', "%$word%")
                     ->orWhere('city', 'like', "%$word%");
 
-                $companies->orWhere('name', 'like', "%$word%")
-                    ->where('role', 'company');
+                // $companies->orWhere('name', 'like', "%$word%")
+                //     ->where('role', 'company');
             }
 
-            $companies = $companies->distinct()->get();
-            $company_jobs = collect([]);
+            // $companies = $companies->distinct()->get();
+            // $company_jobs = collect([]);
+            //
+            // foreach ($companies as $company) {
+            //     if (count($company->company->jobs)) {
+            //         foreach ($company->company->jobs as $job) {
+            //             $company_jobs->push($job);
+            //         }
+            //     }
+            // }
+            //
+            // $jobs = $company_jobs->merge($jobs->distinct()->get());
+            // $per_page = 10;
+            // $start = 0;
+            //
+            // if ($request->has('page')) {
+            //     if ($request->page != 1) {
+            //         $start = ($per_page * $request->page) - 1;
+            //     }
+            // }
+            //
+            // $jobs = new Paginator($jobs->splice($start, $per_page), count($jobs), $per_page, $request->page ?: 1, [
+            //     'path' => url('jobs')
+            // ]);
+            //
+            // $jobs = $jobs->appends(['q' => $request->q]);
 
-            foreach ($companies as $company) {
-                if (count($company->company->jobs)) {
-                    foreach ($company->company->jobs as $job) {
-                        $company_jobs->push($job);
-                    }
-                }
-            }
-
-            $jobs = $company_jobs->merge($jobs->distinct()->get());
-            $per_page = 10;
-            $start = 0;
-
-            if ($request->has('page')) {
-                if ($request->page != 1) {
-                    $start = ($per_page * $request->page) - 1;
-                }
-            }
-
-            $jobs = new Paginator($jobs->splice($start, $per_page), count($jobs), $per_page, $request->page ?: 1, [
-                'path' => url('jobs')
-            ]);
-
-            $jobs = $jobs->appends(['q' => $request->q]);
-
-            // $jobs = $jobs
-            //     ->distinct()
-            //     ->paginate(10)
-            //     ->appends(['q' => $request->q]);
+            $jobs = $jobs
+                ->distinct()
+                ->paginate(10)
+                ->appends(['q' => $request->q]);
         }
 
         return view('public.jobs.index', compact('jobs'));
