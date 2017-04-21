@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/profile', 'ProfileController@update');
         Route::resource('/jobs', 'JobController');
         Route::get('/resumes/{file?}', 'ResumeController@index');
+        Route::get('/aspirants', 'AspirantController@index');
+        Route::get('/aspirants/{id}', 'AspirantController@show');
     });
 });
 

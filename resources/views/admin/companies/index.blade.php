@@ -11,7 +11,7 @@
     @section('data')
         @if (!count($items))
             <li class="list-group-item d-block">
-                <p class="card-text">
+                <p class="card-text py-2">
                     No hay empresas.
                 </p>
             </li>
@@ -21,7 +21,7 @@
             <li class="list-group-item d-block py-4">
                 <div class="flex">
                     <div class="flex">
-                        <img src="{{ asset($item->user->avatar) }}" alt="" width="64" height="64">
+                        <img src="{{ asset($item->user->avatar) }}" class="img-fluid" style="max-width:100px">
                     </div>
                     <div class="ml-4 flex flex-column w-100">
                         <h5 class="card-title">

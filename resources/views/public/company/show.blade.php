@@ -8,7 +8,7 @@
                 <div class="card mb-5">
                     <div class="card-block row">
                         <div class="col-sm-4 flex flex-center">
-                            <img src="{{ asset($company->user->avatar) }}" alt="" class="img-fluid" style="max-height:140px; max-width:160px;">
+                            <img src="{{ asset($company->user->avatar) }}" class="img-fluid" style="max-height:140px; max-width:160px;">
                         </div>
                         <div class="col-sm-8 flex flex-column">
                             <h6 class="text-muted mb-1">Descripción</h6>
@@ -35,7 +35,7 @@
                             @endforeach
                         @else
                             <li class="list-group-item d-block">
-                                <p class="card-text">
+                                <p class="card-text py-2">
                                     {{ $company->user->name }} no tiene ofertas de trabajo.
                                 </p>
                             </li>

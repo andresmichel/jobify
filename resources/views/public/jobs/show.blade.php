@@ -70,7 +70,7 @@
                             @endforeach
                         @else
                             <li class="list-group-item d-block">
-                                <p class="card-text">
+                                <p class="card-text py-2">
                                     No encontramos ofertas similares.
                                 </p>
                             </li>

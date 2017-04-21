@@ -26,7 +26,7 @@
                     <ul class="list-group list-group-flush">
                         @if (!count($jobs))
                             <li class="list-group-item d-block">
-                                <p class="card-text">
+                                <p class="card-text py-2">
                                     No hay resultados.
                                 </p>
                             </li>

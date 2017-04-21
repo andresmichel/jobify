@@ -41,7 +41,7 @@
                             <div class="card m-3 d-inline-block" style="height:120px;">
                                 <a href="{{ url('company', $user->company->slug) }}" class="flex clear-focus" style="height:100%">
                                     <div class="card-block flex" style="height:100%">
-                                        <img src="{{ asset($user->avatar) }}" alt="" class="img-fluid mx-auto" style="max-height:60px;" title="{{ $user->name }}">
+                                        <img src="{{ asset($user->avatar) }}" class="img-fluid mx-auto" style="max-height:60px;" title="{{ $user->name }}">
                                     </div>
                                 </a>
                             </div>
