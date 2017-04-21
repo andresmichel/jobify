@@ -42,10 +42,16 @@ class JobController extends Controller
             }
 
             $jobs = $company_jobs->merge($jobs->distinct()->get());
-            $items = 10;
+            $per_page = 10;
             $start = 0;
 
-            $jobs = new Paginator($jobs->splice($start, $items), count($jobs), $items, $request->page ?: 1, [
+            if ($request->has('page')) {
+                if ($request->page != 1) {
+                    $start = ($per_page * $request->page) - 1;
+                }
+            }
+
+            $jobs = new Paginator($jobs->splice($start, $per_page), count($jobs), $per_page, $request->page ?: 1, [
                 'path' => url('jobs')
             ]);
 
