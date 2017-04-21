@@ -1,7 +1,7 @@
 <li class="list-group-item d-block py-4">
     <div class="flex">
         <div class="flex">
-            <img src="" alt="" width="64" height="64">
+            <img src="{{ asset($job->compaby->user->avatar) }}" alt="" width="64" height="64">
         </div>
         <div class="ml-4 flex flex-column w-100">
             <div class="flex w-100">

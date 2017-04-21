@@ -39,7 +39,13 @@
                         <ul class="list-group list-group-flush">
                             @foreach ($company->jobs as $job)
                                 <li class="list-group-item {{ $loop->first ? 'border-top-0' : '' }}">
-                                    <a href="{{ url('admin/jobs/'.$job->id.'/edit') }}">{{ $job->title }}</a>
+                                    {{ $job->title }}
+
+                                    <form id="deleteJob" action="{{ url('admin/jobs', $job->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form>
+                                    <button form="deleteJob" type="submit" class="btn btn-block btn-danger">Eliminar documento</button>
                                 </li>
                             @endforeach
                         </ul>

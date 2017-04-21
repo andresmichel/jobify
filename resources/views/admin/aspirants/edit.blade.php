@@ -34,11 +34,18 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item border-top-0">
-                                <form id="deleteResume" action="{{ url('admin/resume', $aspirant->resume->id) }}" method="post">
+                                <form id="deleteResumeFile" action="{{ url('admin/resumes/file', $aspirant->resumeFile->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                 </form>
-                                <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar</button>
+                                <button form="deleteResumeFile" type="submit" class="btn btn-block btn-danger">Eliminar documento</button>
+                            </li>
+                            <li class="list-group-item border-top-0">
+                                <form id="deleteResume" action="{{ url('admin/resumes', $aspirant->resume->id) }}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                </form>
+                                <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar currículum</button>
                             </li>
                         </ul>
                     </div>

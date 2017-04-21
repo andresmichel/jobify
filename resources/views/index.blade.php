@@ -3,7 +3,7 @@
 @section('padding', 'py-0')
 
 @section('header')
-    <div class="container-fluid" style="background-color: #75abeb;padding:110px;">
+    <div class="container-fluid" style="background-color:#75abeb; padding:110px;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
