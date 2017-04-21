@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input name="q" type="text" class="form-control" placeholder="Escribe un puesto o área">
+                                        <input name="q" type="text" class="form-control" placeholder="Escribe un puesto o área" value="{{ request()->q ?: '' }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
