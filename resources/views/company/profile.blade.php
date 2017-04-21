@@ -13,7 +13,6 @@
                             @slot('name', auth()->user()->name)
                             @slot('email', auth()->user()->email)
                             @slot('description', auth()->user()->company->description)
-                            @slot('avatar', auth()->user()->avatar)
                             @slot('website', auth()->user()->company->website)
                             @slot('category', auth()->user()->company->category)
                             @slot('employees', auth()->user()->company->employees)

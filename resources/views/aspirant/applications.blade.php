@@ -4,23 +4,23 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
-                <div class="card mb-5">
-                    <ul class="list-group list-group-flush">
-                        @if (!count($applications))
-                            <li class="list-group-item d-block">
-                                <p class="card-text">
-                                    No tienes solicitudes.
-                                </p>
-                            </li>
-                        @endif
+                @if (! count($applications))
+                    <div class="card">
+                        <div class="card-block">
+                            No tienes solicitudes.
+                        </div>
+                    </div>
+                @else
+                    <div class="card mb-5">
+                        <ul class="list-group list-group-flush">    
+                            @foreach ($applications as $job)
+                                @include('partials.job-item')
+                            @endforeach
+                        </ul>
+                    </div>
 
-                        @foreach ($applications as $job)
-                            @include('partials.job-item')
-                        @endforeach
-                    </ul>
-                </div>
-
-                {{ $applications->links('vendor.pagination.bootstrap-4') }}
+                    {{ $applications->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </div>
         </div>
     </div>

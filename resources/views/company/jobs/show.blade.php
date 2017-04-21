@@ -65,8 +65,25 @@
                             @foreach ($job->applications as $application)
                                 <li class="list-group-item d-flex align-items-center {{ $loop->first ? 'border-top-0' : '' }}" style="flex-shrink:0;">
                                     <p class="card-title m-0">{{ $application->aspirant->user->name }}</p>
-                                    @if ($application->aspirant->resume)
-                                        <a class="btn btn-primary btn-sm ml-auto" href="{{ url("company/jobs/$job->id/aspirant/".$application->aspirant->id) }}">
+
+                                    @if ($application->aspirant->resumeFile)
+                                        <a class="btn btn-primary btn-sm ml-auto"
+                                            href="{{ url('company/resumes', $application->aspirant->resumeFile->fullName())
+                                                . '?job='
+                                                . $job->id
+                                                . '&aspirant='
+                                                . $application->aspirant->id }}"
+                                            target="_blank">
+                                            Ver currículum
+                                        </a>
+                                    @elseif ($application->aspirant->resume)
+                                        <a class="btn btn-primary btn-sm ml-auto"
+                                            href="{{ url('company/resumes')
+                                                . '?job='
+                                                . $job->id
+                                                . '&aspirant='
+                                                . $application->aspirant->id }}"
+                                            target="_blank">
                                             Ver currículum
                                         </a>
                                     @else

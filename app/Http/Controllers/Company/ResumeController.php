@@ -4,21 +4,32 @@ namespace App\Http\Controllers\Company;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
 {
-    public function index($job_id, $aspirant_id)
+    public function index(Request $request)
     {
-        $job = auth()->user()->company->jobs()->findOrFail($job_id);
-        $aspirant = $job->aspirants()->findOrFail($aspirant_id);
-        $path = Storage::getDriver()->getAdapter()->getPathPrefix();
+        if ($request->has('job') && $request->has('aspirant')) {
+            $job = auth()
+                ->user()
+                ->company
+                ->jobs()
+                ->findOrFail($request->job);
 
-        if (!$aspirant->resume) {
-            abort(404);
+            $aspirant = $job
+                ->aspirants()
+                ->findOrFail($request->aspirant);
+
+            if ($aspirant->resumeFile) {
+                return response()->file(storage_path('app/')
+                    . $aspirant->resumeFile->path);
+            }
+
+            if ($aspirant->resume) {
+                return dd($aspirant->resume->getAttributes());
+            }
         }
 
-        // return response()->download($path.$aspirant->resume->path, 'cv-'.str_slug($aspirant->user->name).'.'.$aspirant->resume->ext);
-        return response()->file($path.$aspirant->resume->path);
+        abort(404);
     }
 }

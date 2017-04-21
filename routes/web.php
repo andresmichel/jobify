@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', 'ProfileController@edit');
         Route::put('/profile', 'ProfileController@update');
         Route::resource('/jobs', 'JobController');
-        Route::get('/jobs/{job_id}/aspirant/{aspirant_id}', 'ResumeController@index');
+        Route::get('/resumes/{file?}', 'ResumeController@index');
     });
 });
 
