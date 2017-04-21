@@ -59,25 +59,27 @@ class AspirantController extends Controller
             $avatar = $request->file('avatar')->store('uploads', 'public');
         }
 
-        DB::transaction(function () {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'avatar' => $avatar,
-                'password' => bcrypt($request->password),
-                'role' => 'aspirant',
-            ]);
+        DB::beginTransaction();
 
-            $aspirant = Aspirant::create([
-                'user_id' => $user->id,
-                'gender' => $request->gender,
-                'birth' => $request->birth,
-                'state' => $request->state,
-                'city' => $request->city,
-                'phone' => $request->phone,
-            ]);
-        });
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = 'aspirant';
+        $user->avatar = $avatar;
+        $user->save();
 
+        $aspirant = new Aspirant;
+        $aspirant->gender = $request->gender;
+        $aspirant->birth = $request->birth;
+        $aspirant->state = $request->state;
+        $aspirant->city = $request->city;
+        $aspirant->phone = $request->phone;
+
+        $user->aspirant()->save($aspirant);
+
+        DB::commit();
+        
         return redirect('admin/aspirants');
     }
 

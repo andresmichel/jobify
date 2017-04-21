@@ -62,7 +62,6 @@ class AspirantController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar')->store('uploads', 'public');
-            logger($avatar);
         }
 
         DB::beginTransaction();

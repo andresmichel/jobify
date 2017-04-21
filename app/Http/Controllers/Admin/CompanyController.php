@@ -61,28 +61,31 @@ class CompanyController extends Controller
             $avatar = $request->file('avatar')->store('uploads', 'public');
         }
 
-        DB::transaction(function () {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => 'company',
-                'avatar' => $avatar,
-            ]);
+        DB::beginTransaction();
 
-            $company = Company::create([
-                'user_id' => $user->id,
-                'slug' => str_slug($request->name),
-                'description' => $request->description,
-                'website' => $request->website,
-                'category' => $request->category,
-                'employees' => $request->employees,
-                'state' => $request->state,
-                'city' => $request->city,
-                'address' => $request->address,
-                'phone' => $request->phone,
-            ]);
-        });
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = 'company';
+        $user->avatar = $avatar;
+        $user->save();
+
+        $company = new Company;
+        $company->user_id = $user->id;
+        $company->slug = str_slug($request->name);
+        $company->description = $request->description;
+        $company->website = $request->website;
+        $company->category = $request->category;
+        $company->employees = $request->employees;
+        $company->state = $request->state;
+        $company->city = $request->city;
+        $company->address = $request->address;
+        $company->phone = $request->phone;
+
+        $user->company()->save($company);
+
+        DB::commit();
 
         return redirect('admin/companies');
     }
