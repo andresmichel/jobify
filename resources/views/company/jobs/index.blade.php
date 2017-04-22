@@ -1,9 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <a href="{{ url('company/jobs/create') }}" class="fav-button">
-        <i class="material-icons">add</i>
-    </a>
+    <div class="container-fixed">
+        <div class="container" style="height:100vh;">
+            <a href="{{ url('company/jobs/create') }}" class="fav-button" style="bottom:25px; right:15px; position:absolute">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -27,7 +31,10 @@
                                             </div>
                                             <div class="flex w-100">
                                                 <p class="card-subtitle mb-2">
-                                                    {{ count($job->applications) }} Solicitantes
+                                                    {{ count($job->applications()
+                                                            ->has('aspirant.resumeFile')
+                                                            ->orHas('aspirant.resume')
+                                                            ->get()) }} Solicitantes
                                                 </p>
                                                 <p class="card-subtitle mb-2 ml-auto flex">
                                                     <i class="material-icons mr-1 text-muted">place</i>

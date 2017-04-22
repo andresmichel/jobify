@@ -3,7 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @if (count($job->applications))
+            @if (count($job->applications()
+                    ->has('aspirant.resumeFile')
+                    ->orHas('aspirant.resume')
+                    ->get()))
                 <div class="col-sm-8">
             @else
                 <div class="col-sm-8 offset-sm-2">
@@ -57,12 +60,18 @@
                 </div>
             </div>
 
-            @if (count($job->applications))
+            @if (count($job->applications()
+                    ->has('aspirant.resumeFile')
+                    ->orHas('aspirant.resume')
+                    ->get()))
                 <div class="col-sm-4">
                     <h3 class="mb-4">{{ count($job->applications) }} Solicitantes</h3>
                     <div class="card mb-5">
                         <ul class="list-group list-group-flush" style="max-height:400px; overflow-y:auto;">
-                            @foreach ($job->applications as $application)
+                            @foreach ($job->applications()
+                                    ->has('aspirant.resumeFile')
+                                    ->orHas('aspirant.resume')
+                                    ->get() as $application)
                                 <li class="list-group-item d-flex align-items-center {{ $loop->first ? 'border-top-0' : '' }}" style="flex-shrink:0;">
                                     <p class="card-title m-0">{{ $application->aspirant->user->name }}</p>
 

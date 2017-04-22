@@ -1,19 +1,11 @@
 @extends('layouts.list')
 
-@section('header')
-
-@endsection
-
 @section('content')
     <div class="container-fixed">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href="{{ url('admin/aspirants/create') }}" class="fav-button">
-                        <i class="material-icons">add</i>
-                    </a>
-                </div>
-            </div>
+        <div class="container" style="height:100vh;">
+            <a href="{{ url('admin/aspirants/create') }}" class="fav-button" style="bottom:25px; right:15px; position:absolute">
+                <i class="material-icons">add</i>
+            </a>
         </div>
     </div>
 

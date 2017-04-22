@@ -148,6 +148,9 @@ a[href~="froala"] {
     display: none;
 }
 a.fav-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
     width: 60px;
     height: 60px;
@@ -307,10 +310,9 @@ button:focus, button:active {
     outline: none;
 }
 .container-fixed {
+    position: fixed;
+    width: 100%;
+    height: 100%;
     top: 0;
-    display: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: red;
-    opacity: 0.5;
+    left: 0;
 }
