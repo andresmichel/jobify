@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @if ($aspirant->resume)
+            @if ($aspirant->resume || $aspirant->resumeFile)
                 <div class="col-sm-6 offset-sm-1">
             @else
                 <div class="col-sm-6 offset-sm-3">
@@ -22,31 +22,39 @@
                             @slot('state', $aspirant->state)
                             @slot('city', $aspirant->city)
                             @slot('phone', $aspirant->phone)
+
+                            @if ($aspirant->user->avatar)
+                                @slot('avatar', 'Ver logotipo')
+                                @slot('avatar_url', asset($aspirant->user->avatar))
+                            @endif
                         @endcomponent
                     </div>
                 </div>
             </div>
-            @if ($aspirant->resume)
+            @if ($aspirant->resume || $aspirant->resumeFile)
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-header" style="background-color:#fff;">
                             Currículum
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-top-0">
-                                <form id="deleteResumeFile" action="{{ url('admin/resumes/file', $aspirant->resumeFile->id) }}" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                </form>
-                                <button form="deleteResumeFile" type="submit" class="btn btn-block btn-danger">Eliminar documento</button>
-                            </li>
-                            <li class="list-group-item border-top-0">
-                                <form id="deleteResume" action="{{ url('admin/resumes', $aspirant->resume->id) }}" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                </form>
-                                <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar currículum</button>
-                            </li>
+                            @if ($aspirant->resumeFile)
+                                <li class="list-group-item border-top-0">
+                                    <form id="deleteResumeFile" action="{{ url('admin/resumes/file', $aspirant->resumeFile->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form>
+                                    <button form="deleteResumeFile" type="submit" class="btn btn-block btn-danger">Eliminar documento</button>
+                                </li>
+                            @elseif ($aspirant->resume)
+                                <li class="list-group-item border-top-0">
+                                    <form id="deleteResume" action="{{ url('admin/resumes', $aspirant->resume->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form>
+                                    <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar currículum</button>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

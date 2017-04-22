@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/companies', 'CompanyController');
         Route::delete('/resumes/{id}', 'ResumeController@destroy');
         Route::delete('/resumes/file/{id}', 'ResumeController@destroy');
-        Route::delete('/jobs/{id}', 'JobController@destory');
+        Route::delete('/jobs/{id}', 'JobController@destroy');
     });
 
     Route::group(['prefix' => 'aspirant', 'middleware' => 'role:aspirant', 'namespace' => 'Aspirant'], function () {

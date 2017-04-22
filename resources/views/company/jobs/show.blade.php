@@ -67,7 +67,7 @@
                                     <p class="card-title m-0">{{ $application->aspirant->user->name }}</p>
 
                                     @if ($application->aspirant->resumeFile)
-                                        <a class="btn btn-primary btn-sm ml-auto"
+                                        <a class="btn btn-primary ml-auto"
                                             href="{{ url('company/resumes', $application->aspirant->resumeFile->fullName())
                                                 . '?job='
                                                 . $job->id
@@ -77,7 +77,7 @@
                                             Ver currículum
                                         </a>
                                     @elseif ($application->aspirant->resume)
-                                        <a class="btn btn-primary btn-sm ml-auto"
+                                        <a class="btn btn-primary ml-auto"
                                             href="{{ url('company/resumes')
                                                 . '?job='
                                                 . $job->id
@@ -87,7 +87,7 @@
                                             Ver currículum
                                         </a>
                                     @else
-                                        <a class="btn btn-primary btn-sm ml-auto disabled" href="#">
+                                        <a class="btn btn-primary ml-auto disabled" href="#">
                                             Currículum no disponible
                                         </a>
                                     @endif

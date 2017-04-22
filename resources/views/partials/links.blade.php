@@ -10,5 +10,6 @@
         <a href="{{ url('aspirant/applications') }}" class="h-100 flex ml-4 {{ request()->is('aspirant/applications*') ? 'active' : '' }}">Solicitudes</a>
     @elseif (auth()->user()->role == 'company')
         <a href="{{ url('company/jobs') }}" class="h-100 flex ml-4 {{ request()->is('company/jobs*') ? 'active' : '' }}">Ofertas de trabajo</a>
+        <a href="{{ url('company/aspirants') }}" class="h-100 flex ml-4 {{ request()->is('company/aspirants*') ? 'active' : '' }}">Buscar aspirantes</a>
     @endif
 @endif

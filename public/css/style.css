@@ -138,6 +138,9 @@ select.form-control {
 .flex-nowrap {
     flex-wrap: nowrap;
 }
+.flex-noshrink {
+    flex-shrink: 0;
+}
 .text-nowrap {
     white-space: nowrap;
 }
@@ -290,4 +293,19 @@ a:hover, a:visited, a:active, a:focus {
 .nav-tabs .nav-item .nav-link.active {
     background-color: #75abeb;
     color: #fff;
+}
+.avatar {
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 60px;
+    height: 60px;
+}
+.list-group {
+    overflow-y: auto;
+}
+button:focus, button:active {
+    box-shadow: none;
+    outline: none;
 }

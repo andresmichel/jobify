@@ -8,7 +8,7 @@
                 <div class="card mb-5">
                     <div class="card-block row">
                         <div class="col-sm-4 flex flex-center">
-                            <img src="{{ asset($company->user->avatar) }}" class="img-fluid" style="max-height:140px; max-width:160px;">
+                            <div class="avatar" style="background-image:url('{{ asset($company->user->avatar) }}'); width:220px; height:140px;"></div>
                         </div>
                         <div class="col-sm-8 flex flex-column">
                             <h6 class="text-muted mb-1">Descripción</h6>

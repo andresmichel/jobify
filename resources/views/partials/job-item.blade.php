@@ -1,7 +1,7 @@
 <li class="list-group-item d-block py-4">
     <div class="flex">
         <div class="flex">
-            <img src="{{ asset($job->company->user->avatar) }}" class="img-fluid" style="max-width:100px">
+            <div class="avatar" style="background-image:url('{{ asset($job->company->user->avatar) }}')"></div>
         </div>
         <div class="ml-4 flex flex-column w-100">
             <div class="flex w-100">

@@ -17,7 +17,10 @@ use Faker\Generator as Faker;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(User::class, function (Faker $faker) {
     static $password;
-    $avatar = 'img/'.rand(1, 5).'.png';
+    $avatar = 'http://placehold.it/'
+        . rand(50, 500)
+        . 'x'
+        . rand(50, 500);
 
     return [
         'name' => $faker->name,
