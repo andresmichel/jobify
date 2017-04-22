@@ -1,9 +1,21 @@
 @extends('layouts.list')
 
+@section('header')
+
+@endsection
+
 @section('content')
-    <a href="{{ url('admin/aspirants/create') }}" class="fav-button">
-        <i class="material-icons">add</i>
-    </a>
+    <div class="container-fixed">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="{{ url('admin/aspirants/create') }}" class="fav-button">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @parent
 

@@ -15,12 +15,13 @@ class ResumeController extends Controller
         $resume = Resume::findOrFail($id);
         $aspirant = $resume->aspirant;
         $resume->delete();
+
         return redirect('admin/aspirants/'.$aspirant->id.'/edit');
     }
 
     public function destroyFile($id)
     {
-        $resume_file = Resume::findOrFail($id);
+        $resume_file = ResumeFile::findOrFail($id);
         $aspirant = $resume_file->aspirant;
 
         try {
@@ -29,6 +30,8 @@ class ResumeController extends Controller
             logger($e);
         }
 
-        return redirect('admin/aspirants/'.$company->id.'/edit');
+        $resume_file->delete();
+
+        return redirect('admin/aspirants/'.$aspirant->id.'/edit');
     }
 }

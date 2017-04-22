@@ -24,7 +24,7 @@
                             @slot('phone', $aspirant->phone)
 
                             @if ($aspirant->user->avatar)
-                                @slot('avatar', 'Ver logotipo')
+                                @slot('avatar', 'Ver foto de perfil')
                                 @slot('avatar_url', asset($aspirant->user->avatar))
                             @endif
                         @endcomponent
@@ -33,26 +33,38 @@
             </div>
             @if ($aspirant->resume || $aspirant->resumeFile)
                 <div class="col-sm-4">
+                    <h3 class="mb-4">Currículum</h3>
                     <div class="card">
-                        <div class="card-header" style="background-color:#fff;">
-                            Currículum
-                        </div>
                         <ul class="list-group list-group-flush">
                             @if ($aspirant->resumeFile)
-                                <li class="list-group-item border-top-0">
-                                    <form id="deleteResumeFile" action="{{ url('admin/resumes/file', $aspirant->resumeFile->id) }}" method="post">
+                                <li class="list-group-item flex border-top-0">
+                                    <span class="text-truncate mr-auto">
+                                        Currículum (documento)
+                                    </span>
+
+                                    <form id="deleteResumeFile" action="{{ url('admin/resumes/file', $aspirant->resumeFile->id) }}" method="post" hidden>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                     </form>
-                                    <button form="deleteResumeFile" type="submit" class="btn btn-block btn-danger">Eliminar documento</button>
+                                    <button form="deleteResumeFile" type="submit" style="background-color:inherit;">
+                                        <i class="material-icons text-danger">delete</i>
+                                    </button>
                                 </li>
-                            @elseif ($aspirant->resume)
-                                <li class="list-group-item border-top-0">
-                                    <form id="deleteResume" action="{{ url('admin/resumes', $aspirant->resume->id) }}" method="post">
+                            @endif
+
+                            @if ($aspirant->resume)
+                                <li class="list-group-item flex">
+                                    <span class="text-truncate mr-auto">
+                                        Currículum (virtual)
+                                    </span>
+
+                                    <form id="deleteResume" action="{{ url('admin/resumes', $aspirant->resume->id) }}" method="post" hidden>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                     </form>
-                                    <button form="deleteResume" type="submit" class="btn btn-block btn-danger">Eliminar currículum</button>
+                                    <button form="deleteResume" type="submit" style="background-color:inherit;">
+                                        <i class="material-icons text-danger">delete</i>
+                                    </button>
                                 </li>
                             @endif
                         </ul>
