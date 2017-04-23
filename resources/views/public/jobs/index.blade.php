@@ -14,7 +14,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button class="btn btn-primary btn-block" type="submit" style="height:38px;">
+                                    <button class="btn btn-primary btn-block" type="submit" style="height:37px;">
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>

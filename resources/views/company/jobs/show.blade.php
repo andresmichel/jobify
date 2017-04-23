@@ -6,6 +6,7 @@
             @if (count($job->applications()
                     ->has('aspirant.resumeFile')
                     ->orHas('aspirant.resume')
+                    ->where('job_id', $job->id)
                     ->get()))
                 <div class="col-sm-8">
             @else
@@ -69,6 +70,7 @@
             @if (count($job->applications()
                     ->has('aspirant.resumeFile')
                     ->orHas('aspirant.resume')
+                    ->where('job_id', $job->id)
                     ->get()))
                 <div class="col-sm-4">
                     <h3 class="mb-4">{{ count($job->applications) }} Solicitantes</h3>
@@ -77,6 +79,7 @@
                             @foreach ($job->applications()
                                     ->has('aspirant.resumeFile')
                                     ->orHas('aspirant.resume')
+                                    ->where('job_id', $job->id)
                                     ->get() as $application)
                                 <li class="list-group-item d-flex align-items-center {{ $loop->first ? 'border-top-0' : '' }}" style="flex-shrink:0;">
                                     <p class="card-title m-0">{{ $application->aspirant->user->name }}</p>

@@ -32,7 +32,7 @@
                                                 @if (auth()->user()->aspirant->resumeFile)
                                                     <small class="form-text text-muted">
                                                         <a href="{{ url('aspirant/resume/download', auth()->user()->aspirant->resumeFile->fullName()) }}" target="_blank">
-                                                            {{ auth()->user()->aspirant->resumeFile->fullName() }}
+                                                            Ver documento ({{ auth()->user()->aspirant->resumeFile->fullName() }})
                                                         </a>
                                                     </small>
                                                 @endif

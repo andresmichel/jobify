@@ -34,6 +34,7 @@
                                                     {{ count($job->applications()
                                                             ->has('aspirant.resumeFile')
                                                             ->orHas('aspirant.resume')
+                                                            ->where('job_id', $job->id)
                                                             ->get()) }} Solicitantes
                                                 </p>
                                                 <p class="card-subtitle mb-2 ml-auto flex">

@@ -76,7 +76,10 @@
     @endcomponent
 
     <div id="sectionsApp">
-        <sections></sections>
+        <education title="Formación académica" name="education" id="education" input-id="education-input"></education>
+        <education title="Experiencia laboral" name="experience" id="experience" input-id="experience-input"></education>
+        <skills title="Conocimientos adicionales" name="skills" id="skills" input-id="skills-input"></skills>
+        <languages title="Idiomas" name="languages" id="languages" input-id="languages-input"></languages>
     </div>
 
     @component('components.button')
