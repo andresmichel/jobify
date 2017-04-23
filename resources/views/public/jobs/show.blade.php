@@ -10,8 +10,14 @@
                         <h6 class="text-muted mb-1">Descripción</h6>
                         <p>{{ $job->description }}</p>
 
-                        <h6 class="text-muted mb-1">Requerimientos</h6>
-                        <p>{{ $job->requirements }}</p>
+                        @if (count(json_decode($job->requirements)))
+                            <h6 class="text-muted mb-1">Requerimientos</h6>
+                            <ul class="pl-3">
+                                @foreach (json_decode($job->requirements) as $requirement)
+                                    <li class="mb-2">{{ $requirement }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
 
                         <div class="row">
                             <div class="col-sm-6">

@@ -29,7 +29,7 @@ class ResumeController extends Controller
             'description' => 'required|string',
             'goal' => 'required|string',
             'address' => 'required|string',
-            'sections' => 'required|json',
+            'sections' => 'required|json|not_in:[]',
         ]);
 
         $aspirant->name = $request->name;

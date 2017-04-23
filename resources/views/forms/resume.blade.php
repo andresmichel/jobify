@@ -75,12 +75,9 @@
         {{ $address or old('address') }}
     @endcomponent
 
-    @component('components.textarea')
-        @slot('label', 'Sections')
-        @slot('name', 'sections')
-        {{ $sections or old('sections') }}
-        {{-- @slot('hidden', true) --}}
-    @endcomponent
+    <div id="sectionsApp">
+        <sections></sections>
+    </div>
 
     @component('components.button')
         {{ $submit or 'Guardar' }}

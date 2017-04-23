@@ -61,7 +61,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('js/vue/resume.js') }}" charset="utf-8"></script>
-@endsection

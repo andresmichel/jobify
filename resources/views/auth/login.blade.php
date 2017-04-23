@@ -16,6 +16,7 @@
                                 @slot('label', 'Correo electrónico')
                                 @slot('name', 'email')
                                 @slot('type', 'email')
+                                {{ old('email') }}
                             @endcomponent
 
                             @component('components.input')

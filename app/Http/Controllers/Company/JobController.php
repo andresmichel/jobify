@@ -67,7 +67,7 @@ class JobController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'area' => 'required|string',
-            'requirements' => 'required|json',
+            'requirements' => 'required|json|not_in:[]',
             'shift' => 'required|string',
             'salary' => 'required|numeric',
             'state' => 'required|string',

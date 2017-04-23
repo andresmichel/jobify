@@ -46,12 +46,9 @@
         {{ $shift or old('shift') }}
     @endcomponent
 
-    @component('components.textarea')
-        @slot('label', 'Requisitos')
-        @slot('name', 'requirements')
-        {{ $requirements or old('requirements') }}
-        {{-- @slot('hidden', true) --}}
-    @endcomponent
+    <div id="requirementsApp">
+        <requirements></requirements>
+    </div>
 
     @component('components.input')
         @slot('label', 'Salario')

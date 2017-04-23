@@ -15,3 +15,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @include('vue.requirements')
+@endsection

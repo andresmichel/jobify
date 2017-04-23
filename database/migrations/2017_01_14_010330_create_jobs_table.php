@@ -23,7 +23,7 @@ class CreateJobsTable extends Migration
             $table->string('area');
             $table->string('shift');
             $table->text('requirements'); // JSON
-            $table->float('salary')->nullable();
+            $table->double('salary')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->boolean('remote')->default(0);

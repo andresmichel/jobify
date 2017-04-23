@@ -16,7 +16,6 @@
                             @slot('description', $job->description)
                             @slot('fulltime', $job->fulltime)
                             @slot('shift', $job->shift)
-                            @slot('requirements', $job->requirements)
                             @slot('salary', $job->salary)
                             @slot('state', $job->state)
                             @slot('city', $job->city)
@@ -28,4 +27,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @include('vue.requirements')
 @endsection
