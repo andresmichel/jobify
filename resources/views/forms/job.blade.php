@@ -60,7 +60,8 @@
     @component('components.checkbox')
         @slot('label', 'Remoto')
         @slot('name', 'remote')
-        {{ isset($remote) && $remote ? 'checked' : '' }}
+        @slot('id', 'remoteApp')
+        @slot('v_model', 'remote')
     @endcomponent
 
     @component('components.input')

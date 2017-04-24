@@ -1,13 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fixed">
-        <div class="container" style="height:100vh;">
-            <a href="{{ url('company/jobs/create') }}" class="fav-button" style="bottom:25px; right:15px; position:absolute">
-                <i class="material-icons">add</i>
-            </a>
-        </div>
-    </div>
+    <a href="{{ url('company/jobs/create') }}" class="fav-button">
+        <i class="material-icons">add</i>
+    </a>
 
     <div class="container">
         <div class="row">

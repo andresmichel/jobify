@@ -1,4 +1,3 @@
-{{-- {{ dd($resume) }} --}}
 @extends('layouts.master')
 
 @section('content')

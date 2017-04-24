@@ -31,4 +31,5 @@
 
 @section('scripts')
     @include('vue.requirements')
+    @include('vue.remote')
 @endsection

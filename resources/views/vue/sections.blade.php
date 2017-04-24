@@ -44,7 +44,7 @@
                             <input v-model="to" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
-                            <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
+                            <a href="#" class="my-3 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('education'))
@@ -154,7 +154,7 @@
                             <input v-model="to" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
-                            <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
+                            <a href="#" class="my-3 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('experience'))
@@ -248,7 +248,7 @@
                             <input v-model="ocupation" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
-                            <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
+                            <a href="#" class="my-3 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('skills'))

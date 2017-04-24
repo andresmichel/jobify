@@ -148,9 +148,9 @@ a[href~="froala"] {
     display: none;
 }
 a.fav-button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
     display: flex;
     width: 60px;
     height: 60px;
