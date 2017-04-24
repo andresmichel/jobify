@@ -31,5 +31,7 @@
 
 @section('scripts')
     @include('vue.requirements')
-    @include('vue.remote')
+    @include('vue.remote', [
+        'remote' => $job->remote
+    ])
 @endsection
