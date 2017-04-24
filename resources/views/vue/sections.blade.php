@@ -3,52 +3,52 @@
         el: '#sectionsApp',
         components: {
             'education': {
-                props: ['title', 'name', 'id'],
+                props: ['title', 'name', 'id', 'readonly'],
                 template: `<div class="form-group">
                     <label :for="id">@{{ title }}</label>
                     <textarea hidden class="form-control" :name="name" :id="id"></textarea>
                     <div class="row m-0 pb-2 pt-1 mb-3" style="border:1px solid #eee!important;border-radius:4px;position:relative;" v-for="(edu, index) in education">
                         <div class="col-sm-6">
                             <label class="small">Institución</label>
-                            <input class="form-control mb-2" :value="edu.school" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="edu.school" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Curso</label>
-                            <input class="form-control mb-2" :value="edu.course" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="edu.course" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Desde</label>
-                            <input class="form-control mb-2" :value="edu.from" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="edu.from" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Hasta</label>
-                            <input class="form-control mb-2" :value="edu.to" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="edu.to" readonly>
                         </div>
-                        <i @click="education.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
+                        <i v-if="readonly == undefined" @click="education.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
                     </div>
-                    <div class="row">
+                    <div v-if="readonly == undefined" class="row">
                         <div class="col-sm-6">
                             <label class="small">Institución</label>
-                            <input v-model="school" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="school" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Curso</label>
-                            <input v-model="course" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="course" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Desde</label>
-                            <input v-model="from" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="from" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Hasta</label>
-                            <input v-model="to" @keydown.enter.prevent="add" class="form-control" style="padding-right:24px;">
+                            <input v-model="to" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
                             <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('education'))
-                        <small class="form-text text-danger">{{ $errors->first('education') }}</small>
+                        <small v-if="readonly == undefined" class="form-text text-danger">{{ $errors->first('education') }}</small>
                     @endif
                 </div>`,
                 data: function () {
@@ -58,8 +58,8 @@
                         to: '',
                         course: '',
                         education:
-                        @if (auth()->user()->aspirant->resume)
-                            {!! auth()->user()->aspirant->resume->sections !!}.education,
+                        @if ($resume)
+                            {!! $resume->sections !!}.education,
                         @else
                             {!! old('education') ?: '[]' !!},
                         @endif
@@ -113,52 +113,52 @@
                 }
             },
             'experience': {
-                props: ['title', 'name', 'id'],
+                props: ['title', 'name', 'id', 'readonly'],
                 template: `<div class="form-group">
                     <label :for="id">@{{ title }}</label>
                     <textarea hidden class="form-control" :name="name" :id="id"></textarea>
                     <div class="row m-0 pb-2 pt-1 mb-3" style="border:1px solid #eee!important;border-radius:4px;position:relative;" v-for="(exp, index) in experience">
                         <div class="col-sm-6">
                             <label class="small">Empresa</label>
-                            <input class="form-control mb-2" :value="exp.company" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="exp.company" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Puesto</label>
-                            <input class="form-control mb-2" :value="exp.ocupation" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="exp.ocupation" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Desde</label>
-                            <input class="form-control mb-2" :value="exp.from" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="exp.from" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Hasta</label>
-                            <input class="form-control mb-2" :value="exp.to" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="exp.to" readonly>
                         </div>
-                        <i @click="experience.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
+                        <i v-if="readonly == undefined" @click="experience.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
                     </div>
-                    <div class="row">
+                    <div v-if="readonly == undefined" class="row">
                         <div class="col-sm-6">
                             <label class="small">Empresa</label>
-                            <input v-model="company" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="company" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Puesto</label>
-                            <input v-model="ocupation" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="ocupation" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Desde</label>
-                            <input v-model="from" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="from" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Hasta</label>
-                            <input v-model="to" @keydown.enter.prevent="add" class="form-control" style="padding-right:24px;">
+                            <input v-model="to" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
                             <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('experience'))
-                        <small class="form-text text-danger">{{ $errors->first('experience') }}</small>
+                        <small v-if="readonly == undefined" class="form-text text-danger">{{ $errors->first('experience') }}</small>
                     @endif
                 </div>`,
                 data: function () {
@@ -168,8 +168,8 @@
                         to: '',
                         ocupation: '',
                         experience:
-                        @if (auth()->user()->aspirant->resume)
-                            {!! auth()->user()->aspirant->resume->sections !!}.experience,
+                        @if ($resume)
+                            {!! $resume->sections !!}.experience,
                         @else
                             {!! old('experience') ?: '[]' !!},
                         @endif
@@ -223,36 +223,36 @@
                 }
             },
             'skills': {
-                props: ['title', 'name', 'id'],
+                props: ['title', 'name', 'id', 'readonly'],
                 template: `<div class="form-group">
                     <label :for="id">@{{ title }}</label>
                     <textarea hidden class="form-control" :name="name" :id="id"></textarea>
                     <div class="row m-0 pb-2 pt-1 mb-3" style="border:1px solid #eee!important;border-radius:4px;position:relative;" v-for="(skill, index) in skills">
                         <div class="col-sm-6">
                             <label class="small">Categoría</label>
-                            <input class="form-control mb-2" :value="skill.company" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="skill.company" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Conocimientos</label>
-                            <input class="form-control mb-2" :value="skill.ocupation" readonly style="padding-right:24px;">
+                            <input class="form-control mb-2" :value="skill.ocupation" readonly>
                         </div>
-                        <i @click="skills.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
+                        <i v-if="readonly == undefined" @click="skills.splice(index, 1)" class="material-icons text-danger input-icon" style="right:-8px;top:-8px;cursor:pointer">cancel</i>
                     </div>
-                    <div class="row">
+                    <div v-if="readonly == undefined" class="row">
                         <div class="col-sm-6">
                             <label class="small">Categoría</label>
-                            <input v-model="company" @keydown.enter.prevent="" class="form-control" style="padding-right:24px;">
+                            <input v-model="company" @keydown.enter.prevent="" class="form-control">
                         </div>
                         <div class="col-sm-6">
                             <label class="small">Conocimientos</label>
-                            <input v-model="ocupation" @keydown.enter.prevent="add" class="form-control" style="padding-right:24px;">
+                            <input v-model="ocupation" @keydown.enter.prevent="add" class="form-control">
                         </div>
                         <div class="col-sm-12">
                             <a href="#" class="mb-3 mt-2 btn btn-primary" @click.prevent="add">Agregar<a>
                         </div>
                     </div>
                     @if ($errors->has('skills'))
-                        <small class="form-text text-danger">{{ $errors->first('skills') }}</small>
+                        <small v-if="readonly == undefined" class="form-text text-danger">{{ $errors->first('skills') }}</small>
                     @endif
                 </div>`,
                 data: function () {
@@ -260,8 +260,8 @@
                         company: '',
                         ocupation: '',
                         skills:
-                        @if (auth()->user()->aspirant->resume)
-                            {!! auth()->user()->aspirant->resume->sections !!}.skills,
+                        @if ($resume)
+                            {!! $resume->sections !!}.skills,
                         @else
                             {!! old('skills') ?: '[]' !!},
                         @endif
@@ -309,31 +309,31 @@
                 }
             },
             'languages': {
-                props: ['title', 'name', 'id', 'input-id'],
+                props: ['title', 'name', 'id', 'input-id', 'readonly'],
                 template: `<div class="form-group">
                     <label :for="id">@{{ title }}</label>
                     <textarea hidden class="form-control" :name="name" :id="id"></textarea>
                     <div class="row">
                         <div v-for="(lang, index) in languages" class="col-sm-12">
                             <input class="form-control mb-2" :value="lang" readonly style="padding-right:24px;">
-                            <i @click="languages.splice(index, 1)" class="material-icons text-danger input-icon">cancel</i>
+                            <i v-if="readonly == undefined" @click="languages.splice(index, 1)" class="material-icons text-danger input-icon">cancel</i>
                         </div>
                     </div>
-                    <div class="row">
+                    <div v-if="readonly == undefined" class="row">
                         <div class="col-sm-12">
                             <input :id="inputId" @keydown.enter.prevent="add" class="form-control" style="padding-right:24px;">
                             <i @click="add" class="material-icons text-success input-icon">add_circle</i>
                         </div>
                     </div>
                     @if ($errors->has('languages'))
-                        <small class="form-text text-danger">{{ $errors->first('languages') }}</small>
+                        <small v-if="readonly == undefined" class="form-text text-danger">{{ $errors->first('languages') }}</small>
                     @endif
                 </div>`,
                 data: function () {
                     return {
                         languages:
-                        @if (auth()->user()->aspirant->resume)
-                            {!! auth()->user()->aspirant->resume->sections !!}.languages,
+                        @if ($resume)
+                            {!! $resume->sections !!}.languages,
                         @else
                             {!! old('languages') ?: '[]' !!},
                         @endif
@@ -346,6 +346,7 @@
                 },
                 mounted: function () {
                     this.update(this.languages);
+                    console.log(this.readonly != undefined);
                 },
                 methods: {
                     add: function () {

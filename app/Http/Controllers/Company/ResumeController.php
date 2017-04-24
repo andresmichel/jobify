@@ -26,7 +26,7 @@ class ResumeController extends Controller
             }
 
             if ($aspirant->resume) {
-                return dd($aspirant->resume->getAttributes());
+                return view('company.resume')->with('resume', $aspirant->resume);
             }
         }
 

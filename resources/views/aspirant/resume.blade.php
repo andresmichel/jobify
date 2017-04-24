@@ -55,5 +55,7 @@
 @endsection
 
 @section('scripts')
-    @include('vue.sections')
+    @include('vue.sections', [
+        'resume' => auth()->user()->aspirant->resume
+    ])
 @endsection
