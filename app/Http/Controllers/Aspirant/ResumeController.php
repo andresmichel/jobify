@@ -29,7 +29,10 @@ class ResumeController extends Controller
             'description' => 'required|string',
             'goal' => 'required|string',
             'address' => 'required|string',
-            'sections' => 'required|json|not_in:[]',
+            'education' => 'required|json|not_in:[]',
+            'experience' => 'required|json|not_in:[]',
+            'skills' => 'required|json|not_in:[]',
+            'languages' => 'required|json|not_in:[]',
         ]);
 
         $aspirant->name = $request->name;
@@ -45,7 +48,14 @@ class ResumeController extends Controller
         $resume->description = $request->description;
         $resume->goal = $request->goal;
         $resume->address = $request->address;
-        $resume->sections = $request->sections;
+
+        $resume->sections = json_encode([
+            'education' => json_decode($request->education),
+            'experience' => json_decode($request->experience),
+            'skills' => json_decode($request->skills),
+            'languages' => json_decode($request->languages),
+        ]);
+
         $resume->picture = $request->picture ? 1 : 0;
 
         $resume->save();

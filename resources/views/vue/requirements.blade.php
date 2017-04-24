@@ -9,13 +9,13 @@
                     <div class="row">
                         <div v-for="(requirement, index) in requirements" class="col-sm-12">
                             <input class="form-control mb-2" :value="requirement" readonly style="padding-right:24px;">
-                            <i @click="requirements.splice(index, 1)" class="material-icons text-danger input-icon">close</i>
+                            <i @click="requirements.splice(index, 1)" class="material-icons text-danger input-icon">cancel</i>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <input id="requirement-input" @keydown.enter.prevent="add" class="form-control" style="padding-right:24px;">
-                            <i @click="add" class="material-icons text-success input-icon">add</i>
+                            <i @click="add" class="material-icons text-success input-icon">add_circle</i>
                         </div>
                     </div>
                     @if ($errors->has('requirements'))
