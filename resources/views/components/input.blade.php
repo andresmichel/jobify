@@ -10,6 +10,7 @@
             type="phone"
             data-mask="(000) 000-0000"
         @elseif ($type == 'date')
+            data-toggle="datepicker"
             data-mask="0000-00-00"
         @elseif ($type == 'age')
             data-mask="00"
