@@ -17,13 +17,11 @@ use Faker\Generator as Faker;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(User::class, function (Faker $faker) {
     static $password;
-    $avatar = 'http://placehold.it/'
-        . rand(50, 500)
-        . 'x'
-        . rand(50, 500);
+    $name = $faker->name;
+    $avatar = "https://placeholdit.imgix.net/~text?txtsize=30&txt=$name&w=140&h=110&bg=fff";
 
     return [
-        'name' => $faker->name,
+        'name' => $name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
